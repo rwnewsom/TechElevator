@@ -1,18 +1,21 @@
 # This exercise validates that the students completed the steps as
 # specified in the README correctly.
-
+# 
+# The output the users see is piped into a submission.txt file
+​
 ERRORS=0
 BASE=~/playground
-
+OUTPUT=submission.txt
+​
 clear
 echo ""
-echo "---- VERIFYING  ---- "
+echo "---- VERIFYING  ---- " | tee $OUTPUT
 echo ""
 
-PATHS=("" "/usa" "/canada" "/usa/ohio" "/usa/pennsylvania" "/usa/michigan" "/canada/quebec" "/canada/british-columbia" "/usa/ohio/cuyahoga"
-"/usa/ohio/hamilton" "/usa/ohio/franklin" "/usa/pennsylvania/allegheny" "/usa/michigan/wayne" "/usa/ohio/cuyahoga/cleveland.txt" "/usa/ohio/hamilton/cincinnati.txt"
-"/usa/ohio/franklin/columbus.txt" "/usa/pennsylvania/allegheny/pittsburgh.txt" "/usa/michigan/wayne/detroit.txt" "/canada/quebec/montreal.txt" "/canada/quebec/quebec-city.txt"
-"/canada/british-columbia/vancouver.txt" "/canada/british-columbia/prince-george.txt")
+PATHS=("" "/usa" "/canada" "/usa/ohio" "/usa/pennsylvania" "/usa/michigan" "/canada/quebec" "/canada/british columbia" "/usa/ohio/cuyahoga" 
+"/usa/ohio/hamilton" "/usa/ohio/franklin" "/usa/pennsylvania/allegheny" "/usa/michigan/wayne" "/usa/ohio/cuyahoga/cleveland.txt" "/usa/ohio/hamilton/cincinnati.txt" 
+"/usa/ohio/franklin/columbus.txt" "/usa/pennsylvania/allegheny/pittsburgh.txt" "/usa/michigan/wayne/detroit.txt" "/canada/quebec/montreal.txt" "/canada/quebec/quebec-city.txt" 
+"/canada/british columbia/vancouver.txt" "/canada/british columbia/prince-george.txt")
 
 EXERCISE_COUNT="${#PATHS[@]}"
 
@@ -22,15 +25,16 @@ do
     PATH_TO_CHECK="${PATHS[$i]}"
 
     if test -f "$BASE$PATH_TO_CHECK" || test -d "$BASE$PATH_TO_CHECK"; then
-        echo "✅ $STEP. ~/playground$PATH_TO_CHECK exists"
+        echo "✅ $STEP. ~/playground$PATH_TO_CHECK exists" | tee -a $OUTPUT
     else
-        echo "❗️ $STEP. ~/playground$PATH_TO_CHECK does not exist"
+        echo "❗️ $STEP. ~/playground$PATH_TO_CHECK does not exist" | tee -a $OUTPUT
         ERRORS=$((ERRORS+1))
     fi
 done
+​
 
-echo ""
-echo "$((EXERCISE_COUNT-ERRORS))/$EXERCISE_COUNT tests pass"
+echo "" | tee -a $OUTPUT
+echo "$((EXERCISE_COUNT-ERRORS))/$EXERCISE_COUNT tests pass" | tee -a $OUTPUT
 echo ""
 
 if ((ERRORS==0)); then
