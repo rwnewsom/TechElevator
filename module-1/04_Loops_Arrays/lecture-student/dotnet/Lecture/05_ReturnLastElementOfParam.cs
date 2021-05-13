@@ -9,7 +9,7 @@
         */
         public int ReturnLastElementOfParam(int[] passedInArray)
         {
-            return 1;
+            return passedInArray[passedInArray.Length-1];
         }
 
         /*
@@ -18,7 +18,7 @@
         */
         public int ReturnSecondToLastElementOfParam(int[] passedInArray)
         {
-            return 1;
+            return passedInArray[passedInArray.Length-2];
         }
 
         /*
@@ -27,7 +27,7 @@
         */
         public void SetLastElement(int[] passedInArray)
         {
-            return;
+            passedInArray[passedInArray.Length-1]=100;
         }
     }
 }

@@ -10,7 +10,8 @@
         */
         public int[] ReturnNewArray()
         {
-            return null;
+            int[] result = new int[4];
+            return result;
         }
 
 
@@ -22,7 +23,7 @@
         */
         public int[] ReturnArrayOfKnownSize()
         {
-            return null;
+            return new int[100];
         }
 
         /*
@@ -33,7 +34,7 @@
         */
         public string[] ReturnArrayOfUnknownSize(int n)
         {
-            return null;
+            return new string[n];
         }
 
 
