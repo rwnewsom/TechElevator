@@ -11,7 +11,24 @@
         */
         public bool LoneTeen(int a, int b)
         {
+            bool teenA = false;
+            bool teenB = false;
+
+            if ((a >= 13) && (a <= 19))
+            {
+                teenA = true;
+            }
+            if ((b >= 13) && (b <= 19))
+            {
+                teenB = true;
+            }
+
+            if (teenA ^ teenB)
+            {
+                return true;
+            }
             return false;
+
         }
     }
 }

@@ -7,7 +7,8 @@
         */
         public string ReturnFizzIfThreeUsingTernary(int number)
         {
-            return "";
+            string result = number == 3 ? "Fizz" : "";
+            return result;
         }
     }
 }

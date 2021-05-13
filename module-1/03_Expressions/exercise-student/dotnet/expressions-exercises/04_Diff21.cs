@@ -11,7 +11,10 @@
          */
         public int Diff21(int n)
         {
-            return 0;
+            if (n > 21) 
+            {
+                return 2 * -(21 - n);
+            }  return 21 - n;
         }
     }
 }

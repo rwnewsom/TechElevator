@@ -9,7 +9,7 @@
         */
         public string ReturnName()
         {
-            return null;
+            return "I am a string!";
         }
     }
 }
