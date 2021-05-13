@@ -11,7 +11,14 @@
          */
         public int[] Reverse3(int[] nums)
         {
-            return new int[] { };
+            int[] backwards = new int[3];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                backwards[i] = nums[(nums.Length-1) - i];
+            }
+            return backwards;
+            
+            //return new int[] { };
         }
     }
 }

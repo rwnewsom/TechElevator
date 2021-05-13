@@ -9,7 +9,7 @@
         */
         public int FindTheHighestNumber(int[] randomNumbers)
         {
-            int highest = 0;
+            int highest = -999999999;
             for (int i = 0; i < randomNumbers.Length; i++)
             {
                 if(randomNumbers[i] > highest)

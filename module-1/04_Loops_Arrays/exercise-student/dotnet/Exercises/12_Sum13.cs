@@ -14,7 +14,31 @@
          */
         public int Sum13(int[] nums)
         {
-            return 0;
+            int luckySum = 0;
+            if (nums.Length == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] != 13)
+                    {
+                        luckySum += nums[i];
+                        
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
+
+
+
+            return luckySum;
+            //return 0;
         }
     }
 }

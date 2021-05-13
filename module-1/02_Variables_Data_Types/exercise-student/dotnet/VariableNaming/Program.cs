@@ -463,7 +463,7 @@
             string seperatorOne = ", ";
             string seperatorTwo = " ";
             string periodOne = ".";
-            string fullName = lastName + seperatorOne +  firstName + seperatorTwo + middleInitial + periodOne;
+            string fullName = lastName + seperatorOne + firstName + seperatorTwo + middleInitial + periodOne;
 
 
             /*
@@ -472,7 +472,7 @@
             */
             double tripDistance = 800;
             double tripProgress = 537;
-            double tripPercentage = (tripProgress / tripDistance)*100;
+            double tripPercentage = (tripProgress / tripDistance) * 100;
             int tripPercentageAsInt = (int)(tripPercentage);
 
         }

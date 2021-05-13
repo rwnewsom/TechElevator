@@ -11,7 +11,11 @@
          */
         public int[] MiddleWay(int[] a, int[] b)
         {
-            return new int[] { };
+            int[] middleKids = new int[2];
+            middleKids[0] = a[1];
+            middleKids[1] = b[1];
+            return middleKids;
+            //return new int[] { };
         }
     }
 }
