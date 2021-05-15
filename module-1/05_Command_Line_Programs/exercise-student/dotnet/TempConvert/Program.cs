@@ -8,7 +8,16 @@ namespace TempConvert
         {
             int wrongEntries = 0;
             bool insultedUser = false;
-            string[] insults = {"You dolt!", "Cotton-headed ninny muggins!", "Not the sharpest potato on the shelf, are you", "Trying to compute a better way to explain this....I got nothing." };
+
+
+            string InsultGenerator()
+            {
+                string[] insults = { "You dolt!", "You are cotton-headed ninny muggins!", "Not the sharpest potato on the shelf, are you?", "Trying to compute a better way to explain this....I got nothing.","Perhaps your finger slipped...is that conjecture what humans refer to as a \"polite fiction?\"", "Try providing a proper response, you Jackanapes!"};
+                Random randomNumber = new Random();
+                int insult = randomNumber.Next(0, 6);
+                return insults[insult];
+            }
+
             double originalTemp;
             bool isDouble;
             bool isScale = false;
@@ -20,20 +29,18 @@ namespace TempConvert
             isDouble = double.TryParse(reply, out originalTemp);
             while (isDouble != true)
             {
+                if (wrongEntries > 0)
+                {
+                    Console.WriteLine(InsultGenerator());
+                    insultedUser = true;
+                }
                 wrongEntries++;
                 Console.WriteLine("Please enter decimal numbers only!");
                 string newReply = Console.ReadLine();
                 isDouble = double.TryParse(newReply, out originalTemp);
-                if (wrongEntries >= 1)
-                {
-                    Random randomNumber = new Random();
-                    int insult = randomNumber.Next(0, 4);
-                    insultedUser = true;
-                    Console.WriteLine(insults[insult]);
-                }
             }
 
-           
+
             if (wrongEntries > 0)
             {
                 Console.WriteLine("Congratulations, you figured out a valid response!!");
@@ -48,16 +55,17 @@ namespace TempConvert
                 isScale = true;
             }
 
-            while (isScale!= true)
+            while (isScale != true)
             {
+                if (wrongEntries > 0)
+                {
+                    Console.WriteLine(InsultGenerator());
+                    insultedUser = true;
+                }
                 wrongEntries++;
-                Random randomNumber = new Random();
-                int insult = randomNumber.Next(0, 3);
-                insultedUser = true;
-                Console.WriteLine(insults[insult]);
                 Console.WriteLine("Please enter \"F\" or \"C\" only!");
                 string newScale = Console.ReadLine().ToUpper();
-                if (newScale=="C" || newScale=="F") 
+                if (newScale == "C" || newScale == "F")
                 {
                     scale = newScale;
                     isScale = true;
