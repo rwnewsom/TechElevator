@@ -6,26 +6,59 @@ namespace LinearConvert
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("*.* Temperature Conversion Utility *.*");
+            bool isDouble = false;
+            double originalLength = 0;
+            Console.WriteLine("*.* Linear Conversion Utility *.*");
             Console.WriteLine("Please enter the length:");
-            double originalLength = Double.Parse(Console.ReadLine());
-            Console.WriteLine("Is the measurement in (m)eters or (f)eet?");
-            string scale = Console.ReadLine().ToLower();
+            string reply = Console.ReadLine();
+            isDouble = double.TryParse(reply, out originalLength);
+            while (isDouble == false)
+            {
+                Console.WriteLine("Please enter a valid response (decimal numbers only");
+                string newReply = Console.ReadLine();
+                isDouble = double.TryParse(newReply, out originalLength);
+            }
 
-            if (scale == "f")
+            if (originalLength < 0)
             {
-                double meters = (originalLength * 0.3048);
-                Console.WriteLine($"{originalLength}{scale} is {meters}m");
+                Console.WriteLine("Negative numbers are acceptable.");
             }
-            else if (scale == "m")
-            {
-                double feet = (originalLength * 3.2808399);
-                Console.WriteLine($"{originalLength}{scale} is {feet}f");
+
+            
+            Console.WriteLine("Is the measurement in (m)eters or (f)eet?");
+
+            string scale = "";
+            bool validString = false;
+            scale = Console.ReadLine().ToLower();
+            while (validString == false)
+            {                
+                if (scale == "f")
+                {
+                    validString = true;
+                    double meters = Math.Round((originalLength * 0.3048),2);
+                    Console.WriteLine($"{originalLength}{scale} is {meters}m");
+                }
+                else if (scale == "m")
+                {
+                    validString = true;
+                    double feet = Math.Round((originalLength * 3.2808399), 2);
+                    Console.WriteLine($"{originalLength}{scale} is {feet}f");
+                }
+                else
+                {
+                    Console.WriteLine("Error - please (m)eters or (f)eet [only 'm' or 'f' are acceptable]:");
+                    string newReply = Console.ReadLine();
+                    validString = false;
+                    scale = newReply;
+                }
+
             }
-            else
-            {
-                Console.WriteLine("Error - please enter a valid response next time.");
-            }
+
+
+
+
+
+            
         }
     }
 }

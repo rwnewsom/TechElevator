@@ -9,9 +9,19 @@ namespace Fibonacci
                
         {
             Console.WriteLine("*.* Fibonacci Sequence Generator *.*");
-            Console.WriteLine("Please enter an integer:");
+            Console.WriteLine("Please enter a number:");
+            bool isInt = false;
+            int fibTarget = 0;
             string userinput = Console.ReadLine();
-            int fibTarget = int.Parse(userinput);
+            isInt = int.TryParse(userinput, out fibTarget);
+            while (isInt == false)
+            {
+                Console.WriteLine("Error, expected numerical entry.");
+                Console.WriteLine("Please enter a number:");
+                string newReply = Console.ReadLine();
+                isInt = int.TryParse(newReply, out fibTarget);
+            }
+            
             if (fibTarget <= 0)
             {
                 Console.Write("0, 1");
