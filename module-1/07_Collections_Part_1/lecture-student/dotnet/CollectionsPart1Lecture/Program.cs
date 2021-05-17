@@ -33,6 +33,11 @@ namespace CollectionsPart1Lecture
 
 
 			Console.WriteLine("####################");
+			Console.WriteLine("Create a list using {} syntax");
+			Console.WriteLine("####################");
+
+
+			Console.WriteLine("####################");
 			Console.WriteLine("Find out if something is already in the List");
 			Console.WriteLine("####################");
 
@@ -59,6 +64,18 @@ namespace CollectionsPart1Lecture
 
 			Console.WriteLine("####################");
 			Console.WriteLine("       FOREACH");
+			Console.WriteLine("####################");
+			Console.WriteLine();
+
+
+			Console.WriteLine("####################");
+			Console.WriteLine("       STACKS");
+			Console.WriteLine("####################");
+			Console.WriteLine();
+
+
+			Console.WriteLine("####################");
+			Console.WriteLine("       QUEUES");
 			Console.WriteLine("####################");
 			Console.WriteLine();
 
