@@ -12,6 +12,8 @@ namespace Exercises
         list to the new list before returning it.
         DIFFICULTY: HARD
         InterleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
+        InterleaveLists( [7, 1, 3], [2, 5, 7, 9] )  ->  [7, 2, 1, 5, 3, 7, 9]
+        InterleaveLists( [1, 2, 5, 8], [4, 5, 6] )  ->  [1, 4, 2, 5, 5, 6, 8]
         */
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo)
         {
