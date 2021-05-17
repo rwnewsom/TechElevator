@@ -11,7 +11,9 @@
         */
         public string Left2(string str)
         {
-            return null;
+            string firstTwo = str.Substring(0,2);
+            string remainingLetters = str.Substring(2);
+            return remainingLetters+firstTwo;
         }
     }
 }

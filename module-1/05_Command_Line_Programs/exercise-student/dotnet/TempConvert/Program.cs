@@ -29,7 +29,7 @@ namespace TempConvert
             isDouble = double.TryParse(reply, out originalTemp);
             while (isDouble != true)
             {
-                if (wrongEntries > 0)
+                if (wrongEntries > 1)
                 {
                     Console.WriteLine(InsultGenerator());
                     insultedUser = true;
