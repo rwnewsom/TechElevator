@@ -11,7 +11,9 @@
         */
         public string WithoutEnd(string str)
         {
-            return null;
+            string cutFirst = str.Substring(1);
+            
+            return cutFirst.Substring(0, cutFirst.Length-1);
         }
     }
 }

@@ -11,7 +11,15 @@
         */
         public string TheEnd(string str, bool front)
         {
-            return null;
+            if (front)
+            {
+                return str.Substring(0, 1);
+            }
+            else
+            {
+                return str.Substring(str.Length - 1, 1);
+            }
+            
         }
     }
 }

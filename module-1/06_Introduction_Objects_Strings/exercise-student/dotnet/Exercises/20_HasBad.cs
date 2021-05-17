@@ -12,6 +12,23 @@
         */
         public bool HasBad(string str)
         {
+            if (str.Length < 3)
+            {
+                return false;
+            }
+            else if (str.Substring(0, 3) == "bad")
+            {
+                return true;
+            }
+
+            else if (str.Length < 4)
+            {
+                return false;
+            }
+            else if (str.Substring(1, 3) == "bad")
+            {
+                return true;
+            }
             return false;
         }
     }

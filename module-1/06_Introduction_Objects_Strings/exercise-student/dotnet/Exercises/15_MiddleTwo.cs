@@ -11,7 +11,19 @@
         */
         public string MiddleTwo(string str)
         {
-            return null;
+            if (str.Length <= 2)
+            {
+                return str;
+            }
+            if (str.Length == 3)
+            {
+                return str.Substring(1, 1);
+            }
+            string firstHalf = str.Substring(0, str.Length / 2);
+            string secondHalf = str.Substring(str.Length/2);
+            string firstSub = firstHalf.Substring(firstHalf.Length - 1, 1);
+            string secondSub = secondHalf.Substring(0, 1);
+            return firstSub + secondSub;
         }
     }
 }

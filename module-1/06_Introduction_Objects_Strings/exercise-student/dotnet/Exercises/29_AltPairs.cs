@@ -10,7 +10,18 @@
         */
         public string AltPairs(string str)
         {
-            return null;
+            string altPairs = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                altPairs += str.Substring(i, 1);
+                if (i + 1 > str.Length-1)
+                {
+                    return altPairs;
+                }
+                altPairs += str.Substring(i + 1, 1);
+                i += 3;
+            }
+            return altPairs;
         }
     }
 }

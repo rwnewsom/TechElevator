@@ -12,7 +12,19 @@
         */
         public string FirstTwo(string str)
         {
-            return null;
+            if (str==null || str == "")
+            {
+                return "";
+            }
+            else if (str.Length == 1)
+            {
+                return str;
+            }
+            else
+            {
+                return str.Substring(0, 2);
+            }
+            
         }
     }
 }

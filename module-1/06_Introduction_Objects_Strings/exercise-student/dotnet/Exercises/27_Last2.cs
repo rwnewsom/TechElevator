@@ -11,7 +11,35 @@
         */
         public int Last2(string str)
         {
-            return 0;
+
+            if (str.Length < 3)
+            {
+                return 0;
+            }
+            string lastTwo = str.Substring(str.Length - 2, 2);
+            int count = 0;
+            
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if (i + 2 == str.Length)
+                {
+                    return count;
+                }
+                else
+                {
+                    string segment = str.Substring(i, 2);
+
+                    if (segment.Equals(lastTwo))
+                    {
+                        count++;
+                    }
+
+                }
+
+
+
+            }
+            return count;
         }
     }
 }

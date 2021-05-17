@@ -11,7 +11,15 @@
         */
         public string StringX(string str)
         {
-            return null;
+            if (str.Length <= 2)
+            {
+                return str;
+            }
+            string firstPsn = str.Substring(0, 1);
+            string lastPsn = str.Substring(str.Length - 1, 1);
+            string middleText = str.Substring(1, str.Length - 2);
+            string xPurged = middleText.Replace("x", "");
+            return firstPsn+xPurged+lastPsn;
         }
     }
 }
