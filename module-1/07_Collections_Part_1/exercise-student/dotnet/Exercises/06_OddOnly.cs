@@ -12,7 +12,15 @@ namespace Exercises
         */
         public List<int> OddOnly(int[] integerArray)
         {
-            return null;
+            List<int> oddList = new List<int>();
+            foreach(int num in integerArray)
+            {
+                if(num % 2 != 0)
+                {
+                    oddList.Add(num);
+                }
+            }
+            return oddList;
         }
     }
 }
