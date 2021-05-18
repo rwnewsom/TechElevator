@@ -21,7 +21,7 @@ namespace Exercises
             List<int> longList = new List<int>();
             List<int> shortList = new List<int>();
             List<int> blendedList = new List<int>();
-
+            //designate one list as 'longer'
             if (listOne.Count > listTwo.Count)
             {
                 longList = listOne;
@@ -38,9 +38,9 @@ namespace Exercises
                 blendedList.Add(listOne[i]);
                 blendedList.Add(listTwo[i]);
             }
-
+            //determine difference in count if any...
             int delta = longList.Count - shortList.Count;
-
+            //if arrays are equal the following loop won't run
             for (int j = longList.Count - delta; j < longList.Count; j++)
             {
                 blendedList.Add(longList[j]);
