@@ -18,74 +18,34 @@ namespace Exercises
         public List<int> InterleaveLists(List<int> listOne, List<int> listTwo)
         {
             //create a list, store count of sources
+            List<int> longList = new List<int>();
+            List<int> shortList = new List<int>();
+            List<int> blendedList = new List<int>();
 
-            List<int> hellList = new List<int>();
-            int countOne = listOne.Count;
-            int countTwo = listTwo.Count;
-            //initial loop counts through shorter list
-            //add both value in turn
-
-            //add if both are same size!!!!!!
-
-            if (countOne == countTwo)
+            if (listOne.Count > listTwo.Count)
             {
-                for (int i = 0; i < countTwo; i++)
-                {
-                    hellList.Add(listOne[i]);
-                    hellList.Add(listTwo[i]);
-                }
-                return hellList;
-
+                longList = listOne;
+                shortList = listTwo;
+            } else
+            {
+                longList = listTwo;
+                shortList = listOne;
             }
 
-            else if (countOne > countTwo)
+            //initial loop counts through length of shorter list            
+            for (int i = 0; i < shortList.Count; i++)
             {
-                int delta = countOne - countTwo;
-                for (int i = 0; i < countTwo; i++)
-                {
-                    hellList.Add(listOne[i]);
-                    hellList.Add(listTwo[i]);
-                    //if last of shortest, loop through remaining larger
-                    if ((i + 1) >= countTwo)
-                    {
-                        //determine remaining values to add
-
-
-                        for (int j = countOne-delta; j < countOne; j++)
-                        {
-                            hellList.Add(listOne[j]);
-                        }
-
-                    }
-
-                }
-                return hellList;
-
-            }
-            //as above but if sizes are reversed
-            else
-            {
-                int delta = countTwo - countOne;
-                for (int i = 0; i < countOne; i++)
-                {
-                    hellList.Add(listOne[i]);
-                    hellList.Add(listTwo[i]);
-                    if ((i + 1) >= countOne)
-                    {
-                        
-                        for (int j = countTwo-delta; j < countTwo; j++)
-                        {
-                            hellList.Add(listTwo[j]);
-                        }
-
-                    }
-
-                }
-                return hellList;
-
+                blendedList.Add(listOne[i]);
+                blendedList.Add(listTwo[i]);
             }
 
+            int delta = longList.Count - shortList.Count;
 
+            for (int j = longList.Count - delta; j < longList.Count; j++)
+            {
+                blendedList.Add(longList[j]);
+            }
+            return blendedList;
         }
     }
 }

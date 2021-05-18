@@ -12,11 +12,7 @@ namespace Exercises
         */
         public string[] List2Array(List<string> stringList)
         {
-            string[] methodString = new string[stringList.Count];
-            for (int i = 0; i < stringList.Count; i++)
-            {
-                methodString[i] = stringList[i];
-            }
+            string[] methodString = stringList.ToArray();
             return methodString;
         }
     }

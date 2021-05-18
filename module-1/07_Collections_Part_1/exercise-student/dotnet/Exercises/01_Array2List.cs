@@ -13,11 +13,8 @@ namespace Exercises
         public List<string> Array2List(string[] stringArray)
         {
                    
-            List<string> methodList = new List<string>();
-            foreach(string name in stringArray)
-            {
-                methodList.Add(name);
-            }
+            List<string> methodList = new List<string>(stringArray);
+            
             return methodList;
         }
     }
