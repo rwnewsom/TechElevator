@@ -21,9 +21,38 @@ namespace Exercises
          */
         public Dictionary<string, int> Last2Revisited(string[] words)
         {
+            Dictionary<string, int> last2Count = new Dictionary<string, int>();
+            foreach(string word in words)
+            {
+                if (word.Length < 3)
+                {
+                    last2Count[word] = 0;
+                }
+                string lastTwo = word[^2..];
+                    //index & range operator exacta!
+                int count = 0;
+
+                for(int i = 0; i < word.Length; i++)
+                {
+                    if ((i + 2) >= word.Length) {
+                        last2Count[word] = count;
+                        continue;
+                    }
+                    else
+                    {
+                        string segment = word.Substring(i, 2);
+
+                        if (segment.Equals(lastTwo))
+                        {
+                            count++;
+                        }
+                    }
+                }
+
+            }
             //adapt code submitted from last2 (strings)
             //note must also be the last two characters of the string
-            return null;
+            return last2Count;
         }
     }
 }
