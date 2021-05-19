@@ -17,10 +17,21 @@ namespace Exercises
         public Dictionary<string, int> ConsolidateInventory(Dictionary<string, int> mainWarehouse,
                                                             Dictionary<string, int> remoteWarehouse)
         {
-            //use foreach
-            //copy first
-            //loop through second, if not found, add as new, if found, increment
-            return null;
+            Dictionary<string, int> newWarehouse = new Dictionary<string, int>();
+
+            newWarehouse = mainWarehouse;
+            foreach(KeyValuePair<string, int> pair in remoteWarehouse)
+            {
+                if (!newWarehouse.ContainsKey(pair.Key)){
+                    newWarehouse[pair.Key] = pair.Value;
+                }
+                else
+                {
+                    newWarehouse[pair.Key] += pair.Value;
+                }
+            }
+           
+            return newWarehouse;
         }
     }
 }

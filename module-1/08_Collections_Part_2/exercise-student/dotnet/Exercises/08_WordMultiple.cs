@@ -15,7 +15,20 @@ namespace Exercises
          */
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
-            return null;
+            Dictionary<string, bool> moreWords = new Dictionary<string, bool>();
+
+            foreach(string word in words)
+            {
+                if (!moreWords.ContainsKey(word))
+                {
+                    moreWords[word] = false;
+                }
+                else
+                {
+                    moreWords[word] = true;
+                }
+            }
+            return moreWords;
             //add as false as first time.
             //if found, update value to true
         }

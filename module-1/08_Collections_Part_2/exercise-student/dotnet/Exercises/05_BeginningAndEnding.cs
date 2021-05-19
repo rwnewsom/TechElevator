@@ -20,14 +20,8 @@ namespace Exercises
             {
                 string value1 = word.Substring(0,1);
                 string value2 = word[^1..];
-                firstLast[value1] = value2;
-                //if (!firstLast.ContainsKey(value1))
-                //{
-
-                //}
-
+                firstLast[value1] = value2;                
             }
-
             return firstLast;
         }
     }
