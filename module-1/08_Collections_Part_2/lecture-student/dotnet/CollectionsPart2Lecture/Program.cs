@@ -40,6 +40,16 @@ namespace CollectionsPart2Lecture
 			// ----------------------------------------
 			// HashSets
 			// ----------------------------------------
+
+			// Declaring a hash set
+
+			// Adding to hash sets
+
+			// Removing from hash sets
+
+			// Checking if something is in a hash set
+
+			// Looping over a hash set
 		}
 	}
 }
