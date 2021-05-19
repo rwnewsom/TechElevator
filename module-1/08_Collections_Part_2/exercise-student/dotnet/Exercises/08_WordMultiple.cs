@@ -16,6 +16,8 @@ namespace Exercises
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
             return null;
+            //add as false as first time.
+            //if found, update value to true
         }
     }
 }

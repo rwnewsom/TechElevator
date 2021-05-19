@@ -34,7 +34,40 @@ namespace Exercises
          */
         public string AnimalGroupName(string animalName)
         {
-            return null;
+            //declare a dictionary and store given values
+            Dictionary<string, string> animalGroups = new Dictionary<string, string>()
+            {
+                { "rhino", "Crash" },
+                { "giraffe", "Tower" },
+                { "elephant", "Herd" },
+                { "lion", "Pride" },
+                { "crow", "Murder" },
+                { "pigeon", "Kit" },
+                { "flamingo", "Pat" },
+                { "deer", "Herd" },
+                { "dog", "Pack" },
+                { "Crocodile", "Float" }
+
+            };
+
+            if(animalName == null)
+            {
+                return "unknown";
+            }
+
+            string userInput = animalName.ToLower();
+
+            //prompt for input and store lowercase - not needed & will break tests!
+            //error check for not found, null or empty
+
+            if (animalGroups.ContainsKey(userInput))
+            {
+                return animalGroups[userInput];
+            }
+                    
+            //return apropriate value if not found
+
+            return "unknown";
         }
     }
 }

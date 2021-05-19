@@ -21,6 +21,8 @@ namespace Exercises
          */
         public Dictionary<string, int> Last2Revisited(string[] words)
         {
+            //adapt code submitted from last2 (strings)
+            //note must also be the last two characters of the string
             return null;
         }
     }

@@ -17,6 +17,9 @@ namespace Exercises
         public Dictionary<string, int> ConsolidateInventory(Dictionary<string, int> mainWarehouse,
                                                             Dictionary<string, int> remoteWarehouse)
         {
+            //use foreach
+            //copy first
+            //loop through second, if not found, add as new, if found, increment
             return null;
         }
     }

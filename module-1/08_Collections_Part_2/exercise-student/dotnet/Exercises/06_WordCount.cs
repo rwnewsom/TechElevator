@@ -18,6 +18,10 @@ namespace Exercises
          */
         public Dictionary<string, int> WordCount(string[] words)
         {
+            //loop through
+            //check if dictionary Contains
+            //if not, add, if it does, update value
+            
             return null;
         }
     }

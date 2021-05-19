@@ -16,7 +16,25 @@ namespace Exercises
          */
         public Dictionary<string, int> RobPeterToPayPaul(Dictionary<string, int> peterPaul)
         {
-            return null;
+            //create a new dictionary and transfer value
+            //clunkier than it should be, refactored repeatedly before realizing
+            //that I had used an incorrect angle bracket to check paul's wallet!
+
+            if((peterPaul["Peter"] > 0) && (peterPaul["Paul"] < 10000))
+            {
+                int peterWallet = peterPaul["Peter"];
+                int paulWallet = peterPaul["Paul"];
+                int peterLoss = peterWallet / 2;
+                peterWallet -= peterLoss;
+                paulWallet += peterLoss;
+                peterPaul["Peter"] = peterWallet;
+                peterPaul["Paul"] = paulWallet;
+            }
+
+            
+            
+            
+            return peterPaul;
         }
     }
 }

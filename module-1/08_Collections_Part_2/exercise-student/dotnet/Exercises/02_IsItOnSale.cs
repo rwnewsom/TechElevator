@@ -28,7 +28,30 @@ namespace Exercises
          */
         public double IsItOnSale(string itemNumber)
         {
-            return -1.0;
+            Dictionary<string, double> discountChecker = new Dictionary<string, double>()
+            {
+                { "kitchen4001", 0.20 },
+                { "garage1070", 0.15 },
+                { "livingroom", 0.10 },
+                { "kitchen6073", 0.40 },
+                { "bedroom3434", 0.60 },
+                { "bath0073", 0.15 }
+
+            };
+            
+            if (itemNumber == null)
+            {
+                return 0.00;
+            }
+
+            string userInput = itemNumber.ToLower();
+            if (discountChecker.ContainsKey(userInput))
+            {
+                return discountChecker[userInput];
+            }
+            
+            
+            return 0.00;
         }
     }
 }
