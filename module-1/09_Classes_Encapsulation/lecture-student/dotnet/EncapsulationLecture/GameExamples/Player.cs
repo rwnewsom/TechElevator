@@ -14,6 +14,7 @@ namespace EncapsulationLecture.GameExamples
 
         //Derived Property
         //will never be set, read only
+        //computed every time it is called, never 'stored'
         public bool IsDead
         {
             get
