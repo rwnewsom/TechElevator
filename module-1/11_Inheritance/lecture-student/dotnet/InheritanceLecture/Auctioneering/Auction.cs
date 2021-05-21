@@ -16,7 +16,12 @@ namespace InheritanceLecture.Auctioneering
         /// <summary>
         /// Represents the current high bid.
         /// </summary>
-        public Bid CurrentHighBid { get; private set; } = new Bid("", 0);
+        public Bid CurrentHighBid { get; private set; } = new Bid("Nobody", 0);
+
+        /// <summary>
+        /// Indicates if the auction has ended yet.
+        /// </summary>
+        public bool HasEnded { get; private set; }
 
         /// <summary>
         /// All placed bids returned as an array.
@@ -27,9 +32,13 @@ namespace InheritanceLecture.Auctioneering
         }
 
         /// <summary>
-        /// Indicates if the auction has ended yet.
+        /// Ends the current auction
         /// </summary>
-        public bool HasEnded { get; private set; }
+        public void EndAuction()
+        {
+            Console.WriteLine("The auction is over, the winner is " + this.CurrentHighBid.Bidder);
+            this.HasEnded = true;
+        }
 
         /// <summary>
         /// Places a Bid on the Auction
@@ -38,13 +47,19 @@ namespace InheritanceLecture.Auctioneering
         /// <returns>True if the new bid is the current winning bid</returns>
         public bool PlaceBid(Bid offeredBid)
         {
-            // Print out the bid details.
-            Console.WriteLine(offeredBid.Bidder + " bid " + offeredBid.BidAmount.ToString("C"));
+            // Make sure we don't allow bids after auctions are over
+            if (this.HasEnded)
+            {
+                Console.WriteLine("Cannot accept the bid. The auction has already ended");
+                return false;
+            }
+
+            // Show the bid details to the user.
 
             // Record it as a bid by adding it to allBids
 
             // Check to see IF the offered bid is higher than the current bid amount
-                // if yes, set offered bid as the current high bid
+            // -- if yes, set offered bid as the current high bid
 
             // Output the current high bid
 

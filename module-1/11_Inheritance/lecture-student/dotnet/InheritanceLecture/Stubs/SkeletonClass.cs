@@ -21,7 +21,6 @@ namespace ProjectNamespace
         //      but we can assign an unknown value thru a variable
         private readonly int y;
 
-
         ///////////////
         // CONSTRUCTORS
         ///////////////
@@ -53,6 +52,10 @@ namespace ProjectNamespace
         //  - follows camelCase naming convention
         private string privateVariable;
 
+        public string SimplePublicProperty { get; set; }
+
+        public string SimplePublicPropertyWithAPrivateSetter { get; private set; }
+
         // Property to access private field
         //  - public means it is accessible from outside of this class anywhere an
         //      instance is held
@@ -65,8 +68,6 @@ namespace ProjectNamespace
             get { return privateVariable; }
             set { privateVariable = value; }
         }
-
-
 
         // Derived (aka calculated) Property to return a value conditionally
         // based on a private variable value
@@ -88,9 +89,6 @@ namespace ProjectNamespace
                 }
             }
         }
-
-
-
 
         ///////////////
         // INSTANCE METHODS
@@ -127,7 +125,6 @@ namespace ProjectNamespace
             // defined in the base class.
             base.OveridableMethod();
         }
-
 
         ////////////////////
         // STATIC METHODS

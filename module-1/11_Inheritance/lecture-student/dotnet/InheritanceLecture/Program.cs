@@ -13,14 +13,16 @@ namespace InheritanceLecture
 
             Auction generalAuction = new Auction();
 
-            generalAuction.PlaceBid(new Bid("Josh", 1));
-            generalAuction.PlaceBid(new Bid("Fonz", 23));
-            generalAuction.PlaceBid(new Bid("Rick Astley", 13));
+            generalAuction.PlaceBid(new Bid("Matt", 1));
+            generalAuction.PlaceBid(new Bid("John", 13));
+            generalAuction.PlaceBid(new Bid("Rick Astley", 23));
             //....
             //....
             // This might go on until the auction runs out of time or hits a max # of bids
 
+            // Create a new Reserve auction (buyer can reject small bids)
 
+            // Create a new Buyout auction (big bids can end the auction)
 
             Console.ReadLine();
         }

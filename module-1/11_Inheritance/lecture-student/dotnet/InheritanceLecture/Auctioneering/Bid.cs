@@ -1,16 +1,22 @@
-﻿namespace InheritanceLecture.Auctioneering
+﻿using System;
+
+namespace InheritanceLecture.Auctioneering
 {
+    /// <summary>
+    /// This class represents a specific bid on an item by a particular bidder.
+    /// </summary>
     public class Bid
     {
         /// <summary>
-        /// The bidder name.
+        /// Get the bidder name.
         /// </summary>
         public string Bidder { get; }
 
         /// <summary>
-        /// The bid amount.
+        /// Get the bid amount.
         /// </summary>
         public int BidAmount { get; }
+
         /// <summary>
         /// Constructor for Bid object. Each Bid requires a bidder and bidAmount
         /// </summary>
@@ -20,6 +26,14 @@
         {
             this.Bidder = bidder;
             this.BidAmount = bidAmount;
+        }
+
+        /// <summary>
+        /// Displays information on the bidder and the bid amount to the user.
+        /// </summary>
+        public void DisplayDetails()
+        {
+            Console.WriteLine(this.Bidder + " with " + this.BidAmount.ToString("C")); // ToString("C") formats as a currency. E.G. $24
         }
     }
 }
