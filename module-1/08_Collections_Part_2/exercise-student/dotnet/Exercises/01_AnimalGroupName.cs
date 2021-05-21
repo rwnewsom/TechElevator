@@ -46,7 +46,7 @@ namespace Exercises
                 { "flamingo", "Pat" },
                 { "deer", "Herd" },
                 { "dog", "Pack" },
-                { "Crocodile", "Float" }
+                { "crocodile", "Float" }
 
             };
 
