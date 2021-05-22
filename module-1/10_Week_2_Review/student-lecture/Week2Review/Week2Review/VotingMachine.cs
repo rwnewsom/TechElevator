@@ -54,6 +54,7 @@ namespace Week2Review
         /// If nobody voted, the winner will be nobody.
         /// </summary>
         public string Winner
+            //derived property
         {
             get
             {

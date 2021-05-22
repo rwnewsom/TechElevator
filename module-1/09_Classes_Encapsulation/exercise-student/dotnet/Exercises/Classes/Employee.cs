@@ -1,5 +1,10 @@
 ﻿namespace Exercises.Classes
 {
+    
+    /// <summary>
+    /// Generate employee object with ID, full name, and annual salary.
+    /// Contains method to raise salary.
+    /// </summary>
     public class Employee
     {
 
@@ -33,7 +38,10 @@
         }
 
         //METHODS
-
+        /// <summary>
+        /// utility to adjust an employee's salary.
+        /// </summary>
+        /// <param name="percent">The percentage change desired, e.g. '5' for a 5% raise.  Use a negative number to reduce salary.</param>
         public void RaiseSalary(double percent)
         {
             double percentRaise = percent / 100;

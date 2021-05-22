@@ -2,6 +2,11 @@
 {
     public class Elevator
     {
+
+        /// <summary>
+        /// Guardian pattern for previously analog elevator controls
+        /// </summary>
+
         //PROPERTIES
         public int CurrentLevel { get; private set; } = 1;
 
@@ -28,6 +33,10 @@
             this.DoorIsOpen = false;
         }
 
+        /// <summary>
+        /// Verifies that the door is closed and destination is valid; if so, goes to desired floor.
+        /// </summary>
+        /// <param name="desiredFloor">Pretty self explanatory...</param>
         public void GoUp(int desiredFloor)
         {
             if (!DoorIsOpen)
@@ -39,6 +48,11 @@
             }
         }
 
+
+        /// <summary>
+        /// Verifies that the door is closed and destination is valid; if so, goes to desired floor.
+        /// </summary>
+        /// <param name="desiredFloor">Pretty self explanatory...</param>
         public void GoDown(int desiredFloor)
         {
             if (!DoorIsOpen)

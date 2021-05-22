@@ -1,5 +1,10 @@
 ﻿namespace Exercises.Classes
 {
+
+
+    /// <summary>
+    /// This class is responsible for monitoring seat capacity on commercial aircraft.
+    /// </summary>
     public class Airplane
     {
         //PROPERTIES
@@ -42,6 +47,13 @@
 
         //METHODS
 
+
+        /// <summary>
+        /// Verifies that requestes seats are available, reserves seats and validates successful operation
+        /// </summary>
+        /// <param name="forFirstClass">If this reservation is for First Class seats </param>
+        /// <param name="totalNumberOfSeats"> The number of seats requested for this reservation</param>
+        /// <returns></returns>
         public bool ReserveSeats(bool forFirstClass, int totalNumberOfSeats)
         {
             if (forFirstClass == true)

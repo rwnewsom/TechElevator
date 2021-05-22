@@ -4,7 +4,9 @@
 
 
     {
-
+        /// <summary>
+        /// This class validates requested television operations
+        /// </summary>
         //PROPERTIES
 
         public bool IsOn { get; private set; } = false;
@@ -28,6 +30,10 @@
             this.CurrentVolume = 2;
         }
 
+        /// <summary>
+        /// This method changes the channel is the TV is ON and the requested channel is valid.
+        /// </summary>
+        /// <param name="newChannel">The channel desired</param>
         public void ChangeChannel(int newChannel)
         {
             if ((this.IsOn == true) && (newChannel >= 3) && (newChannel <= 18))

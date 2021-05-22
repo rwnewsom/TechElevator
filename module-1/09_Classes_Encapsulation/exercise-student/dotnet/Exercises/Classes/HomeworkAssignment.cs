@@ -1,5 +1,8 @@
 ﻿namespace Exercises.Classes
 {
+    /// <summary>
+    /// This class is responsible for determining a letter grade score of a given assignment.
+    /// </summary>
     public class HomeworkAssignment
     {
         public int EarnedMarks { get; set; }
