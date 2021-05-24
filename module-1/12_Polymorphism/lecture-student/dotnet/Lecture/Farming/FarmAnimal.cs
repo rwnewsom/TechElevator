@@ -10,7 +10,6 @@ namespace Lecture.Farming
         /// </summary>
         public string Name { get; }
 
-
         /// <summary>
         /// The farm animal's sound
         /// </summary>
@@ -22,8 +21,8 @@ namespace Lecture.Farming
         /// <param name="name">The name which the animal goes by.</param>
         public FarmAnimal(string name, string sound)
         {
-            Name = name;
-            Sound = sound;
+            this.Name = name;
+            this.Sound = sound;
         }
     }
 }
