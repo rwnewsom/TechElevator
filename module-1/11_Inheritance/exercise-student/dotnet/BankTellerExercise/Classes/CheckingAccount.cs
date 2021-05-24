@@ -33,11 +33,11 @@
             {
                 if ((this.Balance - amountToWithdraw) > -100)
                 {
-                    Withdraw(10);
-                    return Withdraw(amountToWithdraw);
+                    base.Withdraw(10);
+                    return base.Withdraw(amountToWithdraw);
                 } 
             }
-            return Withdraw(0);
+            return base.Withdraw(0);
 
 
 

@@ -46,6 +46,13 @@ namespace InheritanceLecture.Auctioneering
             this.HasEnded = true;
         }
 
+        
+        //protected means anything that inherits can call it
+        protected void StartAuction()
+        {
+            Console.WriteLine("The auction is now starting");
+        }
+
         /// <summary>
         /// Places a Bid on the Auction
         /// </summary>

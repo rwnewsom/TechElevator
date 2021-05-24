@@ -44,7 +44,7 @@ namespace InheritanceLecture
             buyoutAuction.PlaceBid(new Bid("Austin", 2));
             buyoutAuction.PlaceBid(new Bid("Ben", 300));
 
-
+            
             Console.ReadLine();
         }
     }

@@ -28,6 +28,8 @@ namespace InheritanceLecture.Auctioneering
                 this.EndAuction();
                 
             }
+
+            
             return isHighBid;
         }
     }
