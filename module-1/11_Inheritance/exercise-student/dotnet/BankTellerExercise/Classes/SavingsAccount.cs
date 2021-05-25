@@ -10,10 +10,9 @@
         /// </summary>
         /// <param name="accountHolderName">Legal name of account holder.</param>
         /// <param name="accountNumber">An account number with appropriate prefix.</param>
-        public SavingsAccount(string accountHolderName, string accountNumber)
+        public SavingsAccount(string accountHolderName, string accountNumber) : base(accountHolderName, accountNumber)
         {
-            this.AccountHolderName = accountHolderName;
-            this.AccountNumber = accountNumber;
+            
             this.Balance = 0;
         }
 
@@ -23,11 +22,9 @@
         /// <param name="accountHolderName">Legal name of account holder.</param>
         /// <param name="accountNumber">An account number with appropriate prefix.</param>
         /// <param name="balance">The amount initially deposited.</param>
-        public SavingsAccount(string accountHolderName, string accountNumber, decimal balance)
+        public SavingsAccount(string accountHolderName, string accountNumber, decimal balance) : base(accountHolderName, accountNumber, balance)
         {
-            this.AccountHolderName = accountHolderName;
-            this.AccountNumber = accountNumber;
-            this.Balance = balance;
+           
         }
 
 
