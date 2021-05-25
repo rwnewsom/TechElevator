@@ -7,16 +7,15 @@ namespace Lecture.Farming
     public class Tractor : ISingable
     {
         public string Name { get; } = "Tractor";
-        public string Sound { get; } = "*rumble / vroooom*";
+
+        public string MakeSound()
+        {
+            return "VROOOOOOOOOOOOOOOOOOOM!!!";
+        }
 
         public void PlowField()
         {
-            Console.WriteLine("Farming away!");
-        }
-
-        public void BeginVerse()
-        {
-            Console.WriteLine("Behold the tale of the tractor!");
+            Console.WriteLine("Plowing away!");
         }
     }
 }

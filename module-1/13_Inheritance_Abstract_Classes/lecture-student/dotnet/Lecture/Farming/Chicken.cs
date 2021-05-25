@@ -2,15 +2,16 @@
 
 namespace Lecture.Farming
 {
-    public class Chicken : FarmAnimal
+    public class Chicken : FlyingFarmAnimal
     {
-        public Chicken() : base("Chicken", "cluck")
+        public Chicken() : base("Chicken")
         {
+
         }
 
-        public Chicken(string sound) : base("Chicken", sound)
+        public override string MakeSound()
         {
-
+            return "cluck";
         }
 
         public void LayEgg()

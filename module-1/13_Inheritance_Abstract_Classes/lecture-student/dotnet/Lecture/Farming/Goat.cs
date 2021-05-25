@@ -9,9 +9,14 @@ namespace Lecture.Farming
         public int GallonsOfMilk { get; set; }
         public int NumberOfHorns { get; set; } = 2;
 
-        public Goat() : base("Goat", "Behhhh")
+        public Goat() : base("Goat")
         {
 
+        }
+
+        public override string MakeSound()
+        {
+            return "Behhhh";
         }
 
         public void StandOnRoof()

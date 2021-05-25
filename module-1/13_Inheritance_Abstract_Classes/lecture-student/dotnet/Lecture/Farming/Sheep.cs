@@ -8,9 +8,14 @@ namespace Lecture.Farming
     {
         public int DaysSinceLastShorn { get; set; }
 
-        public Sheep() : base("Sheep", "Baaaa")
+        public Sheep() : base("Sheep")
         {
 
+        }
+
+        public override string MakeSound()
+        {
+            return "Baaaaaaa";
         }
 
         public void Sheer()

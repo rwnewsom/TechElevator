@@ -5,7 +5,7 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal : System.Object, ISingable
+    public class FarmAnimal : ISingable
     {
         /// <summary>
         /// The farm animal's name.
@@ -13,28 +13,27 @@ namespace Lecture.Farming
         public string Name { get; }
 
         /// <summary>
-        /// The farm animal's sound
-        /// </summary>
-        public string Sound { get; }
-
-        public void BeginVerse()
-        {
-            Console.WriteLine("Let me tell you about the " + this.Name);
-        }
-
-        /// <summary>
         /// Creates a new farm animal.
         /// </summary>
         /// <param name="name">The name which the animal goes by.</param>
-        public FarmAnimal(string name, string sound)
+        public FarmAnimal(string name)
         {
             this.Name = name;
-            this.Sound = sound;
+        }
+
+        /// <summary>
+        /// Gets the sound the animal should make
+        /// </summary>
+        /// <returns>The sound the animal should make</returns>
+        public virtual string MakeSound()
+        {
+            return "Nobody should see this; each animal should override this method!";
         }
 
         public void Pet()
         {
             Console.WriteLine("You pet the " + this.Name);
         }
+
     }
 }
