@@ -17,11 +17,13 @@ namespace BankTellerExercise
         public bool IsVip { get
             {
                 decimal netWorth = 0;
-                foreach (IAccountable curAccount in this.customerAccounts)
+
+
+                foreach (IAccountable curAccount in customerAccounts)
                 {
                     netWorth += curAccount.Balance;
                 }
-                if(netWorth > 25000)
+                if(netWorth >= 25000)
                 {
                     return true;
                 }
