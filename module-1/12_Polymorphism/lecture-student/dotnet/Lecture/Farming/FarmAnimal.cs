@@ -3,7 +3,7 @@ namespace Lecture.Farming
     /// <summary>
     /// A base farm animal class.
     /// </summary>
-    public class FarmAnimal
+    public class FarmAnimal : System.Object, ISingable
     {
         /// <summary>
         /// The farm animal's name.
@@ -23,6 +23,11 @@ namespace Lecture.Farming
         {
             this.Name = name;
             this.Sound = sound;
+        }
+
+        public void BeginVerse()
+        {
+            System.Console.WriteLine("Let me tell you about the" + this.Name);
         }
     }
 }
