@@ -3,11 +3,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestableClassesTests
 {
     [TestClass]
-    public class UnitTest1
+    public class IntToBooleanTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void IsOdd_OddNumbersShouldReturnTrue()
         {
+            // Arrange
+
+            // Act
+
+            // Assert
         }
     }
 }
