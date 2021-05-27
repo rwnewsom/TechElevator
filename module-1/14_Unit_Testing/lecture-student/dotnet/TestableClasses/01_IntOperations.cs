@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TestableClasses
 {
-    public class IntToBoolean
+    public class IntOperations
     {
         /// <summary>
         /// Returns true if number is odd, otherwise it should return false.
