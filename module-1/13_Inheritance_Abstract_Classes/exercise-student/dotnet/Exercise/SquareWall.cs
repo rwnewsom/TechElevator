@@ -10,11 +10,18 @@ namespace Exercise
 
         public int SideLength { get; }
 
-        //CONSTRUCTORS
 
-        public SquareWall(string name, string color, int sideLength, int length, int height) : base(name, color, length, height)
+
+
+        //CONSTRUCTORS
+        
+        public SquareWall(string name, string color, int sideLength) : base(name, color)
         {
             this.SideLength = sideLength;
+
+            //adding for automated test
+            this.Length = sideLength;
+            this.Height = sideLength;
             
         }
 
