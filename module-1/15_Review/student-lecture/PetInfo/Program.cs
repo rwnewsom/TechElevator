@@ -16,9 +16,6 @@ namespace PetInfo
         {
             UserInterface ui = new UserInterface();
             ui.ShowMainMenu();
-
-            Console.WriteLine("Press ENTER to exit");
-            Console.ReadLine();
         }
 
 

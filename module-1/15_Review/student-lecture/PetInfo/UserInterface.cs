@@ -21,9 +21,11 @@ namespace PetInfo
 
                 string userInput = Console.ReadLine();
 
-                switch (userInput)
+                // TODO: Refactor these switch statements
+
+                switch (userInput.ToLower())
                 {
-                    case "1":
+                    case "1": // Add Pet
                         Console.WriteLine("Please enter the Pet Type (Dog, Cat, Parrot, etc.)");
                         string petType = Console.ReadLine();
 
@@ -36,26 +38,32 @@ namespace PetInfo
                         Console.WriteLine("How much is this pet on sale for?");
                         double salePrice = double.Parse(Console.ReadLine());
 
-                        // TODO: Create a pet instance
+                        // TODO: Create an instance of a pet object
 
                         // TODO: Add the pet to our store's inventory
 
                         // TODO: Add a transaction record to track the purchase
 
                         break;
-                    case "2":
+
+                    case "2": // List Pets for Sale
                         int petNumber = 0;
-                        List<string> pets = new List<string>();
+                        List<string> pets = new List<string>(); // TODO: Get this from a pet inventory manager
                         foreach (string pet in pets)
                         {
                             petNumber++;
-                            Console.WriteLine("Pet " + petNumber + ": " + pet + " makes noises like [TODO] and has a sale price of [TODO]");
+
+                            double price = 0.0; // TODO: Get this from the specific pet
+                            string noise = "TODO"; // TODO: Get this from the specific pet, preferably via a flimsy excuse for polymorphism
+
+                            Console.WriteLine("Pet " + petNumber + ": " + pet + " makes noises like " + noise + " and has a sale price of " + price);
                         }
 
                         break;
 
-                    case "3":
-                        // TODO: Determine which pet they'd like to sell
+                    case "3": // Sell Pet to Customer
+
+                        // TODO: Determine which pet the customer is buying from us
 
                         // TODO: Remove that pet from the store's inventory
 
@@ -63,14 +71,15 @@ namespace PetInfo
 
                         break;
 
-                    case "4":
+                    case "4": // List Sales History & Financial Info
+
                         // TODO: Loop over all sales history items and display them
 
                         // TODO: Sum the sale price of all animals currently in inventory as a total potential earnings
 
                         break;
 
-                    case "Q":
+                    case "q":
                         keepGoing = false;
                         break;
 
