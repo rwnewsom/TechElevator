@@ -2,6 +2,8 @@
 {
     public class BankAccount : IAccountable
     {
+
+        //can these be private? - no...causes error
         public string AccountHolderName { get; private set; }
         public string AccountNumber { get; private set; }
         public int Balance { get; private set; }

@@ -32,7 +32,7 @@ namespace TestableClasses
         /// <returns>The last number in the array</returns>
         public int GetLowestNumber(int[] numbers)
         {
-            int lowest = 0;
+            int lowest = int.MaxValue;
 
             foreach (int number in numbers)
             {

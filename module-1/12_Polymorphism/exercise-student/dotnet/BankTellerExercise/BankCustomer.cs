@@ -12,7 +12,8 @@ namespace BankTellerExercise
 
         public string PhoneNumber { get; private set;  }
 
-        public List<IAccountable> customerAccounts = new List<IAccountable>();
+        //making private
+        private List<IAccountable> customerAccounts = new List<IAccountable>();
 
         public bool IsVip { get
             {

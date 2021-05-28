@@ -27,6 +27,10 @@ namespace TestableClasses
         /// <returns>True if number2 can be evenly divided by number1, otherwise false</returns>
         public bool AreNumbersDivisible(int number1, int number2)
         {
+            if (number1 == 0)
+            {
+                return false;
+            }
             int remainder = number2 % number1;
             return remainder == 0;
         }

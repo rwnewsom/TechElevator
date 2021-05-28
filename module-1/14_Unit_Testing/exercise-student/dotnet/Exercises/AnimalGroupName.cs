@@ -32,6 +32,13 @@ namespace Exercises
          * GetHerd("elephants") -> "unknown"
          *
          */
+
+        //fix null
+        // general instructions
+        //one test class per method
+        //three asserts per test class
+        //tests don't have to pass as long as failure is valid
+
         public string GetHerd(string animalName)
         {
             Dictionary<string, string> animals = new Dictionary<string, string>()
