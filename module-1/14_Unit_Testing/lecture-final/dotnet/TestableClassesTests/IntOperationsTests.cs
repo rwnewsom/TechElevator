@@ -35,6 +35,24 @@ namespace TestableClassesTests
         }
 
         [TestMethod]
+        [DataRow(4,false)]
+        [DataRow(3, true)]
+        [DataRow(-2, false)]
+        [DataRow(-1, true)]
+        public void IsOdd_NumberShouldReturnExpectedValue(int number, bool expected)
+        {
+            //Arrange
+            IntOperations operations = new IntOperations();
+
+            //Act
+            bool result = operations.IsOdd(number);
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
         public void AreNumbersDivisible_ThreeAndSixShouldBeDivisible()
         {
             // Arrange

@@ -6,6 +6,15 @@ namespace PetInfo
 {
     public class UserInterface
     {
+        public PetManager Pets { get; private set; }
+        public Ledger Accounting { get; private set; }
+
+        public UserInterface()
+        {
+            this.Pets = new PetManager();
+            
+        }
+
         public void ShowMainMenu()
         {
             bool keepGoing = true;
@@ -39,8 +48,14 @@ namespace PetInfo
                         double salePrice = double.Parse(Console.ReadLine());
 
                         // TODO: Create an instance of a pet object
+                        Pet newPet = new Pet();
+                        newPet.PurchasePrice = purchasePrice;
+                        newPet.SalePrice = salePrice;
+                        newPet.Name = petName;
+                        newPet.Type = petType;
 
                         // TODO: Add the pet to our store's inventory
+                        Pets.NewPet(newPet);
 
                         // TODO: Add a transaction record to track the purchase
 
@@ -48,12 +63,12 @@ namespace PetInfo
 
                     case "2": // List Pets for Sale
                         int petNumber = 0;
-                        List<string> pets = new List<string>(); // TODO: Get this from a pet inventory manager
-                        foreach (string pet in pets)
+                        //List<string> pets = new List<string>(); // TODO: Get this from a pet inventory manager
+                        foreach (Pet pet in this.Pets.AvailablePets)
                         {
                             petNumber++;
 
-                            double price = 0.0; // TODO: Get this from the specific pet
+                            double price = pet.SalePrice; // TODO: Get this from the specific pet
                             string noise = "TODO"; // TODO: Get this from the specific pet, preferably via a flimsy excuse for polymorphism
 
                             Console.WriteLine("Pet " + petNumber + ": " + pet + " makes noises like " + noise + " and has a sale price of " + price);
@@ -63,11 +78,9 @@ namespace PetInfo
 
                     case "3": // Sell Pet to Customer
 
-                        // TODO: Determine which pet the customer is buying from us
+                        SellPetToCustomer();
 
-                        // TODO: Remove that pet from the store's inventory
-
-                        // TODO: Add a sale transaction
+                        
 
                         break;
 
@@ -89,6 +102,39 @@ namespace PetInfo
                 }
 
             }
+        }
+
+        private void SellPetToCustomer()
+        {
+            Console.WriteLine("Please select a pet to buy");
+            int petNumber = 0;
+            foreach (Pet petToBuy in this.Pets.AvailablePets)
+            {
+                petNumber++;
+                Console.WriteLine(petNumber + ") " + petToBuy.ToString());
+            }
+            Console.WriteLine("Enter the name of the pet:");
+            string petName = Console.ReadLine();
+            //find the pet
+            Pet pet = this.Pets.FindPetByName(petName);
+
+            if (pet == null)
+            {
+                Console.WriteLine("There is no pet with that name");
+            }
+
+            else
+            {
+                this.Pets.Remove(pet);
+            }
+
+            
+
+            // TODO: Determine which pet the customer is buying from us
+
+            // TODO: Remove that pet from the store's inventory
+
+            // TODO: Add a sale transaction
         }
     }
 }
