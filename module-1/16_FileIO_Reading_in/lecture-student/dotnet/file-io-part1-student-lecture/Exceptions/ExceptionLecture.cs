@@ -16,12 +16,9 @@ namespace FileInputLecture
             * By using try/catch blocks, you can stop the Exception from exiting the method and provide
             * code to handle it. 
             */
+            
             Console.WriteLine("The following cities: ");
-            string[] cities = new string[] {
-                "Cleveland",
-                "Columbus",
-                "Cincinatti"
-            };
+            string[] cities = new string[] { "Cleveland", "Columbus", "Cincinatti" };
 
             Console.WriteLine(cities[0]);
             Console.WriteLine(cities[1]);
@@ -42,7 +39,9 @@ namespace FileInputLecture
              */
             Console.WriteLine("The standard work week is 40 hours.");
             Console.WriteLine("How many hours did you work this week? >>> ");
-            int hoursWorked = int.Parse(Console.ReadLine());
+            string hoursString = Console.ReadLine();
+
+            int hoursWorked = int.Parse(hoursString);
             int overtimeHours = hoursWorked - 40;
             Console.WriteLine("You worked " + overtimeHours + " hours of overtime.");
 
@@ -57,7 +56,11 @@ namespace FileInputLecture
             * 
             * Let's try calling examples.DoSomethingDangerous
             */
+            Console.WriteLine("Press any key when you're ready for something dangerous!");
+            Console.ReadLine();
+
             ExceptionExamples examples = new ExceptionExamples();
+            examples.PerformDivision(42, 0); // Will cause a DivisionByZeroException inside of the PerformDivision method
 
             Console.WriteLine();
         }
@@ -91,16 +94,25 @@ namespace FileInputLecture
             /*
             * We can also create our own Exceptions to use if the System provided
             * exceptions don't give us what we need.  
-            *
+            * 
             * The "finally" block means that if an exception is caught or not, the code 
             * in the finally block should run last.          
             */
             ExceptionExamples examples = new ExceptionExamples();
 
+            Console.WriteLine("How much would you like to withdraw from your account? Your balance is $5000.00");
+            string withdrawString = Console.ReadLine();
+
             try
             {
-                double finalBalance = examples.Withdraw(6000.00);
+                double withdrawAmount = double.Parse(withdrawString);
+                double finalBalance = examples.Withdraw(withdrawAmount);
                 Console.WriteLine("The final balance is " + finalBalance);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("That's not a valid amount to withdraw");
+                Console.WriteLine(ex.Message);
             }
             catch (OverdraftException ex)
             {
@@ -114,7 +126,8 @@ namespace FileInputLecture
             }
             finally
             {
-                Console.WriteLine("Thank you for banking with Fly By Night Banking");
+                Console.WriteLine("Thank you for banking with Fly By Night Banking.");
+                Console.WriteLine("We're not sure why you trust us with your money, but we're glad you do!");
             }
 
             Console.WriteLine();

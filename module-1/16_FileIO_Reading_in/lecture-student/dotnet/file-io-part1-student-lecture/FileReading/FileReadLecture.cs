@@ -13,7 +13,7 @@ namespace FileInputLecture.FileReading
             string directoryPath = Environment.CurrentDirectory;
             DirectoryInfo directory = new DirectoryInfo(directoryPath);
 
-            // Directory will look something like "C:\Users\Student\source\your-repo-name-here\module-1\16_FileIO_Reading_in\student-lecture\dotnet\file-io-part1-student-lecture\bin\Debug\netcoreapp3.1"
+            // Directory will look something like "C:\Users\Student\source\your-name-here\module-1\16_FileIO_Reading_in\student-lecture\dotnet\file-io-part1-student-lecture\bin\Debug\netcoreapp3.1"
             // We want to get the "dotnet" directory, so navigate up a few times
             while (directory.Name.ToLower() != "dotnet")
             {
@@ -29,14 +29,14 @@ namespace FileInputLecture.FileReading
             Console.WriteLine("Looking for file in " + fullPath + ": " + file.Exists);
 
             // Next we're going to demonstrate working with reading files
-            DisplayCensoredFileContents(file);
+            DisplayCensoredFileContents(fullPath); // We also could have used file.FullName here
 
             Console.WriteLine();
         }
 
-        private void DisplayCensoredFileContents(FileInfo file)
+        private void DisplayCensoredFileContents(string filePath)
         {
-            Console.WriteLine("Displaying the censored contents of " + file.FullName);
+            Console.WriteLine("Displaying the censored contents of " + filePath);
 
             // Feel free to tweak these to your enjoyment
             string wordToCensor = "Cat";
@@ -49,18 +49,27 @@ namespace FileInputLecture.FileReading
              */
 
             // Add a using statement that creates a StreamReader pointing at the correct file
+            {
+                // While we haven't reached the end of the file...
+                {
+                    // Read in the next line from the file
 
-            // While we haven't reached the end of the file...
+                    // If the line needs censoring,
+                    {
+                        // Censor the line as needed by replacing WordToCensor with CensoredText
 
-            // Read in the next line from the file
+                        // Print the censored line to the Console
+                    }
+                }
 
-            // If the line needs censoring,
-            // ... Censor the line as needed by replacing WordToCensor with CensoredText
-            // ... Print the censored line to the Console
+            }
+
 
             Console.WriteLine("Done Censoring");
 
-            // What happens if the file doesn't exist or we don't have permissions?
+            // TODO: What happens if the file doesn't exist or we don't have permissions?
+
+            // TODO: Can we handle generic exceptions and more specific exceptions in the same try / catch?
         }
     }
 }
