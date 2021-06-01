@@ -35,38 +35,51 @@ namespace WordSearch
 
             //3. Open the file - location follows for easy cut and paste - update to your file location!
             //  Your file path here ->     C:\Users\Student\source\robertnewsom-c-sharp-purple\module-1\16_FileIO_Reading_in\exercise-student\dotnet\alices_adventures_in_wonderland.txt
-            
-            using (StreamReader reader = new StreamReader(filePath))
+            try
             {
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(filePath))
                 {
-                    //4. Loop through each line in the file
-                    string line = reader.ReadLine();
-                    
-                    if (caseSensitive == "Y")
+                    while (!reader.EndOfStream)
                     {
-                        //5. If the line contains the search string, print it out along with its line number
-                        if (line.Contains(targetWord))
-                        {
-                            Console.WriteLine($"{lineNumber}) " + line);
-                            lineNumber++;
-                            continue;
-                        }
-                        lineNumber++;
-                    }
+                        //4. Loop through each line in the file
+                        string line = reader.ReadLine();
 
-                    else
-                    {
-                        if (line.Contains(targetWord, StringComparison.CurrentCultureIgnoreCase))
+                        if (caseSensitive == "Y")
                         {
-                            Console.WriteLine($"{lineNumber}) " + line);
+                            //5. If the line contains the search string, print it out along with its line number
+                            if (line.Contains(targetWord))
+                            {
+                                Console.WriteLine($"{lineNumber}) " + line);
+                                lineNumber++;
+                                continue;
+                            }
                             lineNumber++;
-                            continue;
                         }
-                        lineNumber++;
-                    }          
+
+                        else
+                        {
+                            if (line.Contains(targetWord, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                Console.WriteLine($"{lineNumber}) " + line);
+                                lineNumber++;
+                                continue;
+                            }
+                            lineNumber++;
+                        }
+                    }
                 }
+
             }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("The file path: " + filePath + " was not found.");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("Encounted an error working with " + filePath +": " + ex.Message);
+            }
+
+            
         }
     }
 }
