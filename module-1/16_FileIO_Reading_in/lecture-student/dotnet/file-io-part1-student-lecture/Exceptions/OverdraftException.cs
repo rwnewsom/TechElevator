@@ -2,7 +2,7 @@
 
 namespace FileInputLecture
 {
-    public class OverdraftException : Exception
+    public class OverdraftException : ApplicationException
     {
         private double overdraftAmount = 0.0;
         public double OverdraftAmount

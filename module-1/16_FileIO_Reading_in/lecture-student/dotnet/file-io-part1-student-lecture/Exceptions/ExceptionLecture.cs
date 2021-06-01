@@ -20,11 +20,21 @@ namespace FileInputLecture
             Console.WriteLine("The following cities: ");
             string[] cities = new string[] { "Cleveland", "Columbus", "Cincinatti" };
 
-            Console.WriteLine(cities[0]);
-            Console.WriteLine(cities[1]);
-            Console.WriteLine(cities[2]);
-            Console.WriteLine(cities[3]);  // This statement will throw an IndexOutOfRangeException
-            Console.WriteLine("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
+            try
+            {
+                Console.WriteLine(cities[0]);
+                Console.WriteLine(cities[1]);
+                Console.WriteLine(cities[2]);
+                Console.WriteLine(cities[3]);  // This statement will throw an IndexOutOfRangeException
+                Console.WriteLine("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
+
+            }
+
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Index out of range");
+                Console.WriteLine(ex.Message);
+            }
 
             Console.WriteLine();
         }
@@ -41,9 +51,18 @@ namespace FileInputLecture
             Console.WriteLine("How many hours did you work this week? >>> ");
             string hoursString = Console.ReadLine();
 
-            int hoursWorked = int.Parse(hoursString);
-            int overtimeHours = hoursWorked - 40;
-            Console.WriteLine("You worked " + overtimeHours + " hours of overtime.");
+
+            try
+            {
+                int hoursWorked = int.Parse(hoursString);
+                int overtimeHours = hoursWorked - 40;
+                Console.WriteLine("You worked " + overtimeHours + " hours of overtime.");
+            }
+            
+            catch(FormatException ex)
+            {
+                Console.WriteLine("Not a valid number" + ex.Message);
+            }
 
             Console.WriteLine();
         }

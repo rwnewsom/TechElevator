@@ -49,16 +49,20 @@ namespace FileInputLecture.FileReading
              */
 
             // Add a using statement that creates a StreamReader pointing at the correct file
+            using (StreamReader reader = new StreamReader(filePath))
             {
                 // While we haven't reached the end of the file...
+                while (reader.EndOfStream == false) // or while (!reader.EndOfStream)
                 {
                     // Read in the next line from the file
-
+                    string line = reader.ReadLine();
                     // If the line needs censoring,
+                    if (line.Contains(wordToCensor))
                     {
                         // Censor the line as needed by replacing WordToCensor with CensoredText
-
+                        line = line.Replace(wordToCensor, replacementWord);
                         // Print the censored line to the Console
+                        Console.WriteLine(line);
                     }
                 }
 
