@@ -39,7 +39,7 @@ namespace Lecture.Aids
                         string line = sr.ReadLine();
 
                         // Split the line by ,
-                        string[] words = line.Split(',');
+                        string[] words = line.Split(",");
 
                         // Add each word to allWords
                         allWords.AddRange(words);
