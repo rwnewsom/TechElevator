@@ -17,7 +17,7 @@ namespace Exercise
         
         public SquareWall(string name, string color, int sideLength) : base(name, color)
         {
-            this.SideLength = sideLength;
+            //this.SideLength = sideLength;
 
             //adding for automated test
             this.Length = sideLength;
@@ -27,7 +27,7 @@ namespace Exercise
 
 
         //METHODS
-
+        /*
         public override int GetArea()
         {
             return SideLength * SideLength;
@@ -37,7 +37,7 @@ namespace Exercise
         {
             return $"{this.Name} ({this.SideLength}x{this.SideLength}) square";
         }
-
+        */
 
 
 
