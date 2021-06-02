@@ -7,10 +7,19 @@ namespace Assessment
     public class HotelReservation
     {
         //PROPERTIES
+        /// <summary>
+        /// Name unique to reservation.
+        /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// The number of night the guest will be staying.
+        /// </summary>
         public int NumberOfNights { get; private set; }
 
+        /// <summary>
+        /// Calculated as 59.99 per night, less minibar and cleaning fees
+        /// </summary>
         public double EstimatedTotal
         {
             get
@@ -21,6 +30,11 @@ namespace Assessment
 
         //CONSTRUCTORS
 
+        /// <summary>
+        /// Creates a new reservation.
+        /// </summary>
+        /// <param name="name">Name unique to reservation.</param>
+        /// <param name="numberOfNights">The number of nights the guest will be staying.</param>
         public HotelReservation(string name, int numberOfNights)
         {
             this.Name = name;
@@ -57,14 +71,13 @@ namespace Assessment
             return EstimatedTotal;
         }
 
+      
+
+        
         public override string ToString()
         {
-            return $"RESERVATION - {this.Name} - {this.EstimatedTotal}";
+            return $"RESERVATION - {this.Name} - {this.EstimatedTotal.ToString("C")}";
         }
-
-        //public override string ToString()
-
-        //return;
-
+        
     }
 }
