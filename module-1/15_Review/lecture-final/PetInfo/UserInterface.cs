@@ -84,7 +84,7 @@ namespace PetInfo
                 double price = pet.SalePrice; // Get this from the specific pet
                 string noise = "TODO"; // TODO: Get this from the specific pet, preferably via a flimsy excuse for polymorphism
 
-                Console.WriteLine("Pet " + petNumber + ": " + pet + " makes noises like " + noise + " and has a sale price of " + price);
+                Console.WriteLine("Pet " + petNumber + ": " + pet.ToString() + " makes noises like " + noise + " and has a sale price of " + price);
             }
         }
 
