@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assessment
 {
-    class HotelReservation
+    public class HotelReservation
     {
         //PROPERTIES
         public string Name { get; private set; }

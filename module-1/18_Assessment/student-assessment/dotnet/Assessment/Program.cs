@@ -9,8 +9,8 @@ namespace Assessment
             // create an object and call methods on it (manual testing) from this class.
 
             HotelReservation RobsRes = new HotelReservation("Rob", 4);
-            //Console.WriteLine(RobsRes.EstimatedTotal);
-            //Console.WriteLine(RobsRes.CalculateActualTotal(true,true));
+            Console.WriteLine(RobsRes.EstimatedTotal);
+            Console.WriteLine(RobsRes.CalculateActualTotal(true,true));
 
             Console.WriteLine(RobsRes.ToString()); 
 
