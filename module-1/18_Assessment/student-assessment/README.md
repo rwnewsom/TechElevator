@@ -10,7 +10,7 @@ It also gives you practice with coding assessments you may encounter during the 
 
 ## Overview
 
-This is a time-boxed, individual coding assessment. You have one hour to complete the assessment. You are not expected to complete all the features of the problem in the time given. Complete as much as you can.
+This is a time-boxed, individual coding assessment. You have one hour to complete the assessment. Complete as much as you can of the assessment during that time.
 
 You may use any resource available as long as the effort remains an individual effort.
 
