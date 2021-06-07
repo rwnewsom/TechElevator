@@ -109,14 +109,54 @@ WHERE
 	AND countrycode = 'CHN';
 
 -- 11. The name and region of all countries in North or South America (51 rows)
+SELECT
+	name,
+	region
+FROM
+	country
+WHERE
+	continent IN ('North America', 'South America');
 
 -- 12. The name, continent, and head of state of all countries whose form of government is a monarchy (43 rows)
+SELECT
+	name,
+	continent,
+	headofstate
+FROM
+	country
+WHERE
+	governmentform LIKE ('%monarchy%');
 
 -- 13. The name of all cities in the USA with a population between 1 million and 2 million people (6 rows) 
+SELECT
+	name
+FROM
+	city
+WHERE
+	countrycode = 'USA'
+	AND population BETWEEN 1000000 AND 2000000;
 
 -- 14. The name and region of all countries in North or South America except for countries in the Caribbean (27 rows)
+SELECT
+	name,
+	region
+FROM
+	country
+WHERE
+	region IN ('North America','South America','Central America');
+	
+	
 
 -- 15. The name, population, and GNP of all countries with a GNP greater than $1 trillion dollars and a population of less than 100 million people (4 rows)
+SELECT
+	name,
+	population,
+	gnp
+FROM
+	country
+WHERE
+	population < 100000000
+	AND gnp > 1000000;
 
 -- 16. The name and population of all cities in Texas that have a population of greater than 1 million people (3 rows)
 
