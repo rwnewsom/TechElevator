@@ -159,14 +159,55 @@ WHERE
 	AND gnp > 1000000;
 
 -- 16. The name and population of all cities in Texas that have a population of greater than 1 million people (3 rows)
+SELECT
+	name,
+	population
+FROM
+	city
+WHERE
+	population > 1000000
+	AND district = 'Texas';
 
 -- 17. The name and average life expectancy of all countries on the continent of Oceania (28 rows)
+SELECT
+	name,
+	lifeexpectancy
+FROM
+	country
+WHERE
+	continent = 'Oceania';
 
 -- 18. The name and average life expectancy of all countries on the continent of Oceania for which an average life expectancy has been provided (i.e. not equal to null) (20 rows)
+SELECT
+	name,
+	lifeexpectancy
+FROM
+	country
+WHERE
+	continent = 'Oceania'
+	AND lifeexpectancy IS NOT NULL;
 
 -- 19. The name of all countries on the continent of Oceania for which an average life expectancy has not been provided (i.e. equal to null) (8 rows)
+SELECT
+	name,
+	lifeexpectancy
+FROM
+	country
+WHERE
+	continent = 'Oceania'
+	AND lifeexpectancy IS NULL;
 
 -- 20. The name, continent, GNP, and average life expectancy of all countries that have an average life expectancy of at least 70 years and a GNP between $1 million and $100 million dollars (3 rows)
+SELECT
+	name,
+	continent,
+	gnp,
+	lifeexpectancy
+FROM
+	country
+WHERE
+	lifeexpectancy > 70
+	AND gnp BETWEEN 1 AND 100;
 
 -- 21. The per capita GNP (i.e. GNP divided by population) in US Dollars of all countries in Europe (46 rows)
 
