@@ -57,6 +57,8 @@
 
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor
 -- (#1 should be “GINA DEGENERES” with 753 rentals and #10 should be “SEAN GUINESS” with 599 rentals)
+-- HINT: There's something special about Susan Davis
 
 -- 20. The top 5 “Comedy” actors ranked by number of rentals of films in the “Comedy” category starring that actor
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
+-- HINT: your query should involve film, inventory, rental, film_actor, actor, film_category, and category. If your totals don't match, try changing how you join between these tables
