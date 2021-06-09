@@ -85,18 +85,69 @@ WHERE
 
 -- 8. All of the films featuring actor Matthew Leigh that are rated ‘G’
 -- (9 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_actor fa ON f.film_id = fa.film_id
+	INNER JOIN actor a ON fa.actor_id = a.actor_id
+WHERE
+	a.first_name='Matthew'
+	AND a.last_name = 'Leigh'
+	AND f.rating ='G'
 
 -- 9. All of the ‘Sci-Fi’ films released in 2006
 -- (61 rows)
+SELECT
+	f.title
+FROM 
+	film f
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Sci-Fi'
+	AND f.release_year = 2006
 
 -- 10. All of the ‘Action’ films starring Nick Stallone
 -- (2 rows)
+SELECT
+	f.title AS 'Action Films Starring Nick Stallone'
+FROM
+	film f
+	INNER JOIN film_actor fa ON f.film_id = fa.film_id
+	INNER JOIN actor a ON fa.actor_id = a.actor_id
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id =  c.category_id
+WHERE
+	a.last_name = 'Stallone'
+	AND a.first_name = 'Nick'
+	AND c.name = 'Action'
+
 
 -- 11. The address of all stores, including street address, city, district, and country
 -- (2 rows)
+SELECT
+	s.store_id,
+	a.address,
+	c.city,
+	a.district,
+	ct.country
+FROM
+	store s
+	INNER JOIN address a ON s.address_id = a.address_id
+	INNER JOIN city c ON a.city_id = c.city_id
+	INNER JOIN country ct ON c.country_id = ct.country_id
 
 -- 12. A list of all stores by ID, the store’s street address, and the name of the store’s manager
 -- (2 rows)
+SELECT
+	s.store_id,
+	a.address,
+	(st.last_name + ', ' + st.first_name) AS 'Manager'
+FROM
+	store s
+	INNER JOIN address a ON s.address_id = a.address_id
+	INNER JOIN staff st ON s.store_id = st.store_id
 
 -- 13. The first and last name of the top ten customers ranked by number of rentals
 -- (#1 should be “ELEANOR HUNT” with 46 rentals, #10 should have 39 rentals)
