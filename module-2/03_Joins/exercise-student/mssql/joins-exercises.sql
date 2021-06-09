@@ -2,9 +2,26 @@
 
 -- 1. All of the films that Nick Stallone has appeared in
 -- (30 rows)
+SELECT
+	f.title AS 'Films Starring Nick Stallone'
+FROM
+	film f
+	INNER JOIN film_actor fa ON f.film_id = fa.film_id
+	INNER JOIN actor a ON fa.actor_id = a.actor_id
+WHERE
+	a.first_name = 'Nick' AND a.last_name = 'Stallone'
+
 
 -- 2. All of the films that Rita Reynolds has appeared in
 -- (20 rows)
+SELECT
+	f.title AS 'Films starring Rita Reynolds'
+FROM film f
+	INNER JOIN film_actor fa ON f.film_id = fa.film_id
+	INNER JOIN actor a ON fa.actor_id = a.actor_id
+WHERE
+	a.first_name = 'Rita'
+	AND a.last_name = 'Reynolds'
 
 -- 3. All of the films that Judy Dean or River Dean have appeared in
 -- (46 rows)
@@ -21,15 +38,50 @@ WHERE
 
 -- 4. All of the the ‘Documentary’ films
 -- (68 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Documentary'
 
 -- 5. All of the ‘Comedy’ films
 -- (58 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Comedy'
 
 -- 6. All of the ‘Children’ films that are rated ‘G’
 -- (10 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Children'
+	AND f.rating = 'G'
 
 -- 7. All of the ‘Family’ films that are rated ‘G’ and are less than 2 hours in length
 -- (3 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Family'
+	AND f.rating = 'G'
+	AND f.length <120
 
 -- 8. All of the films featuring actor Matthew Leigh that are rated ‘G’
 -- (9 rows)
