@@ -8,6 +8,16 @@
 
 -- 3. All of the films that Judy Dean or River Dean have appeared in
 -- (46 rows)
+SELECT
+	f.title
+FROM
+	film f
+	INNER JOIN film_actor fa ON f.film_id = fa.film_id
+	INNER JOIN actor a ON a.actor_id = fa.actor_id
+WHERE
+	--a.actor_id IN (35, 143)
+	a.actor_id IN (SELECT actor_id FROM actor WHERE (last_name = 'DEAN' AND first_name = 'JUDY') OR (last_name = 'DEAN' AND first_name = 'RIVER'))
+--SELECT * FROM actor WHERE last_name = 'Dean;
 
 -- 4. All of the the ‘Documentary’ films
 -- (68 rows)
@@ -58,7 +68,9 @@
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor
 -- (#1 should be “GINA DEGENERES” with 753 rentals and #10 should be “SEAN GUINESS” with 599 rentals)
 -- HINT: There's something special about Susan Davis
+--use subway map!
 
 -- 20. The top 5 “Comedy” actors ranked by number of rentals of films in the “Comedy” category starring that actor
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
 -- HINT: your query should involve film, inventory, rental, film_actor, actor, film_category, and category. If your totals don't match, try changing how you join between these tables
+--many ways to accomplish, join multiple tables, only one true path

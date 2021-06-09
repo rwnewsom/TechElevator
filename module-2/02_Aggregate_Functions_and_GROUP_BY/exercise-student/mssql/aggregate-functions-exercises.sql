@@ -64,33 +64,98 @@ GROUP BY
 -- 5. The sum of the population of all cities in California.
 -- (total population of all cities in California: 16716706)
 
+SELECT
+	SUM(population) AS 'Tot_CA_City_Pop'
+FROM
+	city
+WHERE
+	district = 'California'
+
 -- 6. The sum of the population of all cities in China.
 -- (total population of all cities in China: 175953614)
+SELECT
+	SUM(population) AS 'Tot_CHN_City_Pop'
+FROM
+	city
+WHERE
+	countrycode = 'CHN'
 
 -- 7. The maximum population of all countries in the world.
 -- (largest country population in world: 1277558000)
+SELECT
+	MAX(population) AS 'Max_Country_Pop'
+FROM
+	country
 
 -- 8. The maximum population of all cities in the world.
 -- (largest city population in world: 10500000)
+SELECT
+	MAX(population) AS 'Max_City_Pop'
+FROM
+	city
 
 -- 9. The maximum population of all cities in Australia.
 -- (largest city population in Australia: 3276207)
+SELECT
+	MAX(population) AS 'Max_Aus_City_Pop'
+FROM
+	city
+WHERE
+	countrycode = 'AUS'
 
 -- 10. The minimum population of all countries in the world.
 -- (smallest_country_population in world: 50)
+SELECT
+	MIN(population) AS 'Smallest country pop'
+FROM
+	country
+WHERE
+	population>0
 
 -- 11. The average population of cities in the United States.
 -- (avgerage city population in USA: 286955.3795)
+SELECT
+	AVG(population) AS 'USA Avg City Pop'
+FROM
+	city
+WHERE
+	countrycode='USA'
 
 -- 12. The average population of cities in China.
 -- (average city population in China: 484720.6997 approx.)
+SELECT
+	AVG(population) AS 'CHN Avg City Pop'
+FROM
+	city
+WHERE
+	countrycode='CHN'
+
 
 -- 13. The surface area of each continent ordered from highest to lowest.
 -- (largest continental surface area: 31881000, "Asia")
+SELECT
+	continent,
+	SUM(surfacearea) AS 'Total Surface Area'
+FROM
+	country
+GROUP BY
+	continent
+ORDER BY SUM(surfacearea) DESC
+
+
 
 -- 14. The highest population density (population divided by surface area) of all 
 -- countries in the world. 
 -- (highest population density in world: 26277.7777)
+SELECT TOP 1
+	name,
+	--population,
+	(population/surfacearea) AS 'Pop Density'
+FROM
+	country
+WHERE
+	population>0
+ORDER BY (population/surfacearea) DESC
 
 -- 15. The population density and life expectancy of the top ten countries with the 
 -- highest life expectancies in descending order. 
@@ -104,6 +169,12 @@ GROUP BY
 -- 17. The average population of cities in each country (hint: use city.countrycode)
 -- ordered from highest to lowest.
 -- (highest avg population: 4017733.0000, "SGP")
+SELECT
+	--countrycode incomplete. note no . syntax
+FROM
+	city
+GROUP BY
+	countrycode
 	
 -- 18. The count of cities in each state in the USA, ordered by state name.
 -- (45 rows)
