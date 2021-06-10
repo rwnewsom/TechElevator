@@ -151,29 +151,142 @@ FROM
 
 -- 13. The first and last name of the top ten customers ranked by number of rentals
 -- (#1 should be “ELEANOR HUNT” with 46 rentals, #10 should have 39 rentals)
+SELECT TOP 10
+	c.first_name,
+	c.last_name,
+	COUNT(r.rental_id) AS 'Total Rentals'
+FROM
+	customer c
+	INNER JOIN rental r ON c.customer_id = r.customer_id
+GROUP BY
+	c.first_name, c.last_name --, r.rental_id
+	
+ORDER BY
+	COUNT(r.rental_id) DESC
+
 
 -- 14. The first and last name of the top ten customers ranked by dollars spent
 -- (#1 should be “KARL SEAL” with 221.55 spent, #10 should be “ANA BRADLEY” with 174.66 spent)
+SELECT TOP 10
+	c.first_name,
+	c.last_name,
+	COUNT(r.rental_id) AS 'Total Rentals',
+	SUM(p.amount) AS 'Total Spend'
+FROM
+	customer c
+	INNER JOIN rental r ON c.customer_id = r.customer_id
+	INNER JOIN payment p ON r.rental_id = p.rental_id
+GROUP BY
+	c.first_name, c.last_name
+ORDER BY
+	SUM(p.amount) DESC
 
 -- 15. The store ID, street address, total number of rentals, total amount of sales (i.e. payments), and average sale of each store.
 -- (NOTE: Keep in mind that while a customer has only one primary store, they may rent from either store.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
+SELECT
+	s.store_id,
+	a.address,
+	COUNT(r.rental_id) AS 'Total Rentals',
+	SUM(p.amount) AS 'Total Sales',
+	AVG(p.amount) AS 'Average Sale'
+FROM
+	store s
+	INNER JOIN address a ON s.address_id = a.address_id
+	INNER JOIN inventory i ON s.store_id = i.store_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+	INNER JOIN payment p ON r.rental_id = p.rental_id
+
+GROUP BY s.store_id, a.address
+	
 
 -- 16. The top ten film titles by number of rentals
 -- (#1 should be “BUCKET BROTHERHOOD” with 34 rentals and #10 should have 31 rentals)
+SELECT TOP 10
+	f.title,
+	COUNT(r.rental_id) AS 'Number of Rentals'
+FROM 
+	film f
+	INNER JOIN inventory i ON f.film_id = i.film_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY
+f.title
+ORDER BY
+COUNT(r.rental_id) DESC
 
 -- 17. The top five film categories by number of rentals
 -- (#1 should be “Sports” with 1179 rentals and #5 should be “Family” with 1096 rentals)
+SELECT TOP 5
+	c.name,
+	COUNT(c.name) AS 'Top Rental Categories'
+FROM
+	category c
+	INNER JOIN film_category fc ON c.category_id = fc.category_id
+	INNER JOIN film f ON fc.film_id = f.film_id
+	INNER JOIN inventory i ON f.film_id = i.film_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY
+	c.name
+ORDER BY
+	COUNT(c.name) DESC
 
 -- 18. The top five Action film titles by number of rentals
 -- (#1 should have 30 rentals and #5 should have 28 rentals)
+SELECT TOP 5
+	f.title AS 'Top Five Action Films',
+	COUNT(r.rental_ID) AS 'Number of Rentals'
+FROM
+	film f
+	INNER JOIN inventory i ON f.film_id = i.film_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+	INNER JOIN film_category fc ON fc.film_id = f.film_id
+	INNER JOIN category c ON c.category_id = fc.category_id
+WHERE
+	c.name = 'Action'
+GROUP BY f.title
+ORDER BY
+	COUNT(r.rental_ID) DESC
 
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor
 -- (#1 should be “GINA DEGENERES” with 753 rentals and #10 should be “SEAN GUINESS” with 599 rentals)
 -- HINT: There's something special about Susan Davis
 --use subway map!
+SELECT TOP 10
+	a.first_name,
+	a.last_name,
+	COUNT(r.rental_id) AS 'Total Rentals Starring'
+FROM
+	actor a
+	INNER JOIN film_actor fa ON a.actor_id = fa.actor_id
+	INNER JOIN film f on fa.film_id = f.film_id
+	INNER JOIN inventory i ON f.film_id = i.film_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+GROUP BY
+	a.first_name, a.last_name, a.actor_id
+ORDER BY
+	COUNT(r.rental_id) DESC
+	--a.last_name DESC
+
 
 -- 20. The top 5 “Comedy” actors ranked by number of rentals of films in the “Comedy” category starring that actor
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
 -- HINT: your query should involve film, inventory, rental, film_actor, actor, film_category, and category. If your totals don't match, try changing how you join between these tables
 --many ways to accomplish, join multiple tables, only one true path
+SELECT TOP 5
+	a.first_name,
+	a.last_name,
+	COUNT(r.rental_id) AS 'Total Comedy Rentals'
+FROM
+	actor a
+	INNER JOIN film_actor fa ON a.actor_id = fa.actor_id
+	INNER JOIN film f on fa.film_id = f.film_id
+	INNER JOIN inventory i ON f.film_id = i.film_id
+	INNER JOIN rental r ON i.inventory_id = r.inventory_id
+	INNER JOIN film_category fc ON f.film_id = fc.film_id
+	INNER JOIN category c ON fc.category_id = c.category_id
+WHERE
+	c.name = 'Comedy'
+GROUP BY
+	a.first_name, a.last_name, a.actor_id
+ORDER BY
+	COUNT(r.rental_id) DESC
