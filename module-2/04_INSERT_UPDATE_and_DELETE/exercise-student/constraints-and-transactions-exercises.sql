@@ -2,19 +2,42 @@
 -- The following changes are applied to the "dvdstore" database.**
 
 -- 1. Add actors, Hampton Avenue, and Lisa Byway to the actor table.
+INSERT INTO actor (first_name, last_name)
+VALUES('Hampton', 'Avenue')  --201
+
+INSERT INTO actor (first_name, last_name)
+VALUES('Lisa', 'Byway')	--202
+
+--SELECT * FROM actor ORDER BY last_name
 
 -- 2. Add "Euclidean PI", "The epic story of Euclid as a pizza delivery boy in
 -- ancient Greece", to the film table. The movie was released in 2008 in English.
 -- Since its an epic, the run length is 3hrs and 18mins. There are no special
 -- features, the film speaks for itself, and doesn't need any gimmicks.
+--SELECT * FROM language
+
+INSERT INTO film (title, description, release_year, language_id, length)
+VALUES ('Euclidean PI', 'The epic story of Euclid as a pizza delivery boy in ancient Greece', 2008, 1, 198)
 
 -- 3. Hampton Avenue plays Euclid, while Lisa Byway plays his slightly
 -- overprotective mother, in the film, "Euclidean PI". Add them to the film.
+--Film ID 1001
+--SELECT * FROM film ORDER BY title
+INSERT INTO film_actor (actor_id, film_id)
+VALUES (201, 1001)
+INSERT INTO film_actor (actor_id, film_id)
+VALUES (202, 1001)
 
 -- 4. Add Mathmagical to the category table.
+--SELECT * FROM category --original 16 - new=17
+INSERT INTO category (name)
+VALUES ('Mathmagical')
 
 -- 5. Assign the Mathmagical category to the following films, "Euclidean PI",
 -- "EGG IGBY", "KARATE MOON", "RANDOM GO", and "YOUNG LANGUAGE"
+--KM is 494, original cat is horror
+--SELECT * FROM film_category WHERE film_id = 494
+--SELECT * FROM category
 
 -- 6. Mathmagical films always have a "G" rating, adjust all Mathmagical films
 -- accordingly.
