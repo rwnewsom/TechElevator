@@ -44,6 +44,10 @@ VALUES ('Mathmagical')
 -- (5 rows affected)
 
 -- 7. Add a copy of "Euclidean PI" to all the stores.
+--SELECT * FROM film --filmid 1001
+--SELECT * FROM store --1 & 2
+--INSERT INTO inventory (store_id, film_id) VALUES(1,1001)
+--INSERT INTO inventory (store_id, film_id) VALUES(2,1001)
 
 -- 8. The Feds have stepped in and have impounded all copies of the pirated film,
 -- "Euclidean PI". The film has been seized from all stores, and needs to be
