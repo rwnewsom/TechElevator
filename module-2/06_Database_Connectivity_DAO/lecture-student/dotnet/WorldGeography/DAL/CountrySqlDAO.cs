@@ -9,6 +9,9 @@ namespace WorldGeography.DAL
     {
         private readonly string connectionString;
 
+        private const string SqlSelectAll = "SELECT code, name, continent, region, surfacearea, population, governmentform FROM country";
+        private const string SqlSelectAllByContinent = "SELECT code, name, continent, region, surfacearea, population, governmentform FROM country WHERE continent = @continent";
+
         /// <summary>
         /// Creates a sql based country dao.
         /// </summary>
