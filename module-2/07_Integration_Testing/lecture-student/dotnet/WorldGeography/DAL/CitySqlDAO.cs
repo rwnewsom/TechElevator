@@ -43,7 +43,7 @@ namespace WorldGeography.DAL
                 Console.WriteLine("Error saving city.");
                 Console.WriteLine(ex.Message);
 
-                return -1;
+                throw;
             }
         }
 

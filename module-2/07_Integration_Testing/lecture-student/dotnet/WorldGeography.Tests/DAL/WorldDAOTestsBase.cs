@@ -49,7 +49,10 @@ namespace WorldGeography.Tests.DAL
         public void Cleanup()
         {
             // Roll back the transaction
-            transaction.Dispose();
+            if (transaction != null)
+            {
+                transaction.Dispose();
+            }
         }
 
         /// <summary>
@@ -64,6 +67,7 @@ namespace WorldGeography.Tests.DAL
                 conn.Open();
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
+
                 return count;
             }
         }
