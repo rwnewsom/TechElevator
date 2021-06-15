@@ -23,12 +23,67 @@ namespace WorldGeography.DAL
 
         public void AddCity(City city)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand command = new SqlCommand(SqlInsert, conn);
+                    command.Parameters.AddWithValue("@name", city.Name);
+                    command.Parameters.AddWithValue("@countrycode", city.CountryCode);
+                    command.Parameters.AddWithValue("@district", city.District);
+                    command.Parameters.AddWithValue("@population", city.Population);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException ex)
+            {
+                Console.WriteLine("Could not find city: "+ ex.Message);
+            }
         }
 
         public IEnumerable<City> GetCitiesByCountryCode(string countryCode)
         {
-            throw new NotImplementedException();
+            List<City> cities = new List<City>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand command = new SqlCommand(SqlSelect, conn);
+                    command.Parameters.AddWithValue("@countrycode", countryCode);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        City city = new City();
+
+                        city.CityId = Convert.ToInt32(reader["id"]);
+                        city.Name = Convert.ToString(reader["name"]);
+                        city.CountryCode = Convert.ToString(reader["countrycode"]);
+                        city.District = Convert.ToString(reader["district"]);
+                        city.Population = Convert.ToInt32(reader["population"]);
+
+                        //my attempt
+
+                        cities.Add(city);
+                    }
+                    
+                }
+                
+            }
+            
+            catch(SqlException ex)
+            {
+                Console.WriteLine("error getting cities: " + ex.Message);
+            }
+
+            return cities;
         }
     }
 }

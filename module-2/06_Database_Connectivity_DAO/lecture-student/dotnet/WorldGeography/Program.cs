@@ -18,9 +18,9 @@ namespace WorldGeography
             string connectionString = configuration.GetConnectionString("World");
 
             // Create our data access objects
-            ICityDAO cityDAO = null;
-            ICountryDAO countryDAO = null;
-            ILanguageDAO languageDAO = null;
+            ICityDAO cityDAO = new CitySqlDAO(connectionString);
+            ICountryDAO countryDAO = new CountrySqlDAO(connectionString);
+            ILanguageDAO languageDAO = new LanguageSqlDAO(connectionString);
 
             // Run the Application
             WorldGeographyCLI cli = new WorldGeographyCLI(cityDAO, countryDAO, languageDAO);
