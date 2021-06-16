@@ -13,25 +13,31 @@ namespace WorldGeography.Tests
         [TestMethod]
         [DataRow("USA", 1)]
         [DataRow("XYZ", 0)]
-        public void GetLanguagesTest(string countryCode, int expectedCount)
+        public void GetLanguageCountShouldMatchExpected(string countryCode, int expectedCount)
         {
             // Arrange
-
+            LanguageSqlDAO dao = new LanguageSqlDAO(ConnectionString);
             // Act
-
+            IList<Language> languages = dao.GetLanguages(countryCode);
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.AreEqual(expectedCount, languages.Count);
         }
 
         [TestMethod]
         public void AddLanguage()
         {
             // Arrange
+            LanguageSqlDAO dao = new LanguageSqlDAO(ConnectionString);
+            Language testLanguage = new Language();
+            testLanguage.Name = "Profanity";
+            testLanguage.CountryCode = "USA";
+            testLanguage.Percentage = 35;
 
             // Act
+            bool success = dao.AddNewLanguage(testLanguage);
 
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.IsTrue(success);
         }
 
         [TestMethod]
@@ -39,22 +45,34 @@ namespace WorldGeography.Tests
         public void AddLanguage_FailsBecauseLanguageExists()
         {
             // Arrange
+            LanguageSqlDAO dao = new LanguageSqlDAO(ConnectionString);
+            Language testLanguage = new Language();
+            testLanguage.Name = "C#"; //recall must be in test data
+            testLanguage.CountryCode = "USA";
+            testLanguage.Percentage = 35;
 
             // Act
+            dao.AddNewLanguage(testLanguage);
 
             // Assert
             Assert.Fail("Expected a SQL Exception to be thrown before this line was reached");
         }
 
         [TestMethod]
-        public void RemoveLanguage()
+        public void RemoveLanguageShouldSucceedIfLanguageExists()
         {
             // Arrange
+            LanguageSqlDAO dao = new LanguageSqlDAO(ConnectionString);
+            Language testLanguage = new Language();
+            testLanguage.Name = "C#"; //recall must be in test data
+            testLanguage.CountryCode = "USA";
+            testLanguage.Percentage = 35;
 
             // Act
+            bool success = dao.RemoveLanguage(testLanguage);
 
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.IsTrue(success);
         }
     }
 }

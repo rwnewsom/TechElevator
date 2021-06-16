@@ -25,10 +25,10 @@ namespace WorldGeography.Tests.DAL
         public void Setup()
         {
             // Begin the transaction
-            transaction = new TransactionScope();
+            transaction = new TransactionScope(); //equivalent to BEGIN Transaction
 
             // Get the SQL Script to run
-            string sql = File.ReadAllText("test-script.sql");
+            string sql = File.ReadAllText("test-script.sql"); //short files only!! //use stream reader fo longer files
 
             // Execute the script
             using (SqlConnection conn = new SqlConnection(ConnectionString))
@@ -49,7 +49,7 @@ namespace WorldGeography.Tests.DAL
         public void Cleanup()
         {
             // Roll back the transaction
-            transaction.Dispose();
+            transaction.Dispose(); //equivalent to rollback
         }
 
         /// <summary>

@@ -79,6 +79,7 @@ namespace WorldGeography.DAL
             {
                 Console.WriteLine("An error occurred saving the new language.");
                 Console.WriteLine(ex.Message);
+                throw;
             }
 
             return true;
@@ -107,6 +108,7 @@ namespace WorldGeography.DAL
             {
                 Console.WriteLine("An error occurred saving the new language.");
                 Console.WriteLine(ex.Message);
+                throw;
             }
 
             return true;

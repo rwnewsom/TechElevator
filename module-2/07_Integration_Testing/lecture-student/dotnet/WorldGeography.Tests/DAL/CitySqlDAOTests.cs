@@ -16,32 +16,48 @@ namespace WorldGeography.Tests
         public void GetCitiesByCountryCode_Should_ReturnRightNumberOfCities(string countryCode, int expectedCityCount)
         {
             // Arrange
+            CitySqlDAO dao = new CitySqlDAO(this.ConnectionString);
 
             // Act
+            IList<City> cities = dao.GetCitiesByCountryCode(countryCode);
 
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.AreEqual(expectedCityCount, cities.Count);
         }
 
         [TestMethod]
         public void AddCity_Should_IncreaseCountBy1()
         {
             // Arrange
+            CitySqlDAO dao = new CitySqlDAO(this.ConnectionString);
+            City testCity = new City();
+            testCity.Name = "Doesn't matter";
+            testCity.CountryCode = "USA";
+            testCity.District = "Doesn't matter";
+            testCity.Population = 1;
 
+            int oldRowCount = this.GetRowCount("city");
             // Act
-
+            int newCityId = dao.AddCity(testCity);
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.IsTrue(newCityId > 0);
+            Assert.AreEqual(oldRowCount + 1, this.GetRowCount("city"));
         }
 
         [TestMethod]
         [ExpectedException(typeof(SqlException))]
         public void AddCity_Should_Fail_IfCountryDoesNotExist()
-        {
+        { 
             // Arrange
+            CitySqlDAO dao = new CitySqlDAO(ConnectionString);
+            City testCity = new City();
+            testCity.Name = "Doesn't matter";
+            testCity.CountryCode = "NIL"; //no such country
+            testCity.District = "Doesn't matter";
+            testCity.Population = 1;
 
             // Act
-
+            dao.AddCity(testCity); //this line should throw SqlException
             // Assert
             Assert.Fail("Expected a SQL Exception to be thrown before this line was reached");
         }

@@ -13,11 +13,16 @@ namespace WorldGeography.Tests
         public void GetCountriesTest_Should_ReturnAllCountries()
         {
             // Arrange
+            CountrySqlDAO dao = new CountrySqlDAO(this.ConnectionString);
+            int expectedResults = this.GetRowCount("country");
 
             // Act
+            IList<Country> results = dao.GetCountries();
 
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.IsTrue(results.Count > 0);
+            Assert.AreEqual(expectedResults, results.Count);
+            //Assert.Inconclusive("Implement me!");
         }
 
         [TestMethod]
@@ -27,11 +32,13 @@ namespace WorldGeography.Tests
         public void GetCountriesByContinent_Should_ReturnCorrectNumberOfCountries(string continent, int expectedCount)
         {
             // Arrange
+            CountrySqlDAO dao = new CountrySqlDAO(this.ConnectionString);
 
             // Act
+            IList<Country> countries = dao.GetCountries(continent);
 
             // Assert
-            Assert.Inconclusive("Implement me!");
+            Assert.AreEqual(expectedCount, countries.Count);
         }
     }
 }
