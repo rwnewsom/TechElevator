@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSecurity.Cli", "DataSecurity.Cli\DataSecurity.Cli.csproj", "{A7533C5F-E9A1-4131-A8DE-3AAB35D781AD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataSecurity.Tests", "DataSecurity.Tests\DataSecurity.Tests.csproj", "{4BE90F1A-24D7-437B-B1A0-5C956B7B3DD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40FC5D01-EA5B-4906-80E5-6CD1324E7644}"
+	ProjectSection(SolutionItems) = preProject
+		database\user-manager.sql = database\user-manager.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
