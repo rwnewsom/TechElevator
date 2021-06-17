@@ -28,7 +28,7 @@ namespace WorldGeography.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT countrycode, language, isofficial, percentage FROM countrylanguage WHERE countrycode = @countrycode", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT countrycode AS code, language, isofficial, percentage FROM countrylanguage WHERE countrycode = @countrycode", conn);
                     cmd.Parameters.AddWithValue("@countrycode", countryCode);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -36,7 +36,8 @@ namespace WorldGeography.DAL
                     while (reader.Read())
                     {
                         Language language = new Language();
-                        language.CountryCode = Convert.ToString(reader["countrycode"]);
+
+                        language.CountryCode = Convert.ToString(reader["code"]);
                         language.Name = Convert.ToString(reader["language"]);
                         language.IsOfficial = Convert.ToBoolean(reader["isofficial"]);
                         language.Percentage = Convert.ToInt32(reader["percentage"]);
@@ -81,10 +82,7 @@ namespace WorldGeography.DAL
             {
                 Console.WriteLine("An error occurred saving the new language.");
                 Console.WriteLine(ex.Message);
-<<<<<<< HEAD
-=======
 
->>>>>>> 305ad0e3cb8824065a717fa0d9870fad57d53f2c
                 throw;
             }
 
@@ -114,10 +112,7 @@ namespace WorldGeography.DAL
             {
                 Console.WriteLine("An error occurred saving the new language.");
                 Console.WriteLine(ex.Message);
-<<<<<<< HEAD
-=======
 
->>>>>>> 305ad0e3cb8824065a717fa0d9870fad57d53f2c
                 throw;
             }
 

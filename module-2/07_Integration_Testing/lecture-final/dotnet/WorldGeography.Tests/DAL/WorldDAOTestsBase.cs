@@ -25,16 +25,19 @@ namespace WorldGeography.Tests.DAL
         public void Setup()
         {
             // Begin the transaction
-            transaction = new TransactionScope(); //equivalent to BEGIN Transaction
+            transaction = new TransactionScope(); // Equivalent to BEGIN TRANSACTION
 
             // Get the SQL Script to run
-            string sql = File.ReadAllText("test-script.sql"); //short files only!! //use stream reader fo longer files
+            string sql = File.ReadAllText("test-script.sql");
 
             // Execute the script
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+                /*
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 // If there is a row to read
@@ -42,6 +45,7 @@ namespace WorldGeography.Tests.DAL
                 {
                     this.NewCityId = Convert.ToInt32(reader["newCityId"]);
                 }
+                */
             }
         }
 
@@ -49,14 +53,10 @@ namespace WorldGeography.Tests.DAL
         public void Cleanup()
         {
             // Roll back the transaction
-<<<<<<< HEAD
-            transaction.Dispose(); //equivalent to rollback
-=======
             if (transaction != null)
             {
-                transaction.Dispose();
+                transaction.Dispose(); // Equivalent to ROLLBACK TRANSACTION
             }
->>>>>>> 305ad0e3cb8824065a717fa0d9870fad57d53f2c
         }
 
         /// <summary>

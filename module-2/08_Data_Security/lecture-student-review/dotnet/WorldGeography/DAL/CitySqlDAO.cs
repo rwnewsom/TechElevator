@@ -42,7 +42,6 @@ namespace WorldGeography.DAL
             {
                 Console.WriteLine("Error saving city.");
                 Console.WriteLine(ex.Message);
-                throw;
 
                 throw;
             }
@@ -90,6 +89,18 @@ namespace WorldGeography.DAL
                 District = Convert.ToString(reader["district"]),
                 Population = Convert.ToInt32(reader["population"])
             };
+
+            /*
+            City city = new City();
+
+            city.CityId = Convert.ToInt32(reader["id"]);
+            city.Name = Convert.ToString(reader["name"]);
+            city.CountryCode = Convert.ToString(reader["countrycode"]);
+            city.District = Convert.ToString(reader["district"]);
+            city.Population = Convert.ToInt32(reader["population"]);
+
+            return city;
+            */
         }
     }
 }
