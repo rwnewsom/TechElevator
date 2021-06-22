@@ -5,12 +5,12 @@ using HotelReservations.Dao;
 
 namespace HotelReservations.Controllers
 {
-    [Route("/")]
+    [Route("/")] // If there is a specific route here, it gets prepended to any route for a method below
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private static IHotelDao _hotelDao;
-        private static IReservationDao _reservationDao;
+        private readonly IHotelDao _hotelDao;
+        private readonly IReservationDao _reservationDao;
 
         public HotelsController()
         {
@@ -18,26 +18,28 @@ namespace HotelReservations.Controllers
             _reservationDao = new ReservationDao();
         }
 
-        [HttpGet("hotels")]
-        public List<Hotel> ListHotels()
+        /// <summary>
+        /// This method returns a simple greeting message to show you that ASP .NET works
+        /// </summary>
+        [HttpGet("greeting")] // Responds to GET requests to /Greeting
+        public string HelloWorld()
         {
-            return _hotelDao.List();
+            return "Hello .NET Purple. Welcome to ASP .NET";
         }
 
-        [HttpGet("hotels/{id}")]
-        public Hotel GetHotel(int id)
-        {
-            Hotel hotel = _hotelDao.Get(id);
+        // GET hotels - Get all available hotels
 
-            if (hotel != null)
-            {
-                return hotel;
-            }
+        // GET hotels/{someHotelId} - Get a specific hotel
 
-            return null;
-        }
+        // GET reservations - Get all reservations
 
+        // GET reservations/{someReservationId} - Get a specific reservation
 
+        // GET hotels/{someHotelId}/reservations - Get all reservations for a given hotel
 
+        // GET hotels/filter - Get hotels, but filtered down by state or city based on the query string parameters
+        // Query string parameters must be named "state" and "city" respectively
+
+        // POST reservations - Add a new reservation
     }
 }
