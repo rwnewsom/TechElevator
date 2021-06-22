@@ -6,7 +6,7 @@ namespace HTTP_Web_Services_POST_PUT_DELETE_lecture
 {
     public class UserInterface
     {
-        private readonly APIService apiService = new APIService("https://te-mockauction-server.azurewebsites.net/students/REPLACEME/");
+        private readonly APIService apiService = new APIService("https://te-mockauction-server.azurewebsites.net/students/01872/");
         private readonly ConsoleService console = new ConsoleService();
 
         public void ShowMainMenu() 

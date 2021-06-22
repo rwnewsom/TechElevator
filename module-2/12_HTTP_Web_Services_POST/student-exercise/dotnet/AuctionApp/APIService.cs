@@ -7,7 +7,7 @@ namespace AuctionApp
 {
     public class APIService
     {
-        private const string LaptopId = null; // TODO: Replace with a string for your laptop ID. e.g. "12345"
+        private const string LaptopId = "01872"; // DONE -TODO: Replace with a string for your laptop ID. e.g. "12345"
         private readonly string API_URL = $"https://te-mockauction-server.azurewebsites.net/students/{LaptopId}/auctions";
         private readonly IRestClient client;
 
