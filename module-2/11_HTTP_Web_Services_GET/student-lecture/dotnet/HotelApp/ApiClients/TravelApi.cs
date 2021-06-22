@@ -1,6 +1,9 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using HTTP_Web_Services_GET_lecture;
+using HTTP_Web_Services_GET_lecture.Data;
 
 namespace HTTP_Web_Services_GET_lecture.ApiClients
 {
@@ -8,8 +11,17 @@ namespace HTTP_Web_Services_GET_lecture.ApiClients
     {
         public string GetRecommendedDestination()
         {
-            // TODO: Call out to http://swapi.dev/api/planets/5/
-            throw new NotImplementedException();
+            // TODO: Call out to http://swapi.dev/api/planets/17/
+            RestClient client = new RestClient();
+
+            RestRequest request = new RestRequest("http://swapi.dev/api/planets/17/");
+            IRestResponse < Planet > response = client.Get<Planet>(request);
+
+            Planet destination = response.Data;
+
+            return destination.Name + " has a climate of " + destination.Climate
+                + ", " + destination.Gravity + " and you can expect " + destination.Terrain;
+            //throw new NotImplementedException();
         }
     }
 }

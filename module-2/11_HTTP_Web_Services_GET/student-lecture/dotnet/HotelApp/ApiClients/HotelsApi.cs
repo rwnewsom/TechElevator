@@ -20,27 +20,45 @@ namespace HTTP_Web_Services_GET_lecture.ApiClients
 
         public List<Hotel> GetAllHotels()
         {
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(BASE_URL + "hotels");
+            IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
+
+            return response.Data;
         }
 
         public List<Reservation> GetAllReservations()
         {
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(BASE_URL + "reservations");
+            IRestResponse<List<Reservation>> response = client.Get<List<Reservation>>(request);
+
+            return response.Data;
         }
 
         public Hotel GetHotel(int hotelId)
         {
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(BASE_URL +"hotels/" + hotelId); // 
+            IRestResponse<Hotel> response = client.Get<Hotel>(request);
+
+            return response.Data;
         }
 
         public List<Reservation> GetReservationsForHotel(int hotelId)
         {
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest($"{BASE_URL}hotels/{hotelId}/reservations");
+            IRestResponse<List<Reservation>> response = client.Get<List<Reservation>>(request);
+
+            return response.Data;
         }
 
         public List<Hotel> GetAllHotelsInState(string state)
         {
-            throw new NotImplementedException();
+            // /hotels/filter?state=OH
+
+            RestRequest request = new RestRequest($"{BASE_URL}hotels/filter?state={state}");
+
+            IRestResponse<List<Hotel>> response = client.Get<List<Hotel>>(request);
+
+            return response.Data;
         }
 
     }

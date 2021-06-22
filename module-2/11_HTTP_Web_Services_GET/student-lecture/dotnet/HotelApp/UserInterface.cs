@@ -6,7 +6,7 @@ namespace HTTP_Web_Services_GET_lecture
 {
     public class UserInterface
     {
-        private readonly HotelsApi hotelsApi = new HotelsApi("REPLACE WITH YOUR LAPTOP #");
+        private readonly HotelsApi hotelsApi = new HotelsApi("01872"); //laptop number for tech el - used as student id
         private readonly TravelApi travelApi = new TravelApi();
 
         public void DisplayMainMenu()
@@ -99,7 +99,7 @@ namespace HTTP_Web_Services_GET_lecture
                 Console.WriteLine(" Hotel Id: " + reserve.HotelID);
                 Console.WriteLine(" Check In: " + reserve.CheckinDate);
                 Console.WriteLine(" Check Out: " + reserve.CheckoutDate);
-                Console.WriteLine(" Full Name: " + reserve.Fullname);
+                Console.WriteLine(" Full Name: " + reserve.FullName);
                 Console.WriteLine(" # Guests: " + reserve.Guests);
                 Console.WriteLine("---");
             }
