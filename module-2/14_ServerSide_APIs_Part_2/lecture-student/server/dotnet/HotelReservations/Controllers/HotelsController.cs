@@ -19,7 +19,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("hotels")]
-        public List<Hotel> ListHotels()
+        public ActionResult<List<Hotel>> ListHotels()
         {
             return hotelDao.List();
         }
@@ -29,22 +29,19 @@ namespace HotelReservations.Controllers
         {
             Hotel hotel = hotelDao.Get(id);
 
-            if (hotel != null)
-            {
-                return hotel;
-            }
-            else
-            {
-                return NotFound();
-            }
+            // TODO: What if hotel is null? How do we return a 404?
+
+            // TODO: What happens if we get an exception here?
+
+            return hotel;
         }
 
         [HttpGet("hotels/filter")]
-        public List<Hotel> FilterByStateAndCity(string state, string city)
+        public ActionResult<List<Hotel>> FilterByStateAndCity(string state, string city)
         {
             List<Hotel> filteredHotels = new List<Hotel>();
 
-            List<Hotel> hotels = ListHotels();
+            List<Hotel> hotels = hotelDao.List();
             // return hotels that match state
             foreach (Hotel hotel in hotels)
             {
@@ -67,45 +64,14 @@ namespace HotelReservations.Controllers
             return filteredHotels;
         }
 
-        [HttpGet("reservations")]
-        public List<Reservation> ListReservations()
-        {
-            return reservationDao.List();
-        }
-
-        [HttpGet("reservations/{id}")]
-        public ActionResult<Reservation> GetReservation(int id)
-        {
-            Reservation reservation = reservationDao.Get(id);
-
-            if (reservation != null)
-            {
-                return reservation;
-            }
-            else
-            {
-                return NotFound();
-            }
-        }
-
         [HttpGet("hotels/{hotelId}/reservations")]
         public ActionResult<List<Reservation>> ListReservationsByHotel(int hotelId)
         {
-            Hotel hotel = hotelDao.Get(hotelId);
-            if (hotel == null)
-            {
-                return NotFound("Hotel Id is invalid");
-            }
+            // TODO: What if the ID is negative?
+
+            // TODO: What if they give us a hotel that doesn't exist?
+
             return reservationDao.FindByHotel(hotelId);
         }
-
-        [HttpPost("reservations")]
-        public ActionResult<Reservation> AddReservation(Reservation reservation)
-        {
-            Reservation added = reservationDao.Create(reservation);
-            return Created($"/reservations/{added.Id}", added);
-        }
-
-
     }
 }

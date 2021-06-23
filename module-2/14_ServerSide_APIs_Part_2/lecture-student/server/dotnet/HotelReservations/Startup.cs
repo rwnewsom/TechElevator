@@ -21,6 +21,17 @@ namespace HotelReservations
         {
             services.AddControllers();
 
+            // Adds swagger documentation file support. See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio for more details
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Version = "v1",
+                    Title = ".NET Purple Hotel Reservations API",
+                    Description = "We swear there are no bedbugs"
+                });
+            });
+
             // Dependency Injection configuration
             services.AddTransient<IHotelDao>(m => new HotelDao());
             services.AddTransient<IReservationDao>(m => new ReservationDao());
@@ -33,6 +44,13 @@ namespace HotelReservations
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Adds swagger documentation file. See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio for more details
+            app.UseSwagger();
+            app.UseSwaggerUI(s => {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                s.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
