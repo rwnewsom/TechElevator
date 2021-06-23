@@ -22,5 +22,14 @@ namespace AuctionApp.Controllers
                 dao = auctionDao;
             }
         }
+
+        // return a list of all auctions
+
+        [HttpGet("/auctions")]
+        public List<Auction> GetAllAuctions()
+        {
+            return dao.List();
+        }
+
     }
 }
