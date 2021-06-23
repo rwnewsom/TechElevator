@@ -139,12 +139,15 @@ INSERT INTO project_employee(project_number, employee_id)
 VALUES(3,7)
 
 
+COMMIT TRANSACTION;
+
+
 --TESTING JOIN TABLE
-SELECT
-	last_name,
-	first_name,
-	project_name
-FROM
-	employee e
-	INNER JOIN project_employee pe ON e.employee_id = pe.employee_id
-	INNER JOIN project p ON pe.project_number = p.project_number
+--SELECT
+	--last_name,
+	--first_name,
+	--project_name
+--FROM
+	--employee e
+	--INNER JOIN project_employee pe ON e.employee_id = pe.employee_id
+	--INNER JOIN project p ON pe.project_number = p.project_number
