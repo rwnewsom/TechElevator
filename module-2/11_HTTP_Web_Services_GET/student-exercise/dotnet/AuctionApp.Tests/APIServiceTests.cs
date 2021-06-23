@@ -7,7 +7,7 @@ namespace AuctionApp.Tests
     [TestClass]
     public class APIServiceTests
     {
-        APIService api = new APIService();
+        APIService api = new APIService("01872");
 
         [TestMethod]
         public void GetAllAuctions_ExpectList()
