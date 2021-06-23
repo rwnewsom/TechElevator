@@ -106,20 +106,65 @@ namespace AuctionApp
         }
 
         public Auction AddAuction(Auction newAuction) {
-            // place code here
-            throw new NotImplementedException();
+            
+            RestRequest request = new RestRequest(API_URL + "auctions");
+            request.AddJsonBody(newAuction);
+            IRestResponse<Auction> response = client.Post<Auction>(request);
+
+            if(response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not communicate with server");
+                return null;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Could not create reservation: " + response.StatusDescription);
+                return null;
+            }
+            return response.Data;
+
         }
 
         public Auction UpdateAuction(Auction auctionToUpdate)
         {
-            // place code here
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(API_URL + "auctions");
+            request.AddJsonBody(auctionToUpdate);
+            IRestResponse<Auction> response = client.Put<Auction>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not communicate with server");
+                return null;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Could not update reservation: " + response.StatusDescription);
+                return null;
+            }
+            return response.Data;
         }
 
         public bool DeleteAuction(int auctionId)
         {
-            // place code here
-            throw new NotImplementedException();
+            RestRequest request = new RestRequest(API_URL + "auctions/" + auctionId);
+            IRestResponse response = client.Delete(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not communicate with server");
+                return false;
+            }
+
+            //if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
+            else if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Could not delete auction: " + response.StatusDescription);
+                return false;
+            }
+
+            return true;
         }
     }
 }
