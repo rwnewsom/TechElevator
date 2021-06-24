@@ -38,6 +38,10 @@ namespace AuctionApp.Controllers
             return dao.Get(id);
         }
 
-
+        [HttpPost("/auctions")]
+        public Auction CreateAuction(Auction auction)
+        {
+            return dao.Create(auction);
+        }
     }
 }
