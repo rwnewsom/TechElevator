@@ -31,5 +31,13 @@ namespace AuctionApp.Controllers
             return dao.List();
         }
 
+        //return a specific auction by id
+        [HttpGet("/auctions/{id}")]
+        public Auction GetAuctionById(int id)
+        {
+            return dao.Get(id);
+        }
+
+
     }
 }
