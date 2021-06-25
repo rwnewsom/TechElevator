@@ -10,12 +10,17 @@ namespace TechElevator.SallyTheSquirrel.Server.Models
     {
         [Required]
         public string Question { get; set; }
+
         public string Answer { get; set; }
+
         [Url]
         public string LearnMoreUrl { get; set; }
+
         [Range(1, 3)]
         public int Difficulty { get; set; } = 1;
+
         public string[] Tags { get; set; }
+
         public int Id { get; set; }
     }
 }

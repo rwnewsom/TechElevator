@@ -28,6 +28,10 @@ namespace SallyTheSquirrel
         {
             services.AddControllers();
 
+            // Every time the API is called, give me a new instance of question repository
+            // services.AddTransient<IQuestionRepository>(m => new QuestionRepository());
+
+            // Every time the API is called, give me this one exact instance of question repository
             services.AddSingleton<IQuestionRepository>(m => new QuestionRepository());
         }
 
@@ -45,6 +49,7 @@ namespace SallyTheSquirrel
                 builder.AllowAnyMethod();
                 builder.AllowAnyHeader();
             });
+
             app.UseHttpsRedirection();
             app.UseRouting();
 
