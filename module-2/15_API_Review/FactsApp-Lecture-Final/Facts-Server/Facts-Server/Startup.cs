@@ -10,9 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TechElevator.SallyTheSquirrel.Server.Repositories;
 
-namespace SallyTheSquirrel
+namespace Facts_Server
 {
     public class Startup
     {
@@ -27,12 +26,6 @@ namespace SallyTheSquirrel
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            // Every time the API is called, give me a new instance of question repository
-            // services.AddTransient<IQuestionRepository>(m => new QuestionRepository());
-
-            // Every time the API is called, give me this one exact instance of question repository
-            services.AddSingleton<IQuestionRepository>(m => new QuestionRepository());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,14 +36,8 @@ namespace SallyTheSquirrel
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyOrigin();
-                builder.AllowAnyMethod();
-                builder.AllowAnyHeader();
-            });
-
             app.UseHttpsRedirection();
+
             app.UseRouting();
 
             app.UseAuthorization();
