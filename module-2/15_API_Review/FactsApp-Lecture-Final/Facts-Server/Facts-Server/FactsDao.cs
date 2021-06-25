@@ -54,5 +54,43 @@ namespace Facts_Server
             return fact;
         }
 
+        public bool DeleteFact(int id)
+        {
+            // Get the index of the first fact with the matching ID.
+            // If no item is found, index will be -1.
+            int index = facts.FindIndex(f => f.Id == id);
+
+            if (index < 0)
+            {
+                return false;
+            }
+
+            facts.RemoveAt(index);
+
+            return true;
+        }
+
+        public bool UpdateFact(ChuckNorrisFact fact)
+        {
+            ChuckNorrisFact matchingFact = GetFactById(fact.Id);
+
+            if (matchingFact == null)
+            {
+                return false;
+            }
+
+            // Since we have the reference to it in the list, just update its values
+            matchingFact.Text = fact.Text;
+
+            return true;
+        }
+
+        public ChuckNorrisFact GetFactById(int id)
+        {
+            // Returns the first fact that has an ID that matches
+            // If none match, returns null
+            return facts.FirstOrDefault(f => f.Id == id);
+        }
+
     }
 }
