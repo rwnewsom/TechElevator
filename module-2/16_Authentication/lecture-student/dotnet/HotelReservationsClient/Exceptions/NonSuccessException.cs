@@ -2,7 +2,8 @@
 
 namespace HotelReservationsClient.Exceptions
 {
-    public class NonSuccessException : Exception
+
+    public class NonSuccessException : HotelException
     {
         private const string NON_SUCCESS_MESSAGE = "Error occurred - received non-success response: ";
 

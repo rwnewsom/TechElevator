@@ -5,18 +5,11 @@ using System.Collections.Generic;
 
 namespace HotelReservationsClient
 {
-    class APIService
+    public class APIService
     {
-        private readonly string API_URL = "";
+        private readonly string API_URL = "https://localhost:44322/";
         private readonly RestClient client = new RestClient();
-        private API_User user = new API_User();
-
-        public bool LoggedIn { get { return !string.IsNullOrWhiteSpace(user.Token); } }
-
-        public APIService(string api_url)
-        {
-            API_URL = api_url;
-        }
+        private string apiToken = null;
 
         public List<Hotel> GetHotels()
         {
@@ -158,15 +151,23 @@ namespace HotelReservationsClient
             }
             else
             {
-                user.Token = response.Data.Token;
+                apiToken = response.Data.Token;
 
                 return true;
             }
         }
 
+        public bool LoggedIn
+        {
+            get
+            {
+                return !string.IsNullOrWhiteSpace(apiToken);
+            }
+        }
+
         public void Logout()
         {
-            user = new API_User();
+            apiToken = null;
             client.Authenticator = null;
         }
     }

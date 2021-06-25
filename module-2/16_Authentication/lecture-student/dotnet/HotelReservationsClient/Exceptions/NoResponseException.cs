@@ -2,7 +2,7 @@
 
 namespace HotelReservationsClient.Exceptions
 {
-    public class NoResponseException : Exception
+    public class NoResponseException : HotelException
     {
         public NoResponseException() : base() { }
         public NoResponseException(string message) : base(message) { }

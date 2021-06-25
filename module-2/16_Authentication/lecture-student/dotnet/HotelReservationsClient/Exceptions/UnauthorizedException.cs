@@ -2,7 +2,7 @@
 
 namespace HotelReservationsClient.Exceptions
 {
-    public class UnauthorizedException : Exception
+    public class UnauthorizedException : HotelException
     {
         public UnauthorizedException() : base() { }
         public UnauthorizedException(string message) : base(message) { }

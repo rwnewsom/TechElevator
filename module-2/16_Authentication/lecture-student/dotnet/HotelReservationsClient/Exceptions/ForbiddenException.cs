@@ -2,7 +2,7 @@
 
 namespace HotelReservationsClient.Exceptions
 {
-    public class ForbiddenException : Exception
+    public class ForbiddenException : HotelException
     {
         public ForbiddenException() : base() { }
         public ForbiddenException(string message) : base(message) { }

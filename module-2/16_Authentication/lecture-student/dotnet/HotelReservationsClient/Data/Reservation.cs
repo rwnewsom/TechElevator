@@ -2,7 +2,7 @@
 
 namespace HotelReservationsClient
 {
-    class Reservation
+    public class Reservation
     {
         public int? id { get; set; }
         public int hotelID { get; set; }
