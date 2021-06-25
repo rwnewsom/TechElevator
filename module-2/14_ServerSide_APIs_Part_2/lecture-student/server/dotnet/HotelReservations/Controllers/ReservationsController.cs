@@ -28,6 +28,10 @@ namespace HotelReservations.Controllers
             Reservation reservation = reservationDao.Get(id);
 
             // TODO: What if reservation is null? How do we return a 404?
+            if (reservation == null)
+            {
+                return NotFound();
+            }
 
             return reservation;
         }
@@ -38,12 +42,51 @@ namespace HotelReservations.Controllers
             Reservation newReservation = reservationDao.Create(reservation);
 
             // TODO: How do we give back a 201 created instead?
+            return Created("reservations/" + newReservation.Id, newReservation); //201 created
 
-            return newReservation;
+            //return newReservation;
         }
 
         // PUT reservations/{id}
+        [HttpPut("reservations/{id}")]
+        public ActionResult<Reservation> UpdateReservation(int id, Reservation reservation)
+        {
+            if (reservation == null)
+            {
+                return BadRequest("Reservation is required");
+            }
+
+            if (id != reservation.Id)
+            {
+                return BadRequest("Reservation ID did not match the provided URL");
+            }
+
+            Reservation result = reservationDao.Update(id, reservation);
+            if (result == null)
+            {
+                return NotFound(); //404
+            }
+            return result; //200ok
+        }
 
         // DELETE reservations/{id}
+
+        [HttpDelete("reservations/{reservationId}")]
+        public ActionResult RemoveReservation(int reservationId)
+        {
+            bool deleted = reservationDao.Delete(reservationId);
+            if (deleted)
+            {
+                return NoContent(); //204
+            }
+            else
+            {
+                return NotFound(); //404
+            }
+
+
+        }
+
+
     }
 }

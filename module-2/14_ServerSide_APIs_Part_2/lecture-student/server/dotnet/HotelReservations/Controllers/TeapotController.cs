@@ -20,8 +20,7 @@ namespace HotelReservations.Controllers
         public ActionResult<string> Teapot()
         {
             // TODO: What if I wanted to return a 418 I'm a teapot status code?
-
-            return "I'm a little teapot; short and stout...";
+            return this.StatusCode(418, "I'm a little teapot; short and stout...");
         }
 
     }

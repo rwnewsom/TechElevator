@@ -14,13 +14,16 @@ namespace HotelReservations.Models
         public int HotelId { get; set; }
 
         // TODO: Use a string length validation on FullName
+        [Required(ErrorMessage ="Who is this reservation for?", AllowEmptyStrings =false)]
+        [StringLength(255, MinimumLength =2)]
         public string FullName { get; set; }
-
+        [Required(ErrorMessage = "Check In date is required")]
         public string CheckinDate { get; set; }
-
+        [Required(ErrorMessage = "Check In date is required")]
         public string CheckoutDate { get; set; }
 
         // TODO: Add range validation to this to restrict the guest count to between 1 and 5 guests
+        [Range(1,8)]
         public int Guests { get; set; }
 
         public Reservation() // TODO: What happens if we don't have a parameterless reservation constructor?
