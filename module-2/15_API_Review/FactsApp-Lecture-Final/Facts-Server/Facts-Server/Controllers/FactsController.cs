@@ -11,11 +11,15 @@ namespace Facts_Server.Controllers
     [ApiController]
     public class FactsController : ControllerBase
     {
-        private FactsDao facts;
+        private static FactsDao facts;
 
         public FactsController()
         {
-            facts = new FactsDao();
+            if (facts == null)
+            {
+                facts = new FactsDao();
+            }
+            
         }
 
         // 1. Add a new GET method to handle gets to /facts

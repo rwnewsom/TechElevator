@@ -7,5 +7,10 @@ namespace FactsClient
     public class NorrisApiFact
     {
         // TODO: This needs to have properties that match those on the server
+
+        public int Id { get; set; }
+
+        public string Text { get; set; }
+
     }
 }

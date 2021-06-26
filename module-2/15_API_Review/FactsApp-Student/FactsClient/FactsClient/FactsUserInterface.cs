@@ -7,7 +7,7 @@ namespace FactsClient
 {
     public class FactsUserInterface
     {
-        private readonly NorrisApiClient apiClient = new NorrisApiClient("http://localhost:12345"); // TODO: Customize as needed
+        private readonly NorrisApiClient apiClient = new NorrisApiClient("https://localhost:44335"); // TODO: Customize as needed
 
         public void RunUserInterface()
         {
@@ -122,6 +122,10 @@ namespace FactsClient
             NorrisApiFact newFact = new NorrisApiFact();
 
             // TODO: Prompt the user for information about the fact, then set them into newFact
+            Console.WriteLine("What is the Chuck Norris Fact?");
+            string text = Console.ReadLine();
+            
+            newFact.Text = text;
 
             return newFact;
         }
@@ -166,7 +170,7 @@ namespace FactsClient
             {
                 foreach (NorrisApiFact fact in facts)
                 {
-                    Console.WriteLine(fact); // TODO: This should be modified or you should override ToString on NorrisApiFact
+                    Console.WriteLine(fact.Id + ")".PadRight(5) + fact.Text); // TODO: This should be modified or you should override ToString on NorrisApiFact
                     // NOTE: Strongly recommended to display the ID of the fact here as well
                 }
             }
