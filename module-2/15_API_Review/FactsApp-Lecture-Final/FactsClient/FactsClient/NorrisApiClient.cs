@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using RestSharp;
 
 namespace FactsClient
@@ -16,35 +17,114 @@ namespace FactsClient
 
         public IEnumerable<NorrisApiFact> GetAllFacts()
         {
-            // TODO: Get a list from the server instead of returning this list
+            RestRequest request = new RestRequest(baseUrl + "facts");
 
-            return new List<NorrisApiFact>();
+            IRestResponse<List<NorrisApiFact>> response = client.Get<List<NorrisApiFact>>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server");
+                return null;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Oh noes! An error occurred: " + response.StatusDescription);
+                return null;
+            }
+
+            return response.Data;
         }
 
         public NorrisApiFact GetFact(int id)
         {
-            // TODO: Get the fact from the API
+            RestRequest request = new RestRequest(baseUrl + "facts/" + id);
 
-            return null;
+            IRestResponse<NorrisApiFact> response = client.Get<NorrisApiFact>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server");
+                return null;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Oh noes! An error occurred: " + response.StatusDescription);
+                return null;
+            }
+
+            return response.Data;
         }
 
         public void EditFact(int id, NorrisApiFact fact)
         {
-            // TODO: Update the fact on the API
+            // Ensure the ID of the fact is set
+            fact.Id = id;
+
+            RestRequest request = new RestRequest(baseUrl + "facts");
+            request.AddJsonBody(fact);
+
+            IRestResponse response = client.Put(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server");
+                return;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Oh noes! An error occurred: " + response.StatusDescription);
+                return;
+            }
+
+            return;
         }
 
         public bool DeleteFact(int id)
         {
-            // TODO: Delete the fact on the API and return true if the fact was deleted and false if it wasn't
+            RestRequest request = new RestRequest(baseUrl + "facts/" + id);
 
-            return false;
+            IRestResponse response = client.Delete(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server");
+                return false;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Oh noes! An error occurred: " + response.StatusDescription);
+                return false;
+            }
+
+            return true;
         }
 
         public int AddFact(NorrisApiFact newFact)
         {
-            // TODO: Create the fact on the server via the API and return its new ID or -1 if no fact was created
+            RestRequest request = new RestRequest(baseUrl + "facts");
+            request.AddJsonBody(newFact);
 
-            return -1;
+            IRestResponse<NorrisApiFact> response = client.Post<NorrisApiFact>(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                Console.WriteLine("Could not connect to the server");
+                return -1;
+            }
+
+            if (!response.IsSuccessful)
+            {
+                Console.WriteLine("Oh noes! An error occurred: " + response.StatusDescription);
+                return -1;
+            }
+
+            NorrisApiFact createdFact = response.Data;
+
+            return createdFact.Id;
         }
     }
 }
