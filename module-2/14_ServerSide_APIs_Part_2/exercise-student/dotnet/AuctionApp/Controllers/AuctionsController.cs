@@ -53,6 +53,18 @@ namespace AuctionApp.Controllers
             //return dao.Create(auction);
         }
 
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Auction auction)
+        {
+            Auction existingAuction = dao.Get(id);
+            if(existingAuction == null)
+            {
+                return NotFound("Auction does not exist");
+            }
+            Auction result = dao.Update(id, auction);
+            return Ok(result);
+        }
+
 
     }
 }
