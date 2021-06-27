@@ -65,6 +65,16 @@ namespace AuctionApp.Controllers
             return Ok(result);
         }
 
-
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            Auction existingAuction = dao.Get(id);
+            if(existingAuction == null)
+            {
+                return NotFound("Auction does not exist");
+            }
+            dao.Delete(id);
+            return NoContent();
+        }
     }
 }
