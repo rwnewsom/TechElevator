@@ -48,7 +48,9 @@ namespace AuctionApp.Controllers
         [HttpPost]
         public ActionResult<Auction> Create(Auction auction)
         {
-            return dao.Create(auction);
+            Auction newAuction = dao.Create(auction);
+            return Created($"/Auctions/{newAuction.Id}", newAuction);
+            //return dao.Create(auction);
         }
 
 
