@@ -9,7 +9,7 @@ namespace HotelReservationsClient
     {
         private readonly string API_URL = "https://localhost:44322/";
         private readonly RestClient client = new RestClient();
-        private string apiToken = null;
+        private string apiToken = null; //this will be our JWT
 
         public List<Hotel> GetHotels()
         {
@@ -41,6 +41,8 @@ namespace HotelReservationsClient
             }
 
             RestRequest request = new RestRequest(url);
+            request.AddHeader("Authorization", "bearer "+ apiToken); //Pass the JWT to the server (not needed if authorization is set on client)
+
             IRestResponse<List<Reservation>> response = client.Get<List<Reservation>>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed || !response.IsSuccessful)
@@ -151,6 +153,8 @@ namespace HotelReservationsClient
             }
 
             apiToken = response.Data.Token;
+
+            client.Authenticator = new JwtAuthenticator(apiToken); //Generate an Authorization header automatically for every future request
 
             return true;
         }

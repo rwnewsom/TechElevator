@@ -8,6 +8,7 @@ namespace HotelReservations.Controllers
 {
     [Route("/")]
     [ApiController]
+    [Authorize] // must be logged in to use any method!
     public class HotelsController : ControllerBase
     {
         private static IHotelDao _hotelDao;
@@ -27,6 +28,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("hotels")]
+        [AllowAnonymous] // any user can list hotels, even if they're not authenticated
         public List<Hotel> ListHotels()
         {
             return _hotelDao.List();
@@ -76,12 +78,14 @@ namespace HotelReservations.Controllers
         }
 
         [HttpGet("reservations")]
+        [Authorize] //must be AUTHENTICATED to call this method
         public List<Reservation> ListReservations()
         {
             return _reservationDao.List();
         }
 
         [HttpGet("reservations/{id}")]
+        [Authorize] //must be AUTHENTICATED to call this method
         public ActionResult<Reservation> GetReservation(int id)
         {
             Reservation reservation = _reservationDao.Get(id);
@@ -108,6 +112,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpPost("reservations")]
+        [Authorize(Roles = "admin, creator")] // Must be authenticated, plus must be authorized as an admin or creator
         public ActionResult<Reservation> AddReservation(Reservation reservation)
         {
             Reservation added = _reservationDao.Create(reservation);
@@ -115,6 +120,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpPut("reservations/{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult<Reservation> UpdateReservation(int id, Reservation reservation)
         {
             Reservation existingReservation = _reservationDao.Get(id);
@@ -128,6 +134,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpDelete("reservations/{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteReservation(int id)
         {
             Reservation existingReservation = _reservationDao.Get(id);

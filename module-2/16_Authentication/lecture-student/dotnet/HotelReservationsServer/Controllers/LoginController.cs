@@ -2,11 +2,13 @@
 using HotelReservations.Security;
 using HotelReservations.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelReservations.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class LoginController : ControllerBase
     {
         private readonly ITokenGenerator tokenGenerator;
@@ -21,6 +23,7 @@ namespace HotelReservations.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Authenticate(LoginUser userParam)
         {
             // Default to bad username/password message
