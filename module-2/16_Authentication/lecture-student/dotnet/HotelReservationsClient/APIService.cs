@@ -24,16 +24,21 @@ namespace HotelReservationsClient
             {
                 return response.Data;
             }
+
             return null;
         }
 
         public List<Reservation> GetReservations(int hotelId = 0)
         {
             string url = API_URL;
-            if (hotelId != 0)
-                url += $"hotels/{hotelId}/reservations";
-            else
+            if (hotelId == 0)
+            {
                 url += "reservations";
+            }
+            else
+            {
+                url += $"hotels/{hotelId}/reservations";
+            }
 
             RestRequest request = new RestRequest(url);
             IRestResponse<List<Reservation>> response = client.Get<List<Reservation>>(request);
@@ -52,6 +57,7 @@ namespace HotelReservationsClient
         public Reservation GetReservation(int reservationId)
         {
             RestRequest request = new RestRequest(API_URL + "reservations/" + reservationId);
+
             IRestResponse<Reservation> response = client.Get<Reservation>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed || !response.IsSuccessful)
@@ -69,6 +75,7 @@ namespace HotelReservationsClient
         {
             RestRequest request = new RestRequest(API_URL + "reservations");
             request.AddJsonBody(newReservation);
+
             IRestResponse<Reservation> response = client.Post<Reservation>(request);
 
             if (response.ResponseStatus != ResponseStatus.Completed || !response.IsSuccessful)
@@ -112,6 +119,7 @@ namespace HotelReservationsClient
             {
                 return true;
             }
+
             return false;
         }
 
@@ -129,32 +137,22 @@ namespace HotelReservationsClient
 
         public bool Login(string submittedName, string submittedPass)
         {
-            LoginUser loginUser = new LoginUser { Username = submittedName, Password = submittedPass };
             RestRequest request = new RestRequest(API_URL + "login");
+
+            LoginUser loginUser = new LoginUser { Username = submittedName, Password = submittedPass };
             request.AddJsonBody(loginUser);
+
             IRestResponse<API_User> response = client.Post<API_User>(request);
 
-            if (response.ResponseStatus != ResponseStatus.Completed)
+            if (response.ResponseStatus != ResponseStatus.Completed || !response.IsSuccessful)
             {
-                throw new NoResponseException("An error occurred communicating with the server.");
+                ProcessErrorResponse(response);
+                return false;
             }
-            else if (!response.IsSuccessful)
-            {
-                if (response.Data != null && !string.IsNullOrWhiteSpace(response.Data.Message))
-                {
-                    throw new NonSuccessException("An error message was received: " + response.Data.Message);
-                }
-                else
-                {
-                    throw new NonSuccessException((int)response.StatusCode);
-                }
-            }
-            else
-            {
-                apiToken = response.Data.Token;
 
-                return true;
-            }
+            apiToken = response.Data.Token;
+
+            return true;
         }
 
         public bool LoggedIn
