@@ -20,15 +20,19 @@ namespace FactsClient
 
                 switch (option.ToUpper())
                 {
-                    case "1": // Get a list of facts
+                    case "1": // Log in / change user
+                        LogIn();
+                        break;
+
+                    case "2": // Get a list of facts
                         FetchAndDisplayAllFacts();
                         break;
 
-                    case "2": // Get a fact by its ID
+                    case "3": // Get a fact by its ID
                         FetchFactAndDisplayOptions();
                         break;
 
-                    case "3": // Add a new fact
+                    case "4": // Add a new fact
                         CreateFact();
                         break;
 
@@ -43,6 +47,24 @@ namespace FactsClient
             } while (keepGoing);
 
             Console.WriteLine("So long and enjoy a world without Chuck Norris facts.");
+        }
+
+        private void LogIn()
+        {
+            Console.WriteLine("What username do you want to log in as?");
+            string username = Console.ReadLine();
+
+            Console.WriteLine("What password do you want to use?");
+            string password = Console.ReadLine();
+
+            if (apiClient.LogIn(username, password))
+            {
+                Console.WriteLine("You are now logged in as " + username);
+            } 
+            else
+            {
+                Console.WriteLine("Your login did not work. You must not be Chuck Norris.");
+            }
         }
 
         private void FetchFactAndDisplayOptions()
@@ -181,9 +203,10 @@ namespace FactsClient
             Console.WriteLine();
             Console.WriteLine("Your Options are:");
             Console.WriteLine();
-            Console.WriteLine("\t1) Get a List of Chuck Norris *FACTS*");
-            Console.WriteLine("\t2) Get a Chuck Norris *FACT* by its ID");
-            Console.WriteLine("\t3) Add a new Chuck Norris *FACT*");
+            Console.WriteLine("\t1) Log In / Change Logged In User");
+            Console.WriteLine("\t2) Get a List of Chuck Norris *FACTS*");
+            Console.WriteLine("\t3) Get a Chuck Norris *FACT* by its ID");
+            Console.WriteLine("\t4) Add a new Chuck Norris *FACT*");
             Console.WriteLine("\tQ) Leave the glory of Chuck Norris and exit this program");
             Console.WriteLine();
             Console.WriteLine("What do you want to do?");

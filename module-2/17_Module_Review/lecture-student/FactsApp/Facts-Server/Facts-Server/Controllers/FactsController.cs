@@ -11,13 +11,13 @@ namespace Facts_Server.Controllers
     [ApiController]
     public class FactsController : ControllerBase
     {
-        private static TestFactsDao facts;
+        private static FactsListDao facts;
 
         public FactsController()
         {
             if (facts == null)
             {
-                facts = new TestFactsDao();
+                facts = new FactsListDao();
             }
         }
 

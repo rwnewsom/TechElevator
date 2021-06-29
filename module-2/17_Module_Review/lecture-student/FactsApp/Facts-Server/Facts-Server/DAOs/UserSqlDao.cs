@@ -24,7 +24,7 @@ namespace SallyServer.DAO
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt FROM users WHERE username = @username", conn);
+                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, role FROM users WHERE username = @username", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -45,7 +45,7 @@ namespace SallyServer.DAO
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt FROM users", conn);
+                SqlCommand cmd = new SqlCommand("SELECT user_id, username, password_hash, salt, role FROM users", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -70,7 +70,7 @@ namespace SallyServer.DAO
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt) VALUES (@username, @password_hash, @salt)", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, role) VALUES (@username, @password_hash, @salt, 'viewer')", conn);
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                 cmd.Parameters.AddWithValue("@salt", hash.Salt);
@@ -91,6 +91,7 @@ namespace SallyServer.DAO
                 Username = Convert.ToString(reader["username"]),
                 PasswordHash = Convert.ToString(reader["password_hash"]),
                 Salt = Convert.ToString(reader["salt"]),
+                Role = Convert.ToString(reader["role"]),
             };
         }
     }
