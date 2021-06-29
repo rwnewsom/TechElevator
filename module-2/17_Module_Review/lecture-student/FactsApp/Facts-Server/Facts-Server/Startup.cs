@@ -48,7 +48,9 @@ namespace Facts_Server
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                builder => builder.AllowAnyOrigin()
+                                  .AllowAnyMethod()
+                                  .AllowAnyHeader());
             });
 
             // configure jwt authentication
