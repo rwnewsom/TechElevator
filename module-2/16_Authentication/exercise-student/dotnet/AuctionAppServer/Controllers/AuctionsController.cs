@@ -8,6 +8,7 @@ namespace AuctionApp.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class AuctionsController : ControllerBase
     {
         private readonly IAuctionDao _dao;
@@ -21,6 +22,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public List<Auction> List(string title_like = "", double currentBid_lte = 0)
         {
             if (title_like != "")
