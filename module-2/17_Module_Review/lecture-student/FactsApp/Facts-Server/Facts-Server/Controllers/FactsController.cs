@@ -23,12 +23,14 @@ namespace Facts_Server.Controllers
         // 1. Add a new GET method to handle gets to /facts
         // This should return the results of the DAO's GetAllFacts method
         [HttpGet()]
+        [AllowAnonymous]
         public List<ChuckNorrisFact> GetFactsList()
         {
             return facts.GetAllFacts();
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public ActionResult<ChuckNorrisFact> GetFact(int id)
         {
             ChuckNorrisFact fact = facts.GetFactById(id);
@@ -42,6 +44,7 @@ namespace Facts_Server.Controllers
         }
 
         [HttpPut()]
+        [Authorize(Roles = "admin, moderator")] //string assigned per role - column in user db
         public ActionResult<ChuckNorrisFact> UpdateFact(ChuckNorrisFact fact)
         {
             bool updated = facts.UpdateFact(fact);
@@ -55,6 +58,7 @@ namespace Facts_Server.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteFact(int id)
         {
             if (!facts.DeleteFact(id))
@@ -68,6 +72,7 @@ namespace Facts_Server.Controllers
         // 2. Add a method to allow folks to POST a new fact.
         // This should call the DAO's AddFact method with the new fact
         [HttpPost()]
+        [Authorize]
         public ActionResult<ChuckNorrisFact> AddNewFact(ChuckNorrisFact newFact)
         {
             ChuckNorrisFact createdFact = facts.AddFact(newFact);

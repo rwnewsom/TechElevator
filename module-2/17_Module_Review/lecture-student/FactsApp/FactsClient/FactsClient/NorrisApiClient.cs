@@ -18,8 +18,17 @@ namespace FactsClient
         public bool LogIn(string username, string password)
         {
             // TODO: Create an object to represent the login attempt
-
+            //var myObj = new { username = username, password = password };
+            LoginData login = new LoginData();
+            login.Username = username;
+            login.Password = password;
             // TODO: Call to the server
+            RestRequest request = new RestRequest(baseUrl + "login");
+            request.AddJsonBody(login);
+
+            //be lazy copy from class
+            IRestResponse<>
+
 
             // TODO: Store the API result in a new object
 

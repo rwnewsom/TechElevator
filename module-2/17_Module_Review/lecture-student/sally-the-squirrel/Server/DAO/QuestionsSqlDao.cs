@@ -25,13 +25,13 @@ namespace SallyServer.DAO
                 SqlCommand cmd = new SqlCommand("SELECT question_id, user_id, question, answer FROM questions", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.HasRows)
+
+
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        result.Add(GetQuestionFromReader(reader));
-                    }
+                    result.Add(GetQuestionFromReader(reader));
                 }
+
             }
 
             return result;
