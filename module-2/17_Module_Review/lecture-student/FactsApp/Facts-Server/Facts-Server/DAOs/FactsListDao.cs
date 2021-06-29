@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Facts_Server
 {
-    public class TestFactsDao : IFactsDao
+    public class FactsListDao : IFactsDao
     {
         private List<ChuckNorrisFact> facts;
         private int nextId;
 
-        public TestFactsDao()
+        public FactsListDao()
         {
             facts = new List<ChuckNorrisFact>
             {

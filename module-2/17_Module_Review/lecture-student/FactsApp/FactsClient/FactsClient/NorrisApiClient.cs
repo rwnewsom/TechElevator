@@ -15,6 +15,19 @@ namespace FactsClient
             this.client = new RestClient();
         }
 
+        public bool LogIn(string username, string password)
+        {
+            // TODO: Create an object to represent the login attempt
+
+            // TODO: Call to the server
+
+            // TODO: Store the API result in a new object
+
+            // TODO: Store the token in a new field
+
+            return false;
+        }
+
         public IEnumerable<NorrisApiFact> GetAllFacts()
         {
             RestRequest request = new RestRequest(baseUrl + "facts");

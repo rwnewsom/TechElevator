@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Facts_Server.Controllers
 {
@@ -11,13 +10,13 @@ namespace Facts_Server.Controllers
     [ApiController]
     public class FactsController : ControllerBase
     {
-        private static TestFactsDao facts;
+        private static FactsListDao facts;
 
         public FactsController()
         {
             if (facts == null)
             {
-                facts = new TestFactsDao();
+                facts = new FactsListDao();
             }
         }
 
