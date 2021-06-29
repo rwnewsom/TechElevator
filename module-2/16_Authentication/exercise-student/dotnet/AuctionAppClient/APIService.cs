@@ -145,6 +145,20 @@ namespace AuctionApp
             }
             else if (!response.IsSuccessful)
             {
+                if((int)response.StatusCode == 401) 
+                {
+                    throw new UnauthorizedException("Access Denied.", response.ErrorException);
+                    
+                }
+                else if ((int)response.StatusCode == 403)
+                {
+                    throw new ForbiddenException("Forbidden.", response.ErrorException);
+                }
+
+                else
+                {
+                    throw new NonSuccessException("Server error: " + response.StatusCode, response.ErrorException);
+                }
 
             }
         }
@@ -175,6 +189,7 @@ namespace AuctionApp
             else
             {
                 user.Token = response.Data.Token;
+                client.Authenticator = new JwtAuthenticator(user.Token);
 
                 return response.Data;
             }
