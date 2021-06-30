@@ -52,6 +52,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin, creator")]
         public ActionResult<Auction> Create(Auction auction)
         {
             Auction returnAuction = _dao.Create(auction);
@@ -59,6 +60,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin, creator")]
         public ActionResult<Auction> Update(int id, Auction auction)
         {
             Auction existingAuction = _dao.Get(id);
@@ -72,6 +74,7 @@ namespace AuctionApp.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int id)
         {
             Auction auction = _dao.Get(id);
