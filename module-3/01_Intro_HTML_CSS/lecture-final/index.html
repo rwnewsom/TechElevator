@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Matt's Pizza Shack</title>
+
+        <link rel="stylesheet" href="pizza.css" />
+        <link rel="stylesheet" href="common.css" />
+        <!--
+        <style>
+            footer {
+                color: purple;
+            }
+        </style>
+    -->
+    </head>
+    <body>
+        <main>
+            <h1>Matt's Pizza Shack</h1>
+            <p class="welcome" id="welcomePara" >
+                Welcome to <strong>Matt's Pizza Shack</strong>. 
+                Are you sure you want to be here? Don't eat the food.
+            </p>
+
+            <q>This is a simple quote</q>
+
+            <blockquote>This is a more involved block quote. Deal with it.</blockquote>
+
+            <p>This is an unordered list</p>
+            <ul>
+                <li>I am a list item</li>
+                <li>I am another list item</li>
+                <li>I am a third list item</li>
+            </ul>
+
+            <p>For steps on eating pizza, please do the following:</p>
+            <ol>
+                <li>Purchase pizza</li>
+                <li>Locate nearest trash can</li>
+                <li>Deposit pizza into trash can</li>
+                <li>Eat something good instead</li>
+            </ol>
+
+            <img src="assets/Images/menu/dinner/rack-of-ram.png" 
+                 title="Several pieces of RAM"
+                 alt="A number of sticks of computer memory (RAM)" >
+
+            <section>
+                <h2>Menu</h2>
+                <table id="menuTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type of Dish</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="dangerous">
+                            <td>Pepperoni</td>
+                            <td>Pizza</td>
+                            <td>10.00</td>
+                        </tr>
+                        <tr class="dangerous">
+                            <td>
+                                Glass Shards
+                            </td>
+                            <td>Pizza</td>
+                            <td>Free*</td>
+                        </tr>
+                        <tr>
+                            <td>Arugula</td>
+                            <td>Pizza</td>
+                            <td>12.00</td>
+                            <td>Seasonal Pizza only available in August</td>
+                        </tr>
+                        <tr>
+                            <td>Breadsticks</td>
+                            <td>Side</td>
+                            <td>3.50</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <!-- 
+                            This table doesn't need a footer, but here's where it'd go
+                         -->
+                    </tfoot>
+                </table>
+
+                <p>
+                    Want to order delivery? <a href="order.html?details=why+would+you+order+food">Order Online</a>
+                </p>
+            </section>
+
+            <section>
+                <h2>Location</h2>
+                <address>42 Wallaby Way, Sydney, OH 43081</address>
+            </section>
+
+            <footer> <!-- Don't do this  style="color: red;" -->
+                Made the mistake of eating at Matt's? 
+                <a href="https://cdc.gov"
+                   target="_blank">
+                    Contact the CDC
+                </a>
+                immediately.
+            </footer>
+        </main>
+    </body>
+</html>
