@@ -5,7 +5,7 @@ body{
     color: whitesmoke;
 }
 
-h1{text-align: center;}
+
 
 table{
     border-collapse: collapse;
@@ -28,7 +28,11 @@ tr:nth-child(even){
     text-align: center;
 }
 
-h1{font-family: 'Creepster', cursive;}
+h1{font-family: 'Creepster', cursive;
+    font-size: 5em;
+    text-align: center;
+    color:	#ae8d4e;
+}
 
 h3{ text-decoration: underline;}
 
@@ -71,7 +75,14 @@ a{
 }
 
 .topnav{
-    margin:10px 0px;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left:0;
+    right:0;
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    background-color: #3b3e3c;
 }
 
 .topnav a {
@@ -98,5 +109,9 @@ a{
     .topnav a {
         float: none;
         display: block;
+      }
+
+      h1{
+          font-size: xx-large;
       }
 }
