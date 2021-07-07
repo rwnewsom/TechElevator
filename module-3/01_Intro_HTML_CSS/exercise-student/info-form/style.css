@@ -1,0 +1,36 @@
+html{
+    /* Set everything to use border box box-sizing */
+    box-sizing: border-box;
+    /* Set the height of the HTML element to take up 100% of the screen */
+    height: 100%;
+    /* Set the main font to be 16px Raleway or sans-serif if Raleway isn't available */
+    font-size: 16px;
+}
+body{
+    background-color: #3b3e3c;
+    color: whitesmoke;
+    padding-bottom: 50px;
+}
+header > p {
+    font-family: 'Creepster', cursive;
+    font-size: 3em;
+    text-align: center;
+    color:	#ae8d4e;
+}
+
+.strike{
+    text-decoration: line-through;
+}
+
+.pesto{
+    display: block;
+    max-width: 50%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form{
+    margin-bottom: 10px;
+}
+

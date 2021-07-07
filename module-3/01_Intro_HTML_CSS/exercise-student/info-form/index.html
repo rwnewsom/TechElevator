@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <p>Nurgle King Online Order Form</p>
+
+    </header>
+    <main>
+        <img src="../img/pestoburger.jpg" class="pesto" alt="A grotesque looking hamburger with an eyeball in the patty." title="Approved by the Best Nurgle Team!"/>
+        <form action="https://www.draklanterndata.com" method="GET">
+            <p>
+
+                <label>Last Name:
+                    <input type="text" name="lastname" size="15" maxlength="45" required="required"/>
+                </label>
+            </p>
+            <p>
+
+                <label>First Name:
+                    <input type="text" name="firstname" size="15" maxlength="45" required="required"/>
+                </label>
+            </p>
+
+            <p>
+                <label> Email Address: <input type="email"required="required"/>
+                </label>
+             </p>
+
+            <p>
+                <label>
+                    Date of Birth: <input type="date" name="dateofbirth" required="required"/></p>
+                </label>
+
+            <p>
+                <label>
+                    Favorite Color:
+                    <input type="text" name="favoritecolor" size="15" maxlength="45"/>
+                </label>
+            </p>
+            <p>
+                <label>
+                    Favorite Number: <input type="number"/>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="subscribe" checked="checked"/>
+                    Sign me up for <span class="strike">Disease</span> Discount Offers
+                </label>
+            </p>
+            <p>
+                <label>
+                    Select your favorite Nurgle Team Position:
+                </label> <br/>
+                <input type="radio" name="position" value="rotter" checked="checkbox"/> Rotter
+                <input type="radio" name="position" value="pestigor"/> Pestigor
+                <input type="radio" name="position" value="warrior"/> Nurgle Warrior
+                <input type="radio" name="position" value="beast"/> Beast of Nurgle
+            </p>
+            <p>
+                <label>
+                    All meals come with fries...nevermind what kind... but what will you wash it down with?
+                    <select name="Beverage" size="2" multiple="multiple">
+                        <option value="Bloodweiser" selected = "selected">Bloodweiser</option>
+                        <option value="Bloodweiser Bite">Bloodweiser Bite</option>
+                        <option value="Bugman's">Bugman's XXXXXX</option>
+                        <option value="Dyspepsi">Dyspepsi Cola</option>
+                    </select>
+                </label>
+            </p>
+            <p>
+                <input type="submit" value="Submit Order"/>
+            </p>
+        </form>
+        
+
+    </main>
+    <footer>
+
+    </footer>
+    
+</body>
+</html>
