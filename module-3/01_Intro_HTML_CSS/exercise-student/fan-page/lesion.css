@@ -1,0 +1,102 @@
+* {font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+body{
+    background-color: #3b3e3c;
+    color: whitesmoke;
+}
+
+h1{text-align: center;}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid darkolivegreen;
+    margin: 10px 0px 10px 0px;
+}
+
+th, td{
+    border: 1px solid darkolivegreen;
+    padding: 2px;
+    color: whitesmoke;
+  }
+
+tr{background-color: #ae8d4e;}
+tr:nth-child(even){
+    background-color: #7e8b4d;
+}
+
+.center{
+    text-align: center;
+}
+
+h1{font-family: 'Creepster', cursive;}
+
+h3{ text-decoration: underline;}
+
+.strike{
+    text-decoration: line-through;
+}
+
+blockquote{
+    font-style: italic;
+    font-size: 14px;
+}
+
+
+  
+.teamPic {
+    width: 98%;
+    height: auto;
+}
+
+.jj {
+  padding-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+aside{
+    position: relative;
+    left: 50%;    
+}
+
+iframe{
+    position: absolute;
+    margin: 20px 0px 0px 0px;    
+}
+
+a{
+    color: turquoise;
+}
+
+.topnav{
+    margin:10px 0px;
+}
+
+.topnav a {
+    margin: 0% 10%;
+}
+
+@media screen and (max-width: 600px) {
+    
+    aside{
+        position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+    }
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    
+
+    .topnav a {
+        float: none;
+        display: block;
+      }
+}
