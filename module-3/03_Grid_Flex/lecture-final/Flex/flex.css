@@ -1,0 +1,32 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.questionContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.questionContainer article {
+    width: 250px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    header nav {
+        flex-direction: column;
+    }
+
+}
