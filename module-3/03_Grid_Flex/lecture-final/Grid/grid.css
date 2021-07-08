@@ -1,0 +1,79 @@
+div.container {
+    display: grid;
+    /* Single Column Layout
+    grid-template-areas: "mainHeader"
+        "menuSidebar"
+        "mainContent"
+        "eventsSidebar"
+        "legalFooter";
+        */
+    grid-template-areas: 
+        "mainHeader mainHeader mainHeader"
+        "headerNav headerNav headerNav"
+        "menuSidebar mainContent eventsSidebar"
+        "legalFooter legalFooter legalFooter";
+    grid-template-columns: 150px 3fr 1fr;
+}
+
+.container > header {
+    grid-area: mainHeader;
+}
+
+#site-nav {
+    grid-area: headerNav;
+}
+
+.container > nav#menu-nav {
+    grid-area: menuSidebar;
+}
+
+.container > main {
+    grid-area: mainContent;
+
+    /*
+    display: grid;
+    grid-template-areas: "x y z";
+    */
+}
+
+.container > aside#upcoming-events {
+    grid-area: eventsSidebar;
+}
+
+.container > footer {
+    grid-area: legalFooter;
+}
+
+/* When we have a tablet display (768px), put events below */
+@media screen and (max-width: 768px) {
+
+    /* html {
+        color: red;
+    } */
+
+    div.container {
+        grid-template-areas: 
+        "mainHeader mainHeader"
+        "menuSidebar mainContent"
+        "eventsSidebar mainContent"
+        "legalFooter legalFooter";
+        grid-template-columns: 150px 1fr;        
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    /* html {
+        color: red;
+    } */
+
+    div.container {
+        grid-template-areas: 
+        "mainHeader"
+        "menuSidebar"
+        "mainContent"
+        "eventsSidebar"
+        "legalFooter";
+        grid-template-columns: 1fr;        
+    }
+}
