@@ -1,4 +1,6 @@
-# CSS Grid Exercise
+# CSS Grid / Flex Exercise
+
+## Part 1 - Grid Exercise
 
 In this exercise, you'll take the existing HTML in `index.html`, and write CSS in `style.css` to create three different grid layouts that reproduce the example images below. 
 
@@ -20,13 +22,13 @@ You'll use CSS media queries to create these three layouts in a responsive manne
 
 You don't need to run this exercise on a local server to load it. Dragging and dropping the HTML file into your browser of choice is acceptable. Your browser still loads the CSS and other resources as usual.
 
-## Before you begin
+### Before you begin
 
 Take a moment to explore the HTML file and its structure. Take note of the `<main>`, `<h1>` and `<div>` blocks, and how the content in each block is displayed in the different layouts. 
 
 Also, look at the existing CSS in `style.css` that was set up for you. Colors and other styling has already been set up for you. You're only responsible for setting up the CSS grids in this exercise.
 
-## Step One: Identify grid areas 
+### Step One: Identify grid areas 
 
 Before starting on any of the grid layouts, the grid areas need to be defined in the CSS.
 
@@ -34,7 +36,7 @@ You'll need to define two grid container elements that can be located using thei
 
 The direct descendent elements of the container are the _grid items_. Look at the HTML and identify the _grid items_ that make up each grid. In your CSS file, create a selector for each _grid item_ and create a reasonable `grid-area` name for each.
 
-## Step Two: Create the desktop layout
+### Step Two: Create the desktop layout
 
 Now that the grid areas have been defined, you can create and style the grids.
 
@@ -48,7 +50,7 @@ If you load your page in the browser, you might notice that some of the grid ite
 
 Now your page should look like the "Layout 1 - Desktop" image.
 
-## Step Three: Create the tablet layout
+### Step Three: Create the tablet layout
 
 After the rules that you set up in steps one and two, create a media query with a `max-width` of 1024px. In this media query, add selectors for `main-grid` and `experience-grid`.
 
@@ -58,10 +60,17 @@ For `experience-grid`, set both the row and column gaps to 20px, and redefine `g
 
 In your browser, if you resize the window or use the dev tools, you can test your new tablet layout. Your page should look like the "Layout 2 - Tablet" image.
 
-## Step Four: Create the phone layout
+### Step Four: Create the phone layout
 
 Beneath the media query you created in step three, add another one with a `max-width` of 450px. In this media query, add selectors for `main-grid` and `experience-grid` again.
 
 Set both grids to be one column wide, and redefine the `grid-template-areas` to match the "Layout 3 - Phone" image from above.
 
 In your browser, if you resize the window or use the dev tools, you can test your new phone layout. Your page should look like the "Layout 3 - Phone" image. You may have to refresh your browser to see the changes.
+
+## Part 2 - Flex Exercise
+
+Play Flexbox Froggy (https://flexboxfroggy.com/) and screen capture your last frame (level). If we ask, be prepared to capture and send other frames upon request. You don't log in, but results are stored in cookies on your browser.
+22 of the 24 frames would be 90% (full credit).
+
+Use "Snip & Sketch" on your laptop for screen capture. Save the screen in a file and Slack it to Matt Eland and Wesley Davis in a direct message to the two of them by time of grading.
