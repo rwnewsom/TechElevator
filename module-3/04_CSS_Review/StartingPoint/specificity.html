@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specificity is Fun</title>
+    <style>
+        #epic {
+            color: blue;
+        }
+
+        .awesome {
+            color: lime;
+        }
+
+        #epic.awesome {
+            color: magenta;
+        }
+
+        html > body > p {
+            color: seagreen;
+        }
+
+        .awesome:first-child {
+            color: purple;
+        }
+
+        p {
+            color: red;
+        }
+
+        p.awesome {
+            color: cyan;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="awesome" id="epic">Hello World</p>
+</body>
+</html>
