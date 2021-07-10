@@ -73,4 +73,4 @@ In your browser, if you resize the window or use the dev tools, you can test you
 Play Flexbox Froggy (https://flexboxfroggy.com/) and screen capture your last frame (level). If we ask, be prepared to capture and send other frames upon request. You don't log in, but results are stored in cookies on your browser.
 22 of the 24 frames would be 90% (full credit).
 
-Use "Snip & Sketch" on your laptop for screen capture. Save the screen in a file and Slack it to Matt Eland and Wesley Davis in a direct message to the two of them by time of grading.
+Use "Snip & Sketch" on your laptop for screen capture. Save the screen in a file and Slack it to Matt Eland and Wesley Davis in a direct message to the two of them by time of grading. 
