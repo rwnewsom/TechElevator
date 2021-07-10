@@ -1,3 +1,128 @@
 * {
     box-sizing: content-box;
+    font-family: sans-serif;
 }
+
+body{
+    background-color: #E8F1F2;
+    padding:10px;
+    padding-bottom:60px;
+}
+
+a{
+    color: black;
+}
+a:hover{
+    background-color: aquamarine;
+}
+
+header{
+    text-align: center;
+    color:maroon;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+header h1{
+    font-size: 2em;
+}
+
+main{
+    
+    display: grid;
+    grid-template-areas: 
+    "funFacts popular"
+    "contribute unpopular";
+    grid-template-columns: 3fr 2fr;
+    padding-bottom: 10px;
+}
+
+
+body #funFacts{
+    grid-area: funFacts;
+    padding-right: 15px;    
+}
+
+#funFacts h2{
+    color: #004E89;
+}
+
+#funFacts:hover{
+    background-color: #FF6B35;
+}
+
+#contribute{
+    grid-area: contribute;
+    padding-right: 15px;
+}
+#contribute h3{
+    color: #004E89;
+}
+
+#popular{
+    grid-area: popular;
+}
+
+#popular h2{
+    color: #004E89;
+}
+
+#popular:hover{
+    background-color: #1A659E;
+}
+
+#unpopular{
+    grid-area: unpopular;
+}
+
+#unpopular h2{
+    color: #004E89;
+}
+#unpopular:hover{
+    background-color: #F7C59F;
+}
+
+header nav ul {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+header nav ul li{
+    list-style-type: none;
+    
+}
+
+aside article{
+    display: inline;
+}
+
+#opinion{
+    text-decoration: wavy;
+}
+
+#opinion {
+    color: maroon;
+}
+
+aside article img{
+    display: inline-flex;
+    height: 400px;
+    width: auto;
+    float: left;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    padding-top: 140px;
+
+  }
+
+
+
+
+
+
+
