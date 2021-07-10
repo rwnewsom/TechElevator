@@ -131,7 +131,7 @@ header img {
             grid-area: exp;
             display: grid;
             row-gap: 20px;
-            column-gap: 50px;
+            column-gap: 20px;
             grid-template-areas: 
             "code web"
             "dataBase design"
@@ -139,4 +139,32 @@ header img {
             grid-template-columns: 1fr 1fr;
                 }
      
-    } 
+    }
+
+    @media screen and (max-width: 450px){
+        #main-grid{
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "headline"
+            "pic"
+            "contact"
+            "quote"
+            "profile"
+            "exp";
+                  }
+        #experience-grid{
+            grid-area: exp;
+            display: grid;
+            grid-template-areas: 
+            "code"
+            "web"
+            "dataBase"
+            "design"
+            ;
+            grid-template-columns: 1fr;
+
+        }
+
+
+
+    }
