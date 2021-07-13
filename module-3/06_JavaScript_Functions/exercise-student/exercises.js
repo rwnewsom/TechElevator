@@ -20,6 +20,18 @@
  * @returns {boolean} true if they are admitted
  */
 
+ function isAdmitted(gpa, satScore=0, recommendation=false){
+     if((gpa>4.0)||satScore>1300){
+         return true;
+     }
+     if(recommendation){
+         if((gpa>3.0)||(satScore>1200)){
+             return true;
+         }
+     }
+     return false;
+ }
+
 /**
  * Write a function called useParameterToFilterArray that takes an anonymous
  * function and uses that in the `unfilteredArray` filter function. Return the result.

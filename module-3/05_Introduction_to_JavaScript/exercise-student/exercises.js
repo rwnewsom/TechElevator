@@ -82,15 +82,13 @@ function seeColor(x){
 */
 
 function oddOnly(x){
+	let result = [];
 	for (let i = 0; i < x.length; i++){
-		if(x[i]%2===0){
-			x.splice(i,1);
+		if(x[i]%2!==0){
+			result.push(x[i]);
 		}
 	}
-	if(!x.length){
-		return [];
-	}
-	return x;
+	return result;
 }
 
 /*
@@ -167,12 +165,13 @@ function fizzBuzz(x){
 	filterEvens([100, 8, 21, 24, 62, 9, 7]) → [100, 8, 24, 62]
 */
 function filterEvens(x){
-	for (let i = 0; i > x.length; i++){
-		if(i%2 !==0){
-			x.splice(i,1);
+	let result = [];
+	for (let i = 0; i < x.length; i++){
+		if(x[i]%2 ===0){
+			result.push(x[i]);
 		}
 	}
-	return x;
+	return result;
 }
 
 /*
@@ -182,6 +181,15 @@ function filterEvens(x){
 	filterBigNumbers([3, 2, 7, 1, -100, -120]) → []
 	filterBigNumbers([]) → []
 */
+function filterBigNumbers(x){
+	let result = [];
+	for(let i = 0; i < x.length; i++){
+		if(x[i]>=100){
+			result.push(x[i]);
+		}
+	}
+	return result;
+}
 
 /*
 11. **filterMultiplesOfX** Write a function to filter numbers that are a multiple of a 
@@ -190,6 +198,15 @@ parameter, `x` passed in.
 	filterMultiplesOfX([3, 5, 1, 9, 18, 21, 42, 67], 3) → [3, 9, 18, 21, 42]
 	filterMultiplesOfX([3, 5, 10, 20, 18, 21, 42, 67], 5) → [5, 10, 20]
 */
+function filterMultiplesOfX(arr,x){
+	let result = [];
+	for (let i = 0; i < arr.length; i++){
+		if (arr[i]%x===0){
+			result.push(arr[i]);
+		}
+	}
+	return result;
+}
 
 /*
 12. **createObject** Write a function that creates an object with a property called 
@@ -203,11 +220,13 @@ firstName, lastName, and age. Populate the properties with your values.
 		age
 	}
 */
-function createObject(x,y,z){
-	let a = {
-		x,
-		y,
-		z,
-	}
-	return a;
+
+function createObject(firstName, lastName, age){
+	const person = {
+		firstName: "Rob",
+		lastName: "Newsom",
+		age: 44
+		
+	};
+	return person;
 }
