@@ -39,16 +39,10 @@
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
  */
-let unfilteredArray = [1, 2, 3, 4, 5, 6];
 function useParameterToFilterArray(filterFunction, unfilteredArray){
-    let result = [];
-    for (let i = 0; i < unfilteredArray.length; i++){
-        let x = unfilteredArray[i];
-        let y = x*2;
-        result.push(y);
-    } 
-    return result;
+    return unfilteredArray.filter(filterFunction);
 }
+let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -90,8 +84,10 @@ function addAll(...number){
  */
 
  function makeHappy(arr){
-     return arr.map(e => 'Happy '+e);
-     
+     let newArr = arr.map(function(e){
+         return 'Happy ' + e;
+     });
+     return newArr;
  }
 
 /*
@@ -112,12 +108,27 @@ function addAll(...number){
  * Use `map` and an anonymous function.
  */
 
+function getFullAddressesOfProperties(arr){
+    let newArr = arr.map(function(e){
+        return e.streetNumber + " " + e.streetName + " " + e.streetType + " " + e.city + " " + e.state + " " + e.zip;
+    });
+    return newArr;
+}
+
 /*
  * Write and document a function called findLargest.
  *
  * Using `forEach`, find the largest element in an array.
  * It must work for strings and numbers.
  */
+
+ function findLargest(arr){
+     let largest = arr[0];
+     arr.forEach(e=> {if(e>largest){
+         largest = e;
+     }})
+     return largest;
+ }
 
 /*
  * CHALLENGE
