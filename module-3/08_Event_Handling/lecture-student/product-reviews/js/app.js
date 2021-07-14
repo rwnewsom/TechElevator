@@ -1,3 +1,5 @@
+// Data  ------------------------------------------------------------------------------------------
+
 const name = 'Cigar Parties for Dummies';
 let description = 'Host and plan the perfect cigar party for all of your squirrelly friends.';
 let reviews = [
@@ -9,6 +11,8 @@ let reviews = [
     rating: 3
   }
 ];
+
+// Pre-Built Functions ---------------------------------------------------------------------------
 
 /**
  * Add our product name to the page title
@@ -28,13 +32,11 @@ function setPageDescription() {
 }
 
 /**
- * I will display all of the reviews in the reviews array
+ * Displays all of the reviews in the reviews array
  */
 function displayReviews() {
   if ('content' in document.createElement('template')) {
-    reviews.forEach((review) => {
-      displayReview(review);
-    });
+    reviews.forEach((review) => displayReview(review)); // This could also be written reviews.forEach(displayReview);
   } else {
     console.error('Your browser does not support templates');
   }
@@ -49,9 +51,9 @@ function displayReview(review) {
 
   // This grabs a template out of the HTML and clones it, then selects the template to customize it
   const clonedNode = document.getElementById('review-template').content.cloneNode(true);
-  clonedNode.querySelector('h4').innerHTML = review.reviewer;
-  clonedNode.querySelector('h3').innerHTML = review.title;
-  clonedNode.querySelector('p').innerHTML = review.review;
+  clonedNode.querySelector('h4').innerText = review.reviewer;
+  clonedNode.querySelector('h3').innerText = review.title;
+  clonedNode.querySelector('p').innerText = review.review;
 
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
@@ -63,9 +65,12 @@ function displayReview(review) {
 }
 
 /**
- * I will show / hide the add review form
+ * Shows / hides the add review form
+ * @param {Event} event the event that occurred in the browser
  */
-function showHideForm() {
+function showHideForm(event) {
+  console.log('showHideForm', event);
+
   const form = document.querySelector('form');
   const btn = document.getElementById('btnToggleForm');
 
@@ -81,7 +86,7 @@ function showHideForm() {
 }
 
 /**
- * I will reset all of the values in the form.
+ * Resets all of the values in the form.
  */
 function resetFormValues() {
   const form = document.querySelector('form');
@@ -93,62 +98,13 @@ function resetFormValues() {
   document.getElementById('review').value = '';
 }
 
-// LECTURE STARTS HERE ---------------------------------------------------------------
-
-function initialize() {
-  // set the product reviews page title
-  setPageTitle();
-
-  // set the product reviews page description
-  setPageDescription();
-
-  // display all of the product reviews on our page
-  displayReviews();
-
-  // -----------------------------------------------
-
-  // When the user clicks on btnToggleForm, call showHideForm
-
-  // When the user clicks btnSaveReview, call saveReview
-
-  // -----------------------------------------------
-
-  // When the user double clicks the description paragraph, 
-  // call showDescriptionEdit and pass it the event
-
-  // When the user's mouse leaves the input with an ID of inputDesc, 
-  // call exitDescriptionEdit without saving
-
-  // When the user presses a key on the input with an ID of inputDesc, 
-  // check for enter and escape and call exitDescriptionEdit
-
-  // ------------------------------------------------
-
-  // Add a click listener for when the user clicks the body element
-}
-
-/**
- * I will save the review that was added using the add review from
- */
-function saveReview() {
-  // Get the value of the name, title, review, and rating
-
-  // Create a new review object with these values for reviewer, 
-  // title, review, and rating
-
-  // Add the new object to reviews
-
-  // Call displayReview with the new review as a parameter
-
-  // Call showHideForm to toggle the form visibility
-}
-
 /**
  * Take an event on the description and swap out the description for a text box.
- *
- * @param {Event} event the event object
+ * @param {Event} event the event that occurred in the browser
  */
 function showDescriptionEdit(event) {
+  console.log('Show Description Edit', event);
+
   const target = event.target;
 
   const textBox = target.nextElementSibling;
@@ -182,5 +138,55 @@ function exitDescriptionEdit(event, save) {
   desc.classList.remove('d-none');
 }
 
-// TODO: Only call initialize when the DOM is ready
-initialize();
+// LECTURE STARTS HERE ---------------------------------------------------------------
+
+function initialize() {
+  // set the product reviews page title
+  setPageTitle();
+
+  // set the product reviews page description
+  setPageDescription();
+
+  // display all of the product reviews on our page
+  displayReviews();
+
+  // -----------------------------------------------
+
+  // Step 2: When the user clicks on btnToggleForm, call showHideForm
+
+  // Step 3: When the user clicks btnSaveReview, call saveReview
+
+  // -----------------------------------------------
+
+  // Step 4: When the user double clicks the description paragraph, 
+  // call showDescriptionEdit and pass it the event
+
+  // Step 5: When the user presses a key on the input with an ID of inputDesc, 
+  // check for enter and escape and call exitDescriptionEdit
+
+  // ------------------------------------------------
+
+  // Step 6: Add a click listener for when the user clicks the body element and talk bubbling
+}
+
+
+/**
+ * I will save the review that was added using the add review from
+ * @param {Event} event the event that occurred in the browser
+ */
+function saveReview(event) {
+  console.log('Saving Review', event);
+
+  // Get the value of the name, title, review, and rating controls (these are their ids)
+
+  // Create a new review object with these values for reviewer, 
+  // title, review, and rating
+
+  // Add the new object to reviews
+
+  // Call displayReview with the new review as a parameter
+
+  // Call showHideForm to toggle the form visibility
+}
+
+// Step 1: Call initialize when the DOM is ready
