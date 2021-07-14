@@ -39,10 +39,11 @@
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
  */
+let unfilteredArray = [1, 2, 3, 4, 5, 6];
+
 function useParameterToFilterArray(filterFunction, unfilteredArray){
     return unfilteredArray.filter(filterFunction);
 }
-let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -147,3 +148,11 @@ function getFullAddressesOfProperties(arr){
  *
  * Read the tests to verify you have the correct behavior.
  */
+
+ function getSumOfSubArrayValues(arr){
+     if(!arr){
+         return 0;
+     }
+     let total = 0;
+     return 0;
+ }
