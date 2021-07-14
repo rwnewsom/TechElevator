@@ -41,7 +41,7 @@
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
-function useParameterToFilterArray(filterFunction, unfilteredArray){
+function useParameterToFilterArray(filterFunction){
     return unfilteredArray.filter(filterFunction);
 }
 
