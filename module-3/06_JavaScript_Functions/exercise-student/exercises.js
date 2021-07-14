@@ -40,6 +40,15 @@
  * @returns {number[]} the filtered array
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
+function useParameterToFilterArray(filterFunction, unfilteredArray){
+    let result = [];
+    for (let i = 0; i < unfilteredArray.length; i++){
+        let x = unfilteredArray[i];
+        let y = x*2;
+        result.push(y);
+    } 
+    return result;
+}
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -53,6 +62,11 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @param {string} [second=''] the second string of digits to concatenate
  * @returns {number} the resultant number
  */
+function makeNumber(first="", second=""){
+    let third = first.concat(second);
+    let num = Number(third);
+    return num;
+}
 
 /**
  * Write a function called addAll that takes an unknown number of parameters
@@ -61,12 +75,24 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @param {...number} num a series of numbers to add together
  * @returns {number} the sum of all the parameters (or arguments)
  */
+function addAll(...number){
+    let total = 0;
+
+    number.forEach(element => total += element);
+
+    return total;
+}
 
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+
+ function makeHappy(arr){
+     return arr.map(e => 'Happy '+e);
+     
+ }
 
 /*
  * Write and document a function called getFullAddressesOfProperties
