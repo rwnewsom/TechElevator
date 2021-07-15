@@ -21,7 +21,20 @@ function setPageTitle() {
 /**
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
-function displayGroceries() {}
+function displayGroceries() {
+  let container = document.getElementById('groceries');
+
+  groceries.forEach(item => {
+    console.log('adding to list: ', item);
+    //add list item!
+  let element = document.createElement('li');
+  element.innerHTML = item;
+
+  // Add this element to the parent  
+  container.appendChild(element);
+
+  });
+}
 
 /**
  * This function will be called when the button is clicked. You will need to get a reference
