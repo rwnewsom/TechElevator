@@ -40,7 +40,11 @@ function displayGroceries() {
  * This function will be called when the button is clicked. You will need to get a reference
  * to every list item and add the class completed to each one
  */
-function markCompleted() {}
+function markCompleted() {
+  let shoppingList = document.querySelectorAll('#groceries > li');
+
+  shoppingList.forEach(li => li.classList.add('completed'));
+}
 
 setPageTitle();
 
