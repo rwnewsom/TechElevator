@@ -1,12 +1,22 @@
 // add pageTitle
+let pageTitle = 'My Shopping List';
 
 // add groceries
+let groceries = ['bread','beer','cheese','linguini','ramen','eggs','mushrooms','bagels','apples','yogurt'];
 
 /**
  * This function will get a reference to the title and set its text to the value
  * of the pageTitle variable that was set above.
  */
-function setPageTitle() {}
+function setPageTitle() {
+  let span = document.querySelector('#title');
+
+  //console.log(span);
+
+  // Add the product name to the span.
+  span.innerText = pageTitle;
+
+} 
 
 /**
  * This function will loop over the array of groceries that was set above and add them to the DOM.
