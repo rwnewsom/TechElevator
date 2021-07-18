@@ -52,11 +52,33 @@ function displayGroceries() {
 }
 
 
+const toggleAll = document.getElementById('toggleAll');
+  toggleAll.addEventListener('click', () => {
+  const tasks = document.querySelectorAll('li');
+  if(allItemsIncomplete){
+    tasks.forEach((task) => {
+    task.classList.add('completed');
+    task.querySelector('i').classList.add('completed');
+    })
+    allItemsIncomplete = false;
+    toggleAll.innerText = "Mark All Incomplete";
+  }
+  else if(!allItemsIncomplete){
+    tasks.forEach((task) => {
+    task.classList.remove('completed');
+    task.querySelector('i').classList.remove('completed');
+    })
+    allItemsIncomplete = true;
+    toggleAll.innerText = "Mark All Complete";
+  }
+  
+    });
+  
 
 
 
-/* Initialize the page following DOM content load
-Per instructions remaining code will go here as well*/
+
+/* Initialize the page following DOM content load*/
 document.addEventListener('DOMContentLoaded', event => {
   console.log('DOM Loaded', event);
   setPageTitle();
