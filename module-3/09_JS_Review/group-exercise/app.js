@@ -51,7 +51,7 @@ If things did show up, their week / module numbers don't match the data.
 
 */
 
-document.addEventListener('loaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('Application Starting...');
 
     thingsMattThinksAreFun = thingsMattThinksAreFun.map(thing => {
@@ -76,3 +76,5 @@ document.addEventListener('loaded', () => {
         para.appendChild(para);
     });
 });
+
+
