@@ -13,6 +13,8 @@ const groceries = [
   { id: 10, name: 'Tea', completed: false }
 ];
 
+
+
 /**
  * This function will get a reference to the title and set its text to the value
  * of the pageTitle variable that was set above.
@@ -32,10 +34,33 @@ function displayGroceries() {
     li.innerText = item.name;
     const checkCircle = document.createElement('i');
     checkCircle.setAttribute('class', 'far fa-check-circle');
+    li.addEventListener('click',()=> {
+      if (!li.classList.contains('completed')){
+        li.classList.add('completed');
+        li.querySelector('i').classList.add('completed');
+      }
+    });
+    li.addEventListener('dblclick',()=> {
+      if(li.classList.contains('completed')){
+        li.classList.remove('completed');
+        li.querySelector('i').classList.remove('completed');
+      }
+    });
     li.appendChild(checkCircle);
     ul.appendChild(li);
   });
 }
 
-setPageTitle();
-displayGroceries();
+
+
+
+
+/* Initialize the page following DOM content load
+Per instructions remaining code will go here as well*/
+document.addEventListener('DOMContentLoaded', event => {
+  console.log('DOM Loaded', event);
+  setPageTitle();
+  displayGroceries();
+});
+
+
