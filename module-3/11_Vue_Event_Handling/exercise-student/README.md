@@ -82,7 +82,7 @@ There are three buttons below the user listing table. Complete the following tas
 
 > Once you complete this step, the eight tests under "Enable, Disable and Delete Actions" pass.
 
-## Step Six: Select all checkbox
+## Step Six: Select all checkbox (CHALLENGE / OPTIONAL)
 
 The "select all" checkbox is the checkbox on the first row with the filter inputs. Complete the following tasks for the "select all" checkbox:
 
