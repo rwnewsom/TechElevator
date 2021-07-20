@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <user-list></user-list>
+    <!-- <user-list></user-list> -->
+    <UserList />
   </div>
 </template>
 
