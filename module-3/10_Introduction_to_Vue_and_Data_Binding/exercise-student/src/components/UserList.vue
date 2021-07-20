@@ -11,12 +11,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter"/></td>
-        <td><input type="text" id="lastNameFilter"/></td>
-        <td><input type="text" id="usernameFilter"/></td>
-        <td><input type="text" id="emailFilter"/></td>
+        <td><input type="text" v-model="filter.firstName" id="firstNameFilter"/></td>
+        <td><input type="text" v-model="filter.lastName" id="lastNameFilter"/></td>
+        <td><input type="text" v-model="filter.username" id="usernameFilter"/></td>
+        <td><input type="text" v-model="filter.emailAddress" id="emailFilter"/></td>
         <td>
-          <select id="statusFilter">
+          <select id="statusFilter" v-model="filter.status">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Disabled">Disabled</option>
@@ -24,7 +24,7 @@
         </td>
       </tr>
       <!-- user listing goes here -->
-      <tr v-for="user of users" v-bind:key="user.emailAddress"
+      <tr v-for="user of filteredList" v-bind:key="user.emailAddress"
       v-bind:class="{
         disabled: user.status=='Disabled'
       }">
@@ -50,10 +50,33 @@ export default {
         { firstName: 'Ben', lastName: 'Carter', username: 'bcarter', emailAddress: 'bcarter@gmail.com', status: 'Active' },
         { firstName: 'Katie', lastName: 'Jackson', username: 'kjackson', emailAddress: 'kjackson@yahoo.com', status: 'Active' },
         { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Disabled' }
-      ]
+      ],
+      filter: 
+        {
+        firstName: '',
+        lastName: '',
+        username: '',
+        emailAddress: '',
+        status: ''
+      }
+      
+    }
+  },
+  computed: {
+    filteredList(){
+      let result = this.users.slice();
+      if(this.filter.firstName || this.filter.lastName || this.filter.username || this.filter.emailAddress || this.filter.status){
+        result = result.filter(user => user.firstName.toLowerCase().includes(this.filter.firstName.toLowerCase()) 
+        && user.lastName.toLowerCase().includes(this.filter.lastName.toLowerCase()) 
+        && user.username.toLowerCase().includes(this.filter.username.toLowerCase()) 
+        && user.emailAddress.toLowerCase().includes(this.filter.emailAddress.toLowerCase())
+        && user.status.includes(this.filter.status));
+        }
+      return result;
     }
   }
 }
+
 </script>
 
 <style scoped>
