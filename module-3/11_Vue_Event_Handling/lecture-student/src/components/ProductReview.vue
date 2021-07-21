@@ -6,48 +6,55 @@
 
     <!-- Filter / data controls -->
     <div class="well-display">
-      <div class="well">
+      <div class="well" v-on:click.stop="clearFilter">
         <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click.stop="filerToStarRating(1)">
         <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click.stop="filerToStarRating(2)">
         <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click.stop="filerToStarRating(3)">
         <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click.stop="filerToStarRating(4)">
         <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click.stop="filerToStarRating(5)">
         <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
     <!-- A Show Form link here would be good -->
+    <a href='#' v-if="!isAddFormVisible" 
+    v-on:click.prevent="isAddFormVisible = true">
+    Add New Item
+    </a> <!-- Add/Remove from DOM as needed -->
 
     <!-- Add new items form -->
-    <form>
+    <form v-show="isAddFormVisible"
+    v-on:submit.prevent="handleSave"
+    >
       <div class="form-element">
         <label for="reviewer">Name:</label>
         <input id="reviewer" type="text" v-model="newReview.reviewer" />
       </div>
+      <input type="hidden" value="YourUserIdGoesHere" />
       <div class="form-element">
         <label for="title">Title:</label>
-        <input id="title" type="text" v-model="newReview.title" />
+        <input id="title" type="text" v-model.trim="newReview.title" />
       </div>
       <div class="form-element">
         <label for="rating">Rating:</label>
@@ -63,15 +70,15 @@
         <label for="review">Review:</label>
         <textarea id="review" v-model="newReview.review"></textarea>
       </div>
-      <input type="submit" value="Save">
-      <input type="button" value="Cancel">
+      <input type="submit" value="Save" >  <!-- v-on:click.prevent="handleSave"-->
+      <input type="button" value="Cancel" v-on:click="isAddFormVisible=false">  
     </form>
 
     <!-- Reviews list -->
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -104,7 +111,13 @@ export default {
       name: "Cigar Parties for Dummies",
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
-      newReview: {},
+      isAddFormVisible: false,
+      newReview: {
+        rating: 1,
+        title: '', //v-model="newReview.title"
+        review: '',
+        reviewer: ''
+      },
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -141,7 +154,44 @@ export default {
       ]
     };
   },
+  methods: {
+    handleSave(event){
+      console.log('Save was clicked!', event); //remove this
+
+      //identify an object representing the new review
+      let reviewToAdd = this.newReview;
+
+      //Add the new review to the reviews array (at the beginning)
+      //this.reviews.unshift(reviewToAdd);
+      this.reviews.splice(0,0,reviewToAdd);
+
+      //clear the form for the next addition (and prevent odd bugs in adding data multiple times)
+      this.newReview = {
+        rating: 1,
+        title: '', //v-model="newReview.title"
+        review: '',
+        reviewer: ''
+
+      }
+
+      //hide the form
+      this.isAddFormVisible = false;
+    },
+    clearFilter(){
+      console.log('Clear Filter was clicked');
+    },
+    filerToStarRating(rating){
+      console.log('Filter to star rating was clicked', rating);
+    }
+
+  },
   computed: {
+    filteredReviews(){
+      return this.reviews.filter(rev=> {
+        return rev.rating===3;})},
+     
+
+
     averageRating() {
       let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
