@@ -64,24 +64,24 @@
       <button>Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click="showForm = true">Add New User</button>
 
-    <form v-show="showForm" id="frmAddNewUser">
+    <form v-show="showForm" id="frmAddNewUser" v-on:submit.prevent="saveUser">
       <div class="field">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" />
+        <input type="text" name="firstName" v-model.trim="newUser.firstName" />
       </div>
       <div class="field">
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" />
+        <input type="text" name="lastName" v-model.trim="newUser.lastName" />
       </div>
       <div class="field">
         <label for="username">Username:</label>
-        <input type="text" name="username" />
+        <input type="text" name="username" v-model.trim="newUser.username" />
       </div>
       <div class="field">
         <label for="emailAddress">Email Address:</label>
-        <input type="text" name="emailAddress" />
+        <input type="text" name="emailAddress" v-model.trim="newUser.emailAddress" />
       </div>
       <button type="submit" class="btn save">Save User</button>
     </form>
@@ -162,7 +162,24 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    saveUser(){ //pass event?
+      let userToAdd = this.newUser;
+      userToAdd.id = this.users.length +1;
+      this.users.unshift(userToAdd);
+      this.newUser = {
+        id: null,
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "Active"
+      }
+      this.showForm = false;
+    }
+
+
+  },
   computed: {
     filteredList() {
       let filteredUsers = this.users;
