@@ -1,14 +1,13 @@
 <template>
   <div class="main">
-    <!-- Page Header -->
-    <!-- TODO: This could be a component -->
+    <!-- Page Header - This could be a component -->
     <h2>Product Reviews for {{ name }}</h2>
     <p class="description">{{ description }}</p>
 
     <!-- Filter / data controls -->
     <p class="help">Click on a rating below to filter the list of reviews. Click on the Average Rating button to show all reviews.</p>
-    <div class="well-display"> <!--  v-on:click="console.log('WellDisplay Click')" -->
-      <div class="well" @click.stop="clearFilter" title="Show all reviews"> <!-- @ is shorthand for v-on: -->
+    <div class="well-display">
+      <div class="well" @click.stop="clearFilter" title="Show all reviews">
         <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
@@ -73,7 +72,7 @@
       <input type="hidden" value="YourUserIDGoesHere" />
       <div class="form-element">
         <label for="title">Title:</label>
-        <input id="title" type="text" v-model.trim.lazy="newReview.title" />
+        <input id="title" type="text" v-model="newReview.title" />
       </div>
       <div class="form-element">
         <label for="rating">Rating:</label>
@@ -93,10 +92,9 @@
       <input type="button" value="Cancel" v-on:click="isAddFormVisible = false">
     </form>
 
-    <!-- Toggle Between List and Table displays -->
+    <!-- Add a link to toggle Between List and Table displays -->
 
-    <!-- Reviews list -->
-    <!-- TODO: This should be a component -->
+    <!-- Reviews list - This should be a component -->
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
@@ -341,4 +339,3 @@ div.well:hover {
   cursor: pointer;
 }
 </style>
-
