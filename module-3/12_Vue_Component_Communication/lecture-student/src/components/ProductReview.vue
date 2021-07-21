@@ -1,51 +1,66 @@
 <template>
   <div class="main">
     <!-- Page Header -->
+    <!-- TODO: This could be a component -->
     <h2>Product Reviews for {{ name }}</h2>
     <p class="description">{{ description }}</p>
 
-    <p class="help">Click on a rating below to filter the list of reviews. Click on the Average Rating button to show all reviews.</p>
-
     <!-- Filter / data controls -->
+    <p class="help">Click on a rating below to filter the list of reviews. Click on the Average Rating button to show all reviews.</p>
     <div class="well-display"> <!--  v-on:click="console.log('WellDisplay Click')" -->
       <div class="well" @click.stop="clearFilter" title="Show all reviews"> <!-- @ is shorthand for v-on: -->
         <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <!-- : is shorthand for v-bind: -->
-      <div class="well" v-on:click.stop="filterToStarRating(1)" :class="{active: ratingToFilterTo === 1}" title="Show 1 Star Reviews">
+      <!-- These should be a component -->
+      <div class="well" 
+           v-on:click="filterToStarRating(1)" 
+           :class="{active: ratingToFilterTo === 1}" 
+           title="Show 1 Star Reviews">
         <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well" v-on:click.stop="filterToStarRating(2)" v-bind:class="{active: ratingToFilterTo === 2}"  title="Show 2 Star Reviews">
+      <div class="well" 
+           v-on:click="filterToStarRating(2)" 
+           v-bind:class="{active: ratingToFilterTo === 2}"
+           title="Show 2 Star Reviews">
         <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well" v-on:click="filterToStarRating(3)" v-bind:class="{active: ratingToFilterTo === 3}"  title="Show 3 Star Reviews">
+      <div class="well" 
+           v-on:click="filterToStarRating(3)" 
+           v-bind:class="{active: ratingToFilterTo === 3}"  
+           title="Show 3 Star Reviews">
         <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well" v-on:click.stop="filterToStarRating(4)" v-bind:class="{active: ratingToFilterTo === 4}"  title="Show 4 Star Reviews">
+      <div class="well" 
+           v-on:click.stop="filterToStarRating(4)" 
+           v-bind:class="{active: ratingToFilterTo === 4}"  
+           title="Show 4 Star Reviews">
         <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well" v-on:click.stop="filterToStarRating(5)" v-bind:class="{active: ratingToFilterTo === 5}"  title="Show 5 Star Reviews">
+      <div class="well" 
+           v-on:click.stop="filterToStarRating(5)" 
+           v-bind:class="{active: ratingToFilterTo === 5}"  
+           title="Show 5 Star Reviews">
         <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
-    <!-- A Show Form link here would be good -->
+    <!-- Show Add Item -->
     <a href="#" 
        v-if="!isAddFormVisible" 
        v-on:click.prevent="isAddFormVisible = true">
        Add New Item
-    </a> <!-- v-if adds / removes from the DOM as needed -->
+    </a>
 
     <!-- Add new items form -->
     <form v-show="isAddFormVisible"
@@ -78,7 +93,10 @@
       <input type="button" value="Cancel" v-on:click="isAddFormVisible = false">
     </form>
 
+    <!-- Toggle Between List and Table displays -->
+
     <!-- Reviews list -->
+    <!-- TODO: This should be a component -->
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
@@ -123,36 +141,33 @@ export default {
         reviewer: ''
       },
       ratingToFilterTo: undefined,
+      // This would be better off in a central store
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
           title: "What a book!",
-          review:
-            "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
+          review: "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
           rating: 3,
           favorited: false
         },
         {
           reviewer: "Tim Ferriss",
           title: "Had a cigar party started in less than 4 hours.",
-          review:
-            "It should have been called the four hour cigar party. That's amazing. I have a new idea for muse because of this.",
+          review: "It should have been called the four hour cigar party. That's amazing. I have a new idea for muse because of this.",
           rating: 4,
           favorited: false
         },
         {
           reviewer: "Ramit Sethi",
           title: "What every new entrepreneurs needs. A door stop.",
-          review:
-            "When I sell my courses, I'm always telling people that if a book costs less than $20, they should just buy it. If they only learn one thing from it, it was worth it. Wish I learned something from this book.",
+          review: "When I sell my courses, I'm always telling people that if a book costs less than $20, they should just buy it. If they only learn one thing from it, it was worth it. Wish I learned something from this book.",
           rating: 1,
           favorited: false
         },
         {
           reviewer: "Gary Vaynerchuk",
           title: "And I thought I could write",
-          review:
-            "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
+          review: "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
           rating: 3,
           favorited: false
         }
@@ -188,7 +203,7 @@ export default {
     filterToStarRating(rating) {
       console.log('Filter to rating', rating);
       this.ratingToFilterTo = rating;
-    }
+    },
   },
   computed: {
     isSaveDisabled() {
