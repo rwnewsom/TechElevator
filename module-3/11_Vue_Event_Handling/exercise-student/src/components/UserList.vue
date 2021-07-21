@@ -66,7 +66,7 @@
 
     <button>Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form v-show="showForm" id="frmAddNewUser">
       <div class="field">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" />
@@ -100,6 +100,8 @@ export default {
         emailAddress: "",
         status: ""
       },
+      //step one requires form to be hidden by default
+      showForm: false,
       newUser: {
         id: null,
         firstName: "",
