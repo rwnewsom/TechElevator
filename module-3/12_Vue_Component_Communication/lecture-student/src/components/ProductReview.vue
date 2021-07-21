@@ -1,57 +1,64 @@
 <template>
   <div class="main">
+    <!-- Page Header -->
     <h2>Product Reviews for {{ name }}</h2>
-
     <p class="description">{{ description }}</p>
 
-    <div class="well-display">
-      <div class="well">
-        <span class="amount" v-on:click="filter = 0">{{ averageRating }}</span>
+    <p class="help">Click on a rating below to filter the list of reviews. Click on the Average Rating button to show all reviews.</p>
+
+    <!-- Filter / data controls -->
+    <div class="well-display"> <!--  v-on:click="console.log('WellDisplay Click')" -->
+      <div class="well" @click.stop="clearFilter" title="Show all reviews"> <!-- @ is shorthand for v-on: -->
+        <span class="amount">{{ averageRating }}</span>
         Average Rating
       </div>
 
-      <div class="well">
-        <span class="amount" v-on:click="filter = 1">{{ numberOfOneStarReviews }}</span>
+      <!-- : is shorthand for v-bind: -->
+      <div class="well" v-on:click.stop="filterToStarRating(1)" :class="{active: ratingToFilterTo === 1}" title="Show 1 Star Reviews">
+        <span class="amount">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
-        <span class="amount" v-on:click="filter = 2">{{ numberOfTwoStarReviews }}</span>
+      <div class="well" v-on:click.stop="filterToStarRating(2)" v-bind:class="{active: ratingToFilterTo === 2}"  title="Show 2 Star Reviews">
+        <span class="amount">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
-        <span class="amount" v-on:click="filter = 3">{{ numberOfThreeStarReviews }}</span>
+      <div class="well" v-on:click="filterToStarRating(3)" v-bind:class="{active: ratingToFilterTo === 3}"  title="Show 3 Star Reviews">
+        <span class="amount">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
-        <span class="amount" v-on:click="filter = 4">{{ numberOfFourStarReviews }}</span>
+      <div class="well" v-on:click.stop="filterToStarRating(4)" v-bind:class="{active: ratingToFilterTo === 4}"  title="Show 4 Star Reviews">
+        <span class="amount">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
-      <div class="well">
-        <span class="amount" v-on:click="filter = 5">{{ numberOfFiveStarReviews }}</span>
+      <div class="well" v-on:click.stop="filterToStarRating(5)" v-bind:class="{active: ratingToFilterTo === 5}"  title="Show 5 Star Reviews">
+        <span class="amount">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
-    <a
-      id="show-form-button"
-      href="#"
-      v-on:click.prevent="showForm = true"
-      v-if="showForm === false"
-      >Show Form</a
-    >
+    <!-- A Show Form link here would be good -->
+    <a href="#" 
+       v-if="!isAddFormVisible" 
+       v-on:click.prevent="isAddFormVisible = true">
+       Add New Item
+    </a> <!-- v-if adds / removes from the DOM as needed -->
 
-    <form v-on:submit.prevent="addNewReview" v-if="showForm === true">
+    <!-- Add new items form -->
+    <form v-show="isAddFormVisible"
+          v-on:submit.prevent="handleSave"
+      > <!-- v-show keeps it in the DOM, but adds display: none. This is ALWAYS a good idea for forms -->
       <div class="form-element">
         <label for="reviewer">Name:</label>
         <input id="reviewer" type="text" v-model="newReview.reviewer" />
       </div>
+      <input type="hidden" value="YourUserIDGoesHere" />
       <div class="form-element">
         <label for="title">Title:</label>
-        <input id="title" type="text" v-model="newReview.title" />
+        <input id="title" type="text" v-model.trim.lazy="newReview.title" />
       </div>
       <div class="form-element">
         <label for="rating">Rating:</label>
@@ -67,10 +74,11 @@
         <label for="review">Review:</label>
         <textarea id="review" v-model="newReview.review"></textarea>
       </div>
-      <input type="submit" value="Save">
-      <input type="button" value="Cancel" v-on:click.prevent="resetForm">
+      <input type="submit" value="Save" v-bind:disabled="isSaveDisabled"> <!-- v-on:click.prevent="handleSave" -->
+      <input type="button" value="Cancel" v-on:click="isAddFormVisible = false">
     </form>
 
+    <!-- Reviews list -->
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
@@ -101,43 +109,48 @@
 
 <script>
 export default {
-  name: 'product-review',
+  name: "product-review",
   data() {
     return {
-      name: 'Cigar Parties for Dummies',
+      name: "Cigar Parties for Dummies",
       description:
-        'Host and plan the perfect cigar party for all of your squirrelly friends.',
-      newReview: {},
-      showForm: false,
-      filter: 0,
+        "Host and plan the perfect cigar party for all of your squirrelly friends.",
+      isAddFormVisible: false,
+      newReview: {
+        rating: 1,
+        title: '', // v-model="newReview.title"
+        review: '',
+        reviewer: ''
+      },
+      ratingToFilterTo: undefined,
       reviews: [
         {
-          reviewer: 'Malcolm Gladwell',
-          title: 'What a book!',
+          reviewer: "Malcolm Gladwell",
+          title: "What a book!",
           review:
             "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
           rating: 3,
           favorited: false
         },
         {
-          reviewer: 'Tim Ferriss',
-          title: 'Had a cigar party started in less than 4 hours.',
+          reviewer: "Tim Ferriss",
+          title: "Had a cigar party started in less than 4 hours.",
           review:
             "It should have been called the four hour cigar party. That's amazing. I have a new idea for muse because of this.",
           rating: 4,
           favorited: false
         },
         {
-          reviewer: 'Ramit Sethi',
-          title: 'What every new entrepreneurs needs. A door stop.',
+          reviewer: "Ramit Sethi",
+          title: "What every new entrepreneurs needs. A door stop.",
           review:
             "When I sell my courses, I'm always telling people that if a book costs less than $20, they should just buy it. If they only learn one thing from it, it was worth it. Wish I learned something from this book.",
           rating: 1,
           favorited: false
         },
         {
-          reviewer: 'Gary Vaynerchuk',
-          title: 'And I thought I could write',
+          reviewer: "Gary Vaynerchuk",
+          title: "And I thought I could write",
           review:
             "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
           rating: 3,
@@ -146,7 +159,46 @@ export default {
       ]
     };
   },
+  methods: {
+    handleSave(event) {
+      console.log('Save was clicked!', event);
+
+      // Identify an object representing the new review
+      let reviewToAdd = this.newReview;
+
+      // Add the new review to the reviews array (at the beginning)
+      //this.reviews.unshift(reviewToAdd);
+      this.reviews.splice(0, 0, reviewToAdd); // Start at beginning, delete nothing, add the review
+
+      // Clear the form for the next addition (and prevents odd bugs in adding data multiple times)
+      this.newReview = {
+        rating: 1,
+        title: '',
+        review: '',
+        reviewer: ''
+      }
+
+      // Hide the form
+      this.isAddFormVisible = false;
+    },
+    clearFilter() {
+      console.log('Clear filter clicked');
+      this.ratingToFilterTo = undefined; // Clear out our filter
+    },
+    filterToStarRating(rating) {
+      console.log('Filter to rating', rating);
+      this.ratingToFilterTo = rating;
+    }
+  },
   computed: {
+    isSaveDisabled() {
+      return this.newReview.title === '';
+    },
+    filteredReviews() {
+      return this.reviews.filter(rev => {
+        return this.ratingToFilterTo === undefined || rev.rating === this.ratingToFilterTo;
+      });
+    },
     averageRating() {
       let sum = this.reviews.reduce((currentSum, review) => {
         return currentSum + review.rating;
@@ -154,38 +206,28 @@ export default {
       return (sum / this.reviews.length).toFixed(2);
     },
     numberOfOneStarReviews() {
-      return this.numberOfReviews(1);
+      return this.reviews.reduce((currentCount, review) => {
+        return currentCount + (review.rating === 1);
+      }, 0);
     },
     numberOfTwoStarReviews() {
-      return this.numberOfReviews(2);
+      return this.reviews.reduce((currentCount, review) => {
+        return currentCount + (review.rating === 2);
+      }, 0);
     },
     numberOfThreeStarReviews() {
-      return this.numberOfReviews(3);
+      return this.reviews.reduce((currentCount, review) => {
+        return currentCount + (review.rating === 3);
+      }, 0);
     },
     numberOfFourStarReviews() {
-      return this.numberOfReviews(4);
+      return this.reviews.reduce((currentCount, review) => {
+        return currentCount + (review.rating === 4);
+      }, 0);
     },
     numberOfFiveStarReviews() {
-      return this.numberOfReviews(5);
-    },
-    filteredReviews() {
-      return this.reviews.filter(review => {
-        return this.filter === 0 ? true : this.filter === review.rating;
-      });
-    }
-  },
-  methods: {
-    addNewReview() {
-      this.reviews.unshift(this.newReview);
-      this.resetForm();
-    },
-    resetForm() {
-      this.newReview = {};
-      this.showForm = false;
-    },
-    numberOfReviews(numOfStars) {
       return this.reviews.reduce((currentCount, review) => {
-        return currentCount + (review.rating === numOfStars);
+        return currentCount + (review.rating === 5);
       }, 0);
     }
   }
@@ -272,4 +314,16 @@ form > input[type=submit] {
   width: 100px;
   margin-right: 10px;
 }
+div.well.active {
+  background-color: #b5b5ff;
+}
+.help {
+  font-size: 75%;
+  color: rgb(121, 121, 121);
+}
+div.well:hover {
+  background-color: lemonchiffon;
+  cursor: pointer;
+}
 </style>
+
