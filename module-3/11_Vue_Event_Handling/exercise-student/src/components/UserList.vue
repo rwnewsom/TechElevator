@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable"><span>{{user.status==='Disabled' ? 'Enable' : 'Disable'}} </span> </button> <!-- Enable or Disable -->
+            <button v-on:click="flipStatus(user.emailAddress)" class="btnEnableDisable"><span>{{user.status==='Disabled' ? 'Enable' : 'Disable'}} </span> </button> <!-- Enable or Disable -->
           </td>
         </tr>
       </tbody>
@@ -176,6 +176,12 @@ export default {
         status: "Active"
       }
       this.showForm = false;
+    },
+
+    flipStatus(emailAddress){
+      let userIndex = this.users.findIndex(user => user.emailAddress===emailAddress);
+      console.log(userIndex);
+      this.users[userIndex].status==='Active' ? this.users[userIndex].status='Disabled' : this.users[userIndex].status='Active';
     }
     
 
