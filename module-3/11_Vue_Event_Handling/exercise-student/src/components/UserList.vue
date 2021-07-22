@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable"><span>{{user.status==='Disabled' ? 'Enable' : 'Disable'}} </span> </button> <!-- Enable or Disable -->
           </td>
         </tr>
       </tbody>
@@ -177,6 +177,7 @@ export default {
       }
       this.showForm = false;
     }
+    
 
 
   },
