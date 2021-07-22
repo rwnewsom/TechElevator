@@ -44,7 +44,7 @@
           v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" />
+            <input type="checkbox" v-bind:id="user.id" v-bind:value="user.id" v-model="selectedUserIDs" />
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -52,16 +52,16 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button v-on:click="flipStatus(user.emailAddress)" class="btnEnableDisable"><span>{{user.status==='Disabled' ? 'Enable' : 'Disable'}} </span> </button> <!-- Enable or Disable -->
+            <button v-on:click="flipStatus(user.id)" class="btnEnableDisable"><span>{{user.status==='Disabled' ? 'Enable' : 'Disable'}} </span> </button> <!-- Enable or Disable -->
           </td>
         </tr>
       </tbody>
     </table>
 
     <div class="all-actions">
-      <button>Enable Users</button>
-      <button>Disable Users</button>
-      <button>Delete Users</button>
+      <button v-on:click="enableSelectedUsers" v-bind:disabled="actionButtonDisabled">Enable Users</button>
+      <button v-on:click="disableSelectedUsers" v-bind:disabled="actionButtonDisabled">Disable Users</button>
+      <button v-on:click="deleteSelectedUsers" v-bind:disabled="actionButtonDisabled">Delete Users</button>
     </div>
 
     <button v-on:click="showForm = true">Add New User</button>
@@ -102,6 +102,7 @@ export default {
       },
       //step one requires form to be hidden by default
       showForm: false,
+      selectedUserIDs: [],
       newUser: {
         id: null,
         firstName: "",
@@ -178,16 +179,46 @@ export default {
       this.showForm = false;
     },
 
-    flipStatus(emailAddress){
-      let userIndex = this.users.findIndex(user => user.emailAddress===emailAddress);
+    flipStatus(id){
+      let userIndex = this.users.findIndex(user => user.id===id);
       console.log(userIndex);
       this.users[userIndex].status==='Active' ? this.users[userIndex].status='Disabled' : this.users[userIndex].status='Active';
+    },
+
+    enableSelectedUsers(){
+      for (let i = 0; i < this.selectedUserIDs.length; i++){
+        let userIndex = this.users.findIndex(user => user.id===this.selectedUserIDs[i]);
+        this.users[userIndex].status='Active';
+      }
+      this.selectedUserIDs=[];
+    },
+
+    disableSelectedUsers(){
+      for (let i = 0; i < this.selectedUserIDs.length; i++){
+        let userIndex = this.users.findIndex(user => user.id===this.selectedUserIDs[i]);
+        this.users[userIndex].status='Disabled';
+      }
+      this.selectedUserIDs=[];
+    },
+
+    deleteSelectedUsers(){
+      for (let i = 0; i < this.selectedUserIDs.length; i++){
+        let userIndex = this.users.findIndex(user => user.id===this.selectedUserIDs[i]);
+        this.users.splice(userIndex,1);
+      }
+      this.selectedUserIDs=[];
     }
-    
-
-
   },
   computed: {
+    actionButtonDisabled() {
+      if(this.selectedUserIDs.length===0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
+
     filteredList() {
       let filteredUsers = this.users;
       if (this.filter.firstName != "") {
