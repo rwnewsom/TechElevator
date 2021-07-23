@@ -180,9 +180,10 @@ export default {
     },
 
     flipStatus(id){
-      let userIndex = this.users.findIndex(user => user.id===id);
-      console.log(userIndex);
-      this.users[userIndex].status==='Active' ? this.users[userIndex].status='Disabled' : this.users[userIndex].status='Active';
+      let user = this.users.find(user => user.id===id);
+      if (user){
+        user.status === "Active" ? user.status="Disabled" : user.status="Active";
+      }
     },
 
     enableSelectedUsers(){

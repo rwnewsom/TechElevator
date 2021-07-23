@@ -1,8 +1,7 @@
 <template>
   <div class="main">
     <!-- Page Header - This could be a component -->
-    <h2>Product Reviews for {{ name }}</h2>
-    <p class="description">{{ description }}</p>
+    <product-info v-bind:name="productName" v-bind:description="productDescription"></product-info>
 
     <!-- Filter / data controls -->
     <p class="help">Click on a rating below to filter the list of reviews. Click on the Average Rating button to show all reviews.</p>
@@ -95,6 +94,9 @@
     <!-- Add a link to toggle Between List and Table displays -->
 
     <!-- Reviews list - This should be a component -->
+    <review-list-item v-for="rev in filteredReviews"
+                      v-bind:key="rev.id"
+                      v-bind:review="rev" />
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
@@ -124,12 +126,19 @@
 </template>
 
 <script>
+import ProductInfo from './ProductInfo.vue'
+import ReviewListItem from './ReviewListItem.vue'
+
 export default {
   name: "product-review",
+  components: {
+    ProductInfo,
+    ReviewListItem
+  },
   data() {
     return {
-      name: "Cigar Parties for Dummies",
-      description:
+      productName: "Cigar Parties for Dummies",
+      productDescription:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       isAddFormVisible: false,
       newReview: {
