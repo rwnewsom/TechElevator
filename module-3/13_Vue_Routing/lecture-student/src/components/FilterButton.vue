@@ -22,7 +22,7 @@ export default {
     },
     computed: {
         toolTip() {
-            return 'Show ' + this.rating + " Star Reviews";
+            return 'Show ' + this.rating + ' Star Reviews';
         },
         numberOfReviews() {
             return this.$store.state.reviews.reduce((currentCount, review) => {

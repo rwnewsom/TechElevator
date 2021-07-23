@@ -1,23 +1,28 @@
 <template>
   <div id="app">
-    <product-review></product-review>
+    <div id="nav">     
+      <a href="/" class="router-link-exact-active">List View</a> |
+      <a href="/table">Table View</a> |
+      <a href="/add-review">Add Review</a> |
+      <a href="/about">About this Application</a>
+    </div>
+    <product-review-view />
   </div>
 </template>
 
 <script>
-import ProductReview from "./components/ProductReview.vue";
+import ProductReviewView from './views/ProductReviewView.vue'
 
 export default {
-  name: "app",
   components: {
-    ProductReview
+    ProductReviewView
   }
-};
+}
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -25,14 +30,17 @@ export default {
   max-width: 800px;
   margin: 60px auto 0 auto;
 }
-th, td {
-  text-align: left;
+
+#nav {
+  padding: 30px;
 }
-td {
-  padding-right: 10px;
-  vertical-align: top;
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
-tr:nth-child(even) {
-  background-color: rgb(238, 238, 238);
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
