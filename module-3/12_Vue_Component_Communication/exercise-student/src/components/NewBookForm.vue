@@ -52,7 +52,8 @@ export default {
     width: 250px;
     height: 550px;
     margin: 20px;
-    background-color: whitesmoke;
+    background-color: #aaaaaa;
+    color: white;
     display: block;
 }
 

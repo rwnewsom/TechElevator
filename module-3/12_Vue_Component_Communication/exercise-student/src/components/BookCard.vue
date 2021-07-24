@@ -35,13 +35,14 @@ export default {
 .card {
     border: 2px solid black;
     border-radius: 10px;
+    background-color: #eccece;
     width: 250px;
     height: 550px;
     margin: 20px;
 }
 
 .card.read {
-    background-color: lightgray;
+    background-color: #cccccc;
 }
 
 .card .book-title {

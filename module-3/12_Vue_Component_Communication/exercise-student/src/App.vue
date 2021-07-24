@@ -27,6 +27,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 60px;
-  background-color:ghostwhite;
+  background-color:#dddddd;
+}
+
+#app h1 {
+  padding-top: 20px;
 }
 </style>
