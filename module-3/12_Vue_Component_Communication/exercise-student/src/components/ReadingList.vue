@@ -2,9 +2,9 @@
   <div class="book-container">
 
     <!-- Create a card for each book -->
-    <book-card v-for="book in $store.state.books"
-                v-bind:key="book.isbn"
-                v-bind:card="card" />
+    <book-card v-for="entry in books"
+                v-bind:key="entry.isbn"
+                v-bind:book="entry" />
 
   </div>
 </template>
@@ -16,6 +16,11 @@ export default {
     name: 'reading-list',
     components: {
       BookCard
+    },
+    computed: {
+      books(){
+        return this.$store.state.books;
+      }
     }
 }
 </script>
