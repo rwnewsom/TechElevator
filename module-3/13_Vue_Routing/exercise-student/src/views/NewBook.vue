@@ -1,5 +1,10 @@
 <template>
+<div>
   <new-book-form />
+
+  
+
+</div>
 </template>
 
 <script>

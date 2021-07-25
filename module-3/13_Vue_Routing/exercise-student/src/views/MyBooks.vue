@@ -1,5 +1,10 @@
 <template>
+<div>
   <reading-list />
+  <router-link :to="{name: 'addbook'}">
+        Add a new book
+      </router-link>
+</div>
 </template>
 
 <script>
