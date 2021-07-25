@@ -7,6 +7,7 @@ In this exercise, you'll take components from the previous exercise and turn the
 Implement a `Home` view that displays the `BestSellerList` and `NewReleasesList` components. Make this view appear when the path is `/`.
 
 After you complete this step, all tests under "Step One Tests" pass.
+'npm run test:e2e'
 
 ![Best Seller and New Releases Page at /](./etc/best-seller-and-new-releases-page.png)
 
