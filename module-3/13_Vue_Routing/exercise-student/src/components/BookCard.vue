@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-bind:class="{ read: book.read }">
+  <div class="card" v-bind:class="{ read: book.read }" v-on:click="goToDetails(book)">
     <h2 class="book-title">{{ book.title }}</h2>
     <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
     <h3 class="book-author">{{ book.author }}</h3>
@@ -30,6 +30,9 @@ export default {
             delete addedBook.bestSeller;
             delete addedBook.newRelease;
             this.$store.commit('SAVE_BOOK', addedBook);
+        },
+        goToDetails(book){
+            this.$router.push({name:'book', params: {id: book.isbn}}); 
         }
     }
 }
