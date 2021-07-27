@@ -25,13 +25,23 @@
 
 <style lang="scss">
 
+// SASS variables
 $accentDark: #3D5A80;
 $accentLight: #98C1D9;
 $background: #E0FBFC;
-$danger: #EE6C4D;
+$highlight: #EE6C4D;
 $dark: #293241;
 $light: white;
 
+// Override bootstrap styles here. See https://getbootstrap.com/docs/4.0/getting-started/theming/#theme-colors for some pointers
+$primary: $accentDark;
+$danger: $highlight;
+$warning: #ddbc2b;
+
+// Import the bootstrap styles. If you want to override Bootstrap colors, it needs to happen above this line
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// Custom selectors go here
 html {
   background-color: $background;
   color: $dark;
@@ -49,6 +59,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $dark;
+  background-color: $background;
 
   height: 100vh;
   width: 100vw;
@@ -88,12 +99,8 @@ body {
     color: $accentLight;
 
     &.router-link-exact-active {
-      color: $danger;
+      color: $highlight;
     }
-  }
-
-  a:hover {
-    color: $light;
   }
 
   li {
@@ -102,4 +109,9 @@ body {
     margin-bottom: 0.5rem;
   }
 }
+
+#app a:hover {
+  color: $light;
+}
+
 </style>
