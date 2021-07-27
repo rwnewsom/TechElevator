@@ -99,10 +99,6 @@ table a {
     color: $dark;
 }
 
-// table tbody tr:nth-child(even) {
-//     background-color: $accentLight;
-// }
-
 table {
   border: 1px solid $light;
   width: 100%;
