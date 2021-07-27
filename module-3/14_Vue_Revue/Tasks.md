@@ -1,13 +1,15 @@
 - [ ] Create a new Vue.js Application with Router, SCSS, and Vuex
 - [ ] Find some inspirations
 - [ ] Pick out a few key colors
-- [ ] Sketch out a few sample screens
+- [ ] Sketch out a few sample screens: List, Details, Edit, Add
+
+- [ ] View for Bug List
+- [ ] Show message if no bugs exist
 
 - [ ] Vuex State for Bugs
 
 - [ ] Routes
 
-- [ ] View for Bug List
 - [ ] View for Bug Details
 - [ ] View for Bug Edit
 - [ ] View for Bug Create

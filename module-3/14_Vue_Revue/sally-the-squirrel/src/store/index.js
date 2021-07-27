@@ -1,112 +1,183 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import restService from "../services/RestService.js";
+import { router } from "../router/index";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+function addChangeDetectionFields(question) {
+  question.isAnswerVisible = false;
+  question.isCorrect = undefined;
+  return question;
+}
 
 export default new Vuex.Store({
-  // When strict is set to true, state can ONLY be mutated from the store. This should be true.
-  strict: true,
-
-  // State contains the global application state. Think of it as app-wide data
   state: {
-    filter: {
-      searchText: "",
-      difficulty: ""
-    },    
-    isAddQuestionVisible: false,
-    questions: [
-      {
-        id: 1,
-        question: "What is the Sealed Keyword?",
-        answer: "The sealed keyword prevents a class from being inherited.",
-        difficulty: 2,
-        isAnswerVisible: false,
-        isCorrect: null,
-      },
-      {
-        id: 2,
-        question: "What is the Virtual Keyword?",
-        answer: "The virtual keyword allows a method to be overridden in an inheriting class.",
-        difficulty: 1,
-        isAnswerVisible: false,
-        isCorrect: null,
-      },
-      {
-        id: 3,
-        question: "What do you need to do to override a method in C#?",
-        answer: "Mark the method as virtual, inherit from the class, and use the overrides keyword to override it in the inheriting class.",
-        difficulty: 2,
-        isAnswerVisible: false,
-        isCorrect: null,
-      },
-      {
-        id: 4,
-        question: "What are the major unit test frameworks for .NET?",
-        answer: "MSTest, XUnit, and NUnit",
-        difficulty: 2,
-        isAnswerVisible: false,
-        isCorrect: null,
-      },
-      {
-        id: 5,
-        question: "How does a Unit Test Work?",
-        answer: "The test runner discovers and calls each test method. If an exception occurs and is unhandled, the test fails. Asserts throw exceptions when they fail.",
-        difficulty: 3,
-        isAnswerVisible: false,
-        isCorrect: null,
-      },
-      {
-        id: 6,
-        question: "What is the purpose of semantic HTML?",
-        answer: "Semantic HTML helps tools understand the structure of a web page",
-        difficulty: 1,
-        isAnswerVisible: false,
-        isCorrect: null,
-      }
-    ],
+    questions: [],
+    currentView: "Home",
+    isBusy: true
   },
-
-  // Mutations are used to make discrete changes to state from a central place
+  getters: {
+    questionList: (state) => state.questions,
+    findQuestion: (state) =>
+      function (id) {
+        return state.questions.find((q) => q.id == id); // Using == to support strings from URLs
+      },
+      isBusy: (state) => state.isBusy
+  },
+  actions: {
+    getQuestions(context) {
+      context.commit("BUSY");
+      restService.list()
+        .then(response => {
+          const questions = response.data.map(addChangeDetectionFields);
+          context.commit("SET_QUESTIONS", questions);
+        })
+        .catch(err => {
+          console.error('Could not get questions', err);
+          alert('There was a problem loading question data. Try again later.');
+        })
+        .finally(() => {
+          context.commit("NOT_BUSY");
+        });
+    },
+    refreshQuestion(context, payload) {
+      context.commit("BUSY");
+      restService.get(payload)
+        .then(response => {
+          const question = addChangeDetectionFields(response.data);
+          context.commit("QUESTION_UPDATED", question);
+        })
+        .catch(err => {
+          console.error('Could not load question ' + payload, err);
+          alert('There was a problem fetching your question. Try again later.');
+        })
+        .finally(() => {
+          context.commit("NOT_BUSY");
+        });
+    },
+    addQuestion(context, payload) {
+      context.commit("BUSY");
+      restService.create(payload)
+        .then(response => {
+          const newQuestion = addChangeDetectionFields(response.data);
+          context.commit("ADD_QUESTION", newQuestion);
+          router.push("/questions/" + newQuestion.id);    
+        })
+        .catch(err => {
+          console.error('Could not add question', err);
+          alert('There was a problem adding your question. Try again later.');
+        })
+        .finally(() => {
+          context.commit("NOT_BUSY");
+        });
+    },
+    saveQuestion(context, payload) {
+      context.commit("BUSY");
+      restService.update(payload)
+        .then(response => {
+          const question = addChangeDetectionFields(response.data);
+          context.commit("QUESTION_UPDATED", question);
+          router.push("/questions");
+        })
+        .catch(err => {
+          console.error('Could not save question ' + payload.id, err);
+          alert('There was a problem saving your question. Try again later.');
+        })
+        .finally(() => {
+          context.commit("NOT_BUSY");
+        });
+    },
+    deleteQuestion(context, payload) {
+      context.commit("BUSY");
+      restService.delete(payload)
+        .then(() => {
+          context.commit("QUESTION_DELETED", payload.id);
+          router.push("/questions");
+        })
+        .catch(err => {
+          console.error('Could not delete question ' + payload.id, err);
+          alert('There was a problem deleting your question. Try again later.');
+        })
+        .finally(() => {
+          context.commit("NOT_BUSY");
+        });
+    },    
+    showAnswer(context, payload) {
+      context.commit("SHOW_ANSWER", payload.id);
+    },
+    showAllAnswers(context) {
+      context.commit("SHOW_ALL_ANSWERS");
+    },
+    hideAnswer(context, payload) {
+      context.commit("HIDE_ANSWER", payload.id);
+    },
+    hideAllAnswers(context) {
+      context.commit("HIDE_ALL_ANSWERS");
+    },
+    markCorrect(context, payload) {
+      context.commit("MARK_CORRECT", payload.id);
+    },
+    markIncorrect(context, payload) {
+      context.commit("MARK_INCORRECT", payload.id);
+    },
+    toggleCorrect(context, payload) {
+      const question = context.state.questions.find((q) => q.id == payload.id);
+      if (question.isCorrect == true) {
+        context.commit("MARK_INCORRECT", question.id);
+      } else {
+        context.commit("MARK_CORRECT", question.id);
+      }
+    },
+  },
   mutations: {
-    // Search-related mutations
-    SET_SEARCH(state, search) {
-      state.filter = search;
+    NOT_BUSY(state) {
+      state.isBusy = false;
     },
-
-    // Question List State
-    SHOW_ADD_QUESTION(state) {
-      state.isAddQuestionVisible = true;
+    BUSY(state) {
+      state.isBusy = true;
     },
-    HIDE_ADD_QUESTION(state) {
-      state.isAddQuestionVisible = false;
+    SET_QUESTIONS(state, payload) {
+      state.questions = payload;
+      state.isLoading = false;
     },
-    
-    // Add a method to add a question to the list of questions
     ADD_QUESTION(state, payload) {
       state.questions.push(payload);
     },
-
-    // Add methods for Grading questions and setting answer visibility
-    TOGGLE_ANSWER_VISIBILITY(state, id) {
-      const question = state.questions.find(q => q.id === id);
-      question.isAnswerVisible = !question.isAnswerVisible;
+    QUESTION_UPDATED(state, payload) {
+      const index = state.questions.findIndex((q) => q.id === payload.id);
+      state.questions.splice(index, 1, payload);
     },
-    GRADE_QUESTION(state, payload) {
-      const question = state.questions.find(q => q.id === payload.id);
-      question.isCorrect = payload.isCorrect;
+    QUESTION_DELETED(state, payload) {
+      const index = state.questions.findIndex((q) => q.id === payload);
+      state.questions.splice(index, 1);
+    },
+    SHOW_ANSWER(state, payload) {
+      const question = state.questions.find((q) => q.id == payload);
+      question.isAnswerVisible = true;
+    },
+    SHOW_ALL_ANSWERS(state) {
+      state.questions.forEach((q) => (q.isAnswerVisible = true));
+    },
+    HIDE_ANSWER(state, payload) {
+      const question = state.questions.find((q) => q.id == payload);
+      question.isAnswerVisible = false;
+      question.isCorrect = undefined; // If it's hidden, forget our answer to it
+    },
+    HIDE_ALL_ANSWERS(state) {
+      state.questions
+        .filter((q) => q.isCorrect == undefined)
+        .forEach((q) => (q.isAnswerVisible = false));
+    },
+    MARK_CORRECT(state, payload) {
+      const question = state.questions.find((q) => q.id == payload);
+      question.isCorrect = true;
+      question.isAnswerVisible = true;
+    },
+    MARK_INCORRECT(state, payload) {
+      const question = state.questions.find((q) => q.id == payload);
+      question.isCorrect = false;
       question.isAnswerVisible = true;
     },
   },
-
-  // The items below are not covered by TE's curriculum, but recommended for larger apps
-
-  // Getters provide encapsulation around application state by providing computed properties
-  getters: {
-  },
-  // Actions typically commit one or more mutation and can be used to coordinate complex operations
-  actions: {
-  },
-  // Modules are used to group together groups of complex state
-  modules: {
-  }
-})
+});
