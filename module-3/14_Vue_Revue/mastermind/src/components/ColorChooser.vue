@@ -18,7 +18,9 @@ export default {
   },
   computed: {
     choices() {
-      return this.$store.state.choices;
+      let arr = this.$store.state.choices.slice();
+      arr.sort();
+      return arr;
     }
   },
   methods: {

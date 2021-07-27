@@ -1,3 +1,6 @@
+- [ ] Sally the Squirrel Quick Overview
+- [ ] Mastermind Quick Overview
+
 - [ ] Create a new Vue.js Application with Router, SCSS, and Vuex
 - [ ] Find some inspirations
 - [ ] Pick out a few key colors
