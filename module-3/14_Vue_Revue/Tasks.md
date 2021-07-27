@@ -1,28 +1,27 @@
-- [ ] Sally the Squirrel Quick Overview
-- [ ] Mastermind Quick Overview
+- [x] Sally the Squirrel Quick Overview
+- [x] Mastermind Quick Overview
 
-- [ ] Create a new Vue.js Application with Router, SCSS, and Vuex
-- [ ] Find some inspirations
-- [ ] Pick out a few key colors
-- [ ] Sketch out a few sample screens: List, Details, Edit, Add
+- [x] Create a new Vue.js Application with Router, SCSS, and Vuex
+- [x] Find some inspirations
+- [x] Pick out a few key colors
+- [x] Sketch out a few sample screens
 
-- [ ] View for Bug List
-- [ ] Show message if no bugs exist
+- [x] Home Page
+- [x] About Page
+- [x] View for Bug List
+- [x] Show message if no bugs exist
 
-- [ ] Vuex State for Bugs
+- [x] Vuex State for Bugs
 
-- [ ] Routes
+- [x] Routes
 
-- [ ] View for Bug Details
-- [ ] View for Bug Edit
-- [ ] View for Bug Create
-
-- [ ] Empty Component for Bug List
-- [ ] Empty Component for Bug Item
-- [ ] Empty Component for Bug Add / Edit
+- [x] View for Bug Details
+- [x] View for Bug Edit
+- [x] View for Bug Create
 
 - [ ] All Bugs / Open Bugs View on Bugs List
 
 Bonus: 
 - [ ] Google Font
 - [ ] Font Awesome
+- [ ] Responsive Design
