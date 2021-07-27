@@ -1,0 +1,236 @@
+/* Tech Elevator Colors
+
+Dark Gray:  #3B3E42
+Blue:       #00ADEE
+Green:      #8CC63F
+Light Gray: #999999
+White:      #FFFFFF
+Orange:     #F6931D
+Purple:     #363E8B
+Gold:       #FFCB48
+*/
+
+/* Document Styling */
+
+body {
+  background-color: #999999;
+  color: #3b3e42;
+  font-family: "Proxima Nova", Tahoma, Arial, sans-serif;
+  display: grid;
+  grid-template-areas: "header" "aside" "main" "footer";
+}
+
+main {
+  grid-area: main;
+  background: #ffffff;
+  padding: 1rem;
+  min-height: 450px;
+}
+
+/* Link Styling */
+
+a {
+  color: #ffcb48;
+  text-decoration: none;
+}
+
+a.active {
+  color: #f6931d;
+}
+
+a:hover {
+  color: #f6931d;
+  text-decoration: underline;
+}
+
+main a {
+  color: #00adee;
+}
+
+/* Header Styling */
+
+header {
+  grid-area: header;
+  background-color: #3b3e42;
+  padding: 0.25rem;
+  border-bottom: #8cc63f solid 0.25rem;
+}
+
+header img {
+  display: block;
+}
+
+header nav {
+  display: flex;
+  flex-direction: column;
+}
+
+header nav div {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+header nav div a {
+  display: block;
+  margin: 0.5rem;
+}
+
+/* Footer Styling */
+
+footer {
+  grid-area: footer;
+  background-color: #3b3e42;
+  color: #999999;
+  padding: 0.5rem;
+  border-top: #8cc63f solid 0.25rem;
+  text-align: center;
+}
+
+footer nav {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: space-around;
+}
+
+footer a {
+  margin: 0.5rem 0;
+}
+
+/* Sidebar Styling */
+
+aside {
+  grid-area: aside;
+  background-color: #3b3e42;
+  margin: 0.5rem 0;
+  padding: 0.25rem;
+  color: #999999;
+  text-align: center;
+}
+
+aside img {
+  width: 100%;
+  height: auto;
+}
+
+aside cite {
+  font-size: x-small;
+  text-align: right;
+}
+
+/* Paragraph Styling */
+
+small {
+  font-size: x-small;
+}
+
+body section p em {
+  color: #00adee;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h2 {
+  margin: 0.5rem 0;
+}
+
+/* Quotes */
+
+blockquote {
+  font-size: small;
+  border-top: #8cc63f dotted 1px;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+blockquote cite {
+  display: block;
+  text-align: right;
+}
+
+/* Customized Scrollbar Style */
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #999999;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  box-shadow: #3b3e42 0.1rem 0.1rem;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffcb48;
+}
+
+/* Responsive Design Tweaks */
+
+@media (min-width: 612px) {
+  header nav div a {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+  footer nav {
+    flex-direction: row;
+  }
+  footer nav a {
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  header nav {
+    flex-direction: row;
+    align-items: center;
+  }
+  header nav div {
+    flex-grow: 2;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  header img {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  body {
+    grid-gap: 0.5rem;
+    grid-template-areas: "header" 
+                         "main" 
+                         "footer";
+  }
+  main {
+    display: grid;
+    grid-gap: 0 0.5rem;
+    grid-template-columns: 2.5fr 1fr;
+    grid-template-areas: "opening aside" 
+                         "opening ..." 
+                         "mainContent mainContent" 
+                         "closing closing";
+  }
+  aside {
+    grid-area: aside;
+  }
+  section {
+    grid-area: mainContent;
+  }
+  #opening {
+    grid-area: opening;
+  }
+  #closing {
+    grid-area: closing;
+  }
+  aside {
+    margin: 0;
+    height: auto;
+  }
+}

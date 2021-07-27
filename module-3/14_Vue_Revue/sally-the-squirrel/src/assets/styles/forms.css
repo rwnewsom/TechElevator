@@ -1,0 +1,94 @@
+/* Tech Elevator Colors
+
+Dark Gray:  #3B3E42
+Blue:       #00ADEE
+Green:      #8CC63F
+Light Gray: #999999
+White:      #FFFFFF
+Orange:     #F6931D
+Purple:     #363E8B
+Gold:       #FFCB48
+*/
+
+.form-group>label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group>input {
+    width: 95%;
+}
+
+.form-group>textarea {
+    width: 95%;
+    height: 5rem;
+}
+
+.form-check {
+    position: relative;
+    display: block;
+    padding-left: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.form-check label {
+    display: inline-block;
+    font-size: small;
+    padding-right: 5rem;
+    /* Extra padding on the right makes it easier for touch input that misses the label */
+}
+
+input[type="button"] {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+input[type="button"][value="Search"], input[type="submit"] {
+    color: #3B3E42;
+    background-color: #8CC63F;
+    border: 1px solid #3B3E42;
+    box-shadow: 0.1rem 0.1rem #999999;
+}
+
+input[type="button"] {
+    color: #3B3E42;
+    background-color: #FFCB48;
+    border: 1px solid #3B3E42;
+    box-shadow: 0.1rem 0.1rem #999999;
+}
+
+input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #F6931D;
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-inline>*:last-child {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-inline label {
+    display: inline-block;
+}
+
+.form-inline input {
+    width: auto;
+}
+
+@media (min-width: 375px) {
+    .form-group>div.form-check-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 175px);
+    }
+}
