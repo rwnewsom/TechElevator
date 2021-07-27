@@ -2,7 +2,7 @@
   <div id="app">
     <!-- Header at top (Branding) -->
     <header>
-      <strong>Elevator Bugs</strong>
+      Elevator Bugs
     </header>
 
     <!-- Sidebar (Navigation) -->
@@ -35,6 +35,13 @@ $light: white;
 html {
   background-color: $background;
   color: $dark;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
 #app {
@@ -42,12 +49,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $dark;
-  min-height: 800px;
+
+  height: 100vh;
+  width: 100vw;
 
   display: grid;
   grid-template-areas: "brand brand"
     "sidebar page";
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
 }
 
@@ -55,7 +64,7 @@ html {
   grid-area: brand;
   background-color: $accentDark;
   color: $light;
-  font-size: 200%;
+  font-size: 150%;
   padding: 0.5rem 1rem;
 }
 
@@ -63,14 +72,16 @@ html {
   grid-area: sidebar;
   background-color: $dark;
   color: $light;
+  min-width: 150px;
 }
 
 #app > main {
   grid-area: page;
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 #nav {
+  padding-right: 2rem;
   a {
     text-align: left;
     font-weight: bold;
