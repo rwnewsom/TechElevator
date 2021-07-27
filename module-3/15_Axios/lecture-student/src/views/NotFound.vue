@@ -1,15 +1,9 @@
 <template>
-    <div>
-        <not-found-message />
-    </div>
+  <p>The item you were looking for could not be found.</p>
 </template>
 
 <script>
-import NotFoundMessage from '../components/NotFoundMessage.vue';
-
 export default {
-    components: {
-        NotFoundMessage
-    }    
+
 }
 </script>

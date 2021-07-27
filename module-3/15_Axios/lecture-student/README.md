@@ -1,4 +1,4 @@
-# sally-the-squirrel
+# bug-tracker
 
 ## Project setup
 ```
