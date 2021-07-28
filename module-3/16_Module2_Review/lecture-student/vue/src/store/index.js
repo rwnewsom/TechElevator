@@ -22,10 +22,34 @@ if(currentToken && currentToken != 'undefined') {
 
 export default new Vuex.Store({
   state: {
+    bugs: [],
     token: currentToken || '',
     user: currentUser || {} // If a user is an admin, their user.role will be 'admin'
   },
   mutations: {
+    LOADED_BUGS(state, payload) {
+      state.bugs = payload;
+    },
+    ADD_BUG(state, payload) {
+      state.bugs.push(payload);
+    },
+    UPDATE_BUG(state, payload) {
+      let index = state.bugs.findIndex(bug => bug.id === payload.id);
+
+      if (index >= 0) {
+        state.bugs.splice(index, 1, payload);
+      } else {
+        state.bugs.push(payload);
+      }
+    },
+    DELETE_BUG(state, id) {
+      let index = state.bugs.findIndex(bug => bug.id === id);
+
+      if (index >= 0) {
+        state.bugs.splice(index, 1);
+      }
+    },
+    // Authentication-related    
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
