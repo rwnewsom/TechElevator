@@ -1,0 +1,35 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  strict: true,
+  state: {
+    bugs: [],
+  },
+  mutations: {
+    LOADED_BUGS(state, payload) {
+      state.bugs = payload;
+    },
+    ADD_BUG(state, payload) {
+      state.bugs.push(payload);
+    },
+    UPDATE_BUG(state, payload) {
+      let index = state.bugs.findIndex(bug => bug.id === payload.id);
+
+      if (index >= 0) {
+        state.bugs.splice(index, 1, payload);
+      } else {
+        state.bugs.push(payload);
+      }
+    },
+    DELETE_BUG(state, id) {
+      let index = state.bugs.findIndex(bug => bug.id === id);
+
+      if (index >= 0) {
+        state.bugs.splice(index, 1);
+      }
+    }
+  },
+})
