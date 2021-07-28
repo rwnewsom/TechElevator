@@ -30,19 +30,7 @@ namespace Capstone
             services.AddControllers();
 
             // Adds swagger documentation file support. See https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-3.1&tabs=visual-studio for more details
-            services.AddSwaggerGen(s =>
-            {
-                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
-                {
-                    Version = "v1",
-                    Title = "Customize me in Startup.cs",
-                    Description = "Or just leave it with the default values and hope nobody notices..."
-                });
-
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                s.IncludeXmlComments(xmlPath);
-            });
+            ConfigureSwagger(services);
 
             // Add CORS policy allowing any origin
             services.AddCors(options =>
@@ -51,33 +39,16 @@ namespace Capstone
                 builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
-            string connectionString = Configuration.GetConnectionString("Project");
-
             // configure jwt authentication
-            var key = Encoding.ASCII.GetBytes(Configuration["JwtSecret"]);
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap[JwtRegisteredClaimNames.Sub] = "sub";
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    NameClaimType = "name"
-                };
-            });
+            byte[] key = Encoding.ASCII.GetBytes(Configuration["JwtSecret"]);
+            ConfigureJwtAuthentication(services, key);
 
-            // Dependency Injection configuration
+            // Dependency Injection configuration.
+            // Non-testing settings will be pulled from the secure environment when hosted on a server
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
+
+            string connectionString = Configuration.GetConnectionString("Project");
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(connectionString));
         }
 
@@ -113,6 +84,48 @@ namespace Capstone
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+
+        private static void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Version = "v1",
+                    Title = "Customize me in Startup.cs",
+                    Description = "Or just leave it and hope no hiring manager notices..."
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                s.IncludeXmlComments(xmlPath);
+            });
+        }
+
+
+        private static void ConfigureJwtAuthentication(IServiceCollection services, byte[] key)
+        {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap[JwtRegisteredClaimNames.Sub] = "sub";
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    NameClaimType = "name"
+                };
             });
         }
     }

@@ -1,7 +1,7 @@
 USE master
 GO
 
---drop database if it exists
+-- Drop database if it exists
 IF DB_ID('final_capstone') IS NOT NULL
 BEGIN
 	ALTER DATABASE final_capstone SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
@@ -14,7 +14,7 @@ GO
 USE final_capstone
 GO
 
---create tables
+-- Create Tables
 CREATE TABLE users (
 	user_id int IDENTITY(1,1) NOT NULL,
 	username varchar(50) NOT NULL,
@@ -24,7 +24,8 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
 
---populate default data: 'password'
+-- Populate default data for testing: user and admin with password of 'password'
+-- These values should not be kept when going to Production
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
