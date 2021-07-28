@@ -25,6 +25,7 @@
         &nbsp;|&nbsp;Logout
       </router-link>
     </div>
+    
     <router-view />
   </div>
 </template>
@@ -38,5 +39,12 @@ export default {
 <!-- Application-Wide Styles go here. 
      Any valid CSS or SCSS is allowable here. See https://sass-lang.com/documentation/style-rules for info on SCSS -->
 <style lang="scss">
+
+@import './styles/colors.scss';
+
+// Import the bootstrap styles. If you want to override Bootstrap colors, it needs to happen above this line
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// Your custom styles go below this point
 
 </style>
