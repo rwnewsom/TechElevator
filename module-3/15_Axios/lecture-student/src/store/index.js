@@ -6,27 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: true,
   state: {
-    bugs: [
-      {
-        id: 1,
-        title: 'Help, a bug is in the elevator!',
-        description: 'Oh no! It\'s getting closer! Please help me!!!',
-        priority: 4,
-        isOpen: true,
-        resolution: ''
-      },
-      {
-        id: 2,
-        title: 'Bug found in computer mainframe',
-        description: 'A moth found its way into the mainframe and shorted out the computer',
-        priority: 3,
-        isOpen: false,
-        resolution: 'Removed moth. Rebooted computer.'
-      }
-    ],
+    bugs: [],
     nextId: 3,
   },
   mutations: {
+    LOADED_BUGS(state, payload){
+      state.bugs = payload;
+    },
+
+
     ADD_BUG(state, payload) {
       payload.id = state.nextId;
       state.bugs.push(payload);

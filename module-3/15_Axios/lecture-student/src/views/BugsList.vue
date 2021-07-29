@@ -1,6 +1,7 @@
 <template>
   <div>
       <h1>Bugs List</h1>
+      <loading v-if="isLoading" />
 
       <!-- List all existing bugs in a table -->
       <table v-if="hasBugs">
@@ -47,12 +48,13 @@
       </table>
 
       <!-- Show message if no bugs exist -->
-      <p v-if="!hasBugs">
+      <p v-if="!hasBugs" && !isLoading>
           No bugs exist! Ship it!
       </p>
 
       <button type="button" 
               class="btn btn-primary mt-3"
+              v-if="!isLoading"
               v-on:click="addBug">
               New Bug
       </button>
@@ -60,8 +62,19 @@
 </template>
 
 <script>
+import BugsService from '../services/BugService.js';
+import Loading from '../components/Loading.vue'
+
 export default {
     name: 'bugs-list',
+    components: {
+      Loading,
+    },
+    data(){
+      return {
+        isLoading: true,
+      }
+    },
     computed: {
         allBugs() {
             return this.$store.state.bugs;
@@ -74,6 +87,18 @@ export default {
         addBug() {
             this.$router.push({name: 'NewBug'});
         }
+    },
+    created(){
+      console.log('requesting all bugs');
+      BugsService.getAllBugs() //result is a promise
+        .then(result => {  //this is called once the promise is resolved
+          console.log('Promise resolved', result);
+
+          if(result.status === 200){
+            this.$store.commit('LOADED_BUGS', result.data);
+          }
+        });
+      console.log('finished requesting all bugs');
     }
 }
 </script>
