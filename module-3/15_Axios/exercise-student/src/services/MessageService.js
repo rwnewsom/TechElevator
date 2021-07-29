@@ -16,6 +16,10 @@ export default {
 
   update(id, message){
     return http.put(`/messages/${id}`, message);
+  },
+
+  delete(id){
+    return http.delete(`/messages/${id}`);
   }
 
 }
