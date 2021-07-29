@@ -40,6 +40,9 @@ const router = new Router({
       path: '/bugs/new',
       name: 'NewBug',
       component: AddBug,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/bugs/:id/edit',
