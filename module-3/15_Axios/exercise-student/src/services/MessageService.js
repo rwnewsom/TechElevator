@@ -12,6 +12,10 @@ export default {
 
   create(message){
     return http.post(`/messages/`, message);
+  },
+
+  update(id, message){
+    return http.put(`/messages/${id}`, message);
   }
 
 }
